@@ -3,18 +3,22 @@ const router=Router();
 const {User} =require("../db/index")
 const {JWT_SECRET} = require("../config")
 const jwt =require("jsonwebtoken")
-
+const {userCreate} = require("../type")
 
 router.post('/signup',async (req,res)=>{
-    const name=req.body.name;
-    const email=req.body.email;
-    const password=req.body.password;
-    const gender=req.body.gender;
+    const createUser=req.body;
+    const userPayload=userCreate.safeParse(createUser);
+    if(!userPayload.success){
+        res.status(411).json({
+            msg:"Wrong Inputs"
+        })
+        return;
+    }
     await User.create({
-        name:name,
-        email:email,
-        password:password,
-        gender:gender
+        name:createUser.name,
+        email:createUser.email,
+        password:createUser.password,
+        gender:createUser.gender
     })
     res.json({
         msg:"User created successfully"
@@ -24,19 +28,26 @@ router.post('/signup',async (req,res)=>{
 router.post("/signin",async(req,res)=>{
     const email=req.body.email;
     const password=req.body.password;
-    const user = await User.findOne({
-        email,
-        password
-    })
-    if(user){
-        const token=jwt.sign(email,JWT_SECRET)
-        res.status(200).json({
-            token
+    
+    try{
+        const user = await User.findOne({
+            email,
+            password
         })
-    }else{
-        res.json({
-            msg:"Incorrect username or password"
-        })
+        if(user){
+            const token=jwt.sign(email,JWT_SECRET)
+            res.status(200).json({
+                token
+            })
+        }
+        else{
+            res.status(403).json({msg:"Invalid Email or Password"})
+        }
+    }
+    catch(e){
+            res.json({
+                msg:"User dosen't exists"
+            })
     }
 })
 
