@@ -52,4 +52,20 @@ router.post("/signin",async(req,res)=>{
 })
 
 
+router.post("/forgot-password",(req,res)=>{
+    const email=req.body.email;
+    try{
+        const userCheck=User.findOne({
+            email,
+        })
+        if(userCheck){
+            
+        }
+    }
+    catch(e){
+        console.log("Error in forgot password")
+    }
+})
+
+
 module.exports=router

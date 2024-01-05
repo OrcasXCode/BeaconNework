@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function SignIn(){
     const [email,setEmail]=useState("");
@@ -11,9 +12,15 @@ export function SignIn(){
         <input style={{margin:10, padding:5}} type="text" placeholder="enter your email" onChange={function(e){
             setEmail(e.target.value);
         }}></input><br></br>
-        <input style={{margin:10, padding:5}} type="text" placeholder="enter your email" onChange={function(e){
-            setPassword(e.target.value);
-        }}></input><br></br>
+        <div>
+            <Link to="/forgot-password">
+            <p  style={{margin:10, padding:5, fontSize:'small'}} >Forgot Password?</p>
+            </Link>
+            <input style={{margin:10, padding:5}} type="text" placeholder="enter your email" onChange={function(e){
+                setPassword(e.target.value);
+            }}></input><br></br>
+        </div>
+        
         <button style={{margin:10, padding:5}}  onClick={()=>{
             fetch("http://localhost:3000/user/signin",{
                 method:"POST",
