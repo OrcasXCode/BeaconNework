@@ -20,7 +20,7 @@ export function SignIn(){
 
                 <div style={{marginTop:'50px'}}>
                     <p style={{marginLeft:'-328px',marginBottom:'-10px',fontWeight:'bold',fontSize:'12px',fontFamily: 'Playfair Display'}}>Email Address<sup style={{color:'#EF476F'}}>*</sup></p>
-                    <input style={{margin:10, padding:5,width:'400px',height:'20px', borderRadius: '3px',border:'0.5px solid grey'}} type="text" placeholder="xyz@gmail.com" onChange={function(e){
+                    <input style={{fontFamily: 'Playfair Display' ,margin:10, padding:5,width:'400px',height:'20px', borderRadius: '3px',border:'0.5px solid grey'}} type="text" placeholder="xyz@gmail.com" onChange={function(e){
                         setEmail(e.target.value);
                     }}></input>
                 </div>
@@ -31,13 +31,13 @@ export function SignIn(){
                         <Link to="/forgot-password" style={{marginBottom:'0px', marginRight:'125px',textDecoration: "none",color:'black',fontWeight:'bold',fontSize:'12px',fontFamily: 'Playfair Display'}}>Forgot Password?</Link>
                     </div>
                     
-                    <input style={{margin:10, padding:5,width:'400px',height:'20px', borderRadius: '3px',border:'0.5px solid grey'}} type="text" placeholder="" onChange={function(e){
-                        setEmail(e.target.value);
+                    <input style={{fontFamily: 'Playfair Display' ,margin:10, padding:5,width:'400px',height:'20px', borderRadius: '3px',border:'0.5px solid grey'}} type="text" placeholder="" onChange={function(e){
+                        setPassword(e.target.value);
                     }}></input>
                 </div>
                 
                 
-                <button style={{margin:10, padding:5,width:'415px',height:'35px', color:'white',background:'#084C98', borderRadius: '8px',border:'none',marginTop:'30px'}}  onClick={()=>{
+                <button style={{fontFamily: 'Playfair Display' ,margin:10, padding:5,width:'415px',height:'35px', color:'white',background:'#084C98', borderRadius: '8px',border:'none',marginTop:'30px'}}  onClick={()=>{
                     fetch("http://localhost:3000/user/signin",{
                         method:"POST",
                         body:JSON.stringify({
@@ -50,16 +50,16 @@ export function SignIn(){
                     })
                     .then(async function(res){
                         if(res.ok){
-                            let userData=res.json()
-                            alert("SignIn Successfull")
+                            const json=await res.json();
+                            alert("Sign In successfull")
                         }
                         else{
-                            throw new Error("Sign in Failed")
+                            throw new Error("Sign In Failed")
                         }
-                    })
+                    })   
                     .catch((e)=>{
                         alert("Incorrect username or password")
-                    })
+                    })           
                 }}>Get Started</button>
             </div>
     </div>

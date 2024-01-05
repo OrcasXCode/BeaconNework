@@ -25,7 +25,7 @@ export function Signup(){
 
             <div style={{marginTop:'50px'}}>
                 <p style={{marginLeft:'-372px',marginBottom:'-10px',fontWeight:'bold',fontSize:'12px',fontFamily: 'Playfair Display'}}>Name<sup style={{color:'#EF476F'}}>*</sup></p>
-                <input style={{margin:10, padding:5,width:'400px',height:'20px', borderRadius: '3px',border:'0.5px solid grey'}} type="text" placeholder="" onChange={function(e){
+                <input style={{fontFamily: 'Playfair Display',margin:10, padding:5,width:'400px',height:'20px', borderRadius: '3px',border:'0.5px solid grey'}} type="text" placeholder="" onChange={function(e){
                     setName(e.target.value);
                 }}></input>
             </div>   
@@ -33,18 +33,20 @@ export function Signup(){
 
             <div style={{marginTop:'21px'}}>
                 <p style={{marginLeft:'-330px',marginBottom:'-10px',fontWeight:'bold',fontSize:'12px',fontFamily: 'Playfair Display'}}>Email Address<sup style={{color:'#EF476F'}}>*</sup></p>
-                <input style={{margin:10, padding:5,width:'400px',height:'20px', borderRadius: '3px',border:'0.5px solid grey'}} type="text" placeholder="xyz@gmail.com" onChange={function(e){
+                <input style={{fontFamily: 'Playfair Display',margin:10, padding:5,width:'400px',height:'20px', borderRadius: '3px',border:'0.5px solid grey'}} type="text" placeholder="xyz@gmail.com" onChange={function(e){
                     setEmail(e.target.value);
                 }}></input>
             </div>
-            
-            <div style={{width:'400px',marginLeft:'117px'}}>
-                <p style={{marginLeft:'-322px',marginBottom:'-10px',fontWeight:'bold',fontSize:'12px',fontFamily: 'Playfair Display'}}>Password<sup style={{color:'#EF476F'}}>*</sup></p>
-                <input style={{margin:10, padding:5,width:'400px',height:'20px',  borderRadius: '3px',border:'0.5px solid grey'}} type="text" placeholder="" onChange={function(e){
+
+            <div style={{marginTop:'21px'}}>
+                <p style={{marginLeft:'-350px',marginBottom:'-10px',fontWeight:'bold',fontSize:'12px',fontFamily: 'Playfair Display'}}>Password<sup style={{color:'#EF476F'}}>*</sup></p>
+                <input style={{fontFamily: 'Playfair Display',margin:10, padding:5,width:'400px',height:'20px', borderRadius: '3px',border:'0.5px solid grey'}} type="text" placeholder="" onChange={function(e){
                     setPassword(e.target.value);
                 }}></input>
             </div>
-            <button style={{margin:10, padding:5,width:'415px',height:'35px', color:'white',background:'#084C98', borderRadius: '8px',border:'none',marginTop:'30px'}}onClick={()=>{
+            
+
+            <button style={{fontFamily: 'Playfair Display' ,margin:10, padding:5,width:'415px',height:'35px', color:'white',background:'#084C98', borderRadius: '8px',border:'none',marginTop:'30px'}}onClick={()=>{
                 fetch("http://localhost:3000/user/signup",{
                     method:"POST",
                     body:JSON.stringify({
@@ -60,10 +62,10 @@ export function Signup(){
                 .then(async function(res){
                     if(res.ok){
                         const json=await res.json();
-                        alert("Signup successfull")
+                        alert("Sign Up successfull")
                     }
                     else{
-                        throw new Error("Signup Failed")
+                        throw new Error("Sign Up Failed")
                     }
                 })
                 .catch((e)=>{
