@@ -2,7 +2,10 @@ const express = require("express");
 const app=express();
 const bodyParser=require("body-parser")
 const userRouter=require("../Backend/routes/User")
+const cors=require("cors")
 
+
+app.use(cors());
 app.use(express.json())
 app.use(bodyParser.json());
 
