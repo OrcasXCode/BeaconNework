@@ -18,7 +18,7 @@ router.post('/signup',async (req,res)=>{
         name:createUser.name,
         email:createUser.email,
         password:createUser.password,
-        gender:createUser.gender
+        // gender:createUser.gender
     })
     res.json({
         msg:"User created successfully"
