@@ -2,7 +2,7 @@ import { useState } from "react"
 import favicon from "../src/assets/faviconbn (1).png"
 import HighlightText from "../components/HighLightText";
 import { Link } from "react-router-dom";
-
+import { Toaster,toast } from "react-hot-toast";
 
 export function Signup(){
 
@@ -12,16 +12,19 @@ export function Signup(){
     const[password,setPassword]=useState("");
     // const[gender,setGender]=useState("");
 
+    
+
 
     return(
 
-        <div style={{position: "relative", width: "100%", height: "100vh"}} >
+        <div style={{width: "100%", height: "100%"}} >
+        <div><Toaster></Toaster></div>
         <img src={favicon} style={{height:'70px'}}></img>   
-        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center",height:'545px',width:'665px'}}>   
-        <h1 style={{ fontSize:'36px', lineHeight:'36px'}}><HighlightText text={"Sign up to create Account"} /></h1>
-        <p style={{ fontFamily: 'Playfair Display' }}>
-        Already have an account ?  <span><Link to="/signin" style={{ fontFamily: 'yourFontName', fontWeight: 'bold',color:'black', textDecoration: "none"}}>Sign In</Link></span>
-</p>
+        <div style={{textAlign: "center",height:'545px',width:'665px',margin:'0 auto'}} >   
+            <h1 style={{ fontSize:'36px', lineHeight:'36px'}}><HighlightText text={"Sign up to create Account"} /></h1>
+            <p style={{ fontFamily: 'Playfair Display' }}>
+                Already have an account ?  <span><Link to="/signin" style={{ fontFamily: 'yourFontName', fontWeight: 'bold',color:'black', textDecoration: "none"}}>Sign In</Link></span>
+            </p>
 
             <div style={{marginTop:'50px'}}>
                 <p style={{marginLeft:'-372px',marginBottom:'-10px',fontWeight:'bold',fontSize:'12px',fontFamily: 'Playfair Display'}}>Name<sup style={{color:'#EF476F'}}>*</sup></p>
@@ -62,14 +65,14 @@ export function Signup(){
                 .then(async function(res){
                     if(res.ok){
                         const json=await res.json();
-                        alert("Sign Up successfull")
+                        toast.success("Sign Up successfull")
                     }
                     else{
                         throw new Error("Sign Up Failed")
                     }
                 })
                 .catch((e)=>{
-                    alert("Fill out all the required fields correctly")
+                    toast.error("Fill out all the required fields correctly")
                 })
             } } >Create Account</button>
         </div>

@@ -2,17 +2,21 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import favicon from "../src/assets/faviconbn (1).png"
 import HighlightText from "../components/HighLightText";
-
+import {toast,Toaster} from "react-hot-toast"
 
 export function SignIn(){
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
 
 
+
     return(
-        <div style={{position: "relative", width: "100%", height: "100vh"}} >
+
+        
+        <div style={{ width: "100%", height: "100%"}} >
+            <div><Toaster/></div>
             <img src={favicon} style={{height:'70px'}}></img>   
-            <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center",height:'545px',width:'665px'}}>   
+            <div style={{textAlign: "center",height:'545px',width:'665px',margin:'0 auto'}}>   
                 <h1 style={{ fontSize:'36px', lineHeight:'36px'}}><HighlightText text={"Sign in to your Account"} /></h1>
                 <p style={{ fontFamily: 'Playfair Display' }}>
                     Don't have an account? <span><Link to="/signup" style={{ fontFamily: 'yourFontName', fontWeight: 'bold',color:'black', textDecoration: "none"}}>Create a free account</Link></span>
@@ -51,14 +55,14 @@ export function SignIn(){
                     .then(async function(res){
                         if(res.ok){
                             const json=await res.json();
-                            alert("Sign In successfull")
+                            toast.success("Sign In successfull")
                         }
                         else{
                             throw new Error("Sign In Failed")
                         }
                     })   
                     .catch((e)=>{
-                        alert("Incorrect username or password")
+                        toast.error("Incorrect username or password")
                     })           
                 }}>Get Started</button>
             </div>
