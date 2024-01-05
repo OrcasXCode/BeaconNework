@@ -15,7 +15,7 @@ export function SignIn(){
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center",height:'545px',width:'665px'}}>   
         <h1 style={{ fontSize:'36px', lineHeight:'36px'}}><HighlightText text={"Sign in to your Account"} /></h1>
         <p style={{ fontFamily: 'Playfair Display' }}>
-  Don't have an account? <span><Link to="./signup" style={{ fontFamily: 'yourFontName', fontWeight: 'bold',color:'black', textDecoration: "none"}}>Create a free account</Link></span>
+  Don't have an account? <span><Link to="/signup" style={{ fontFamily: 'yourFontName', fontWeight: 'bold',color:'black', textDecoration: "none"}}>Create a free account</Link></span>
 </p>
             <div style={{marginTop:'50px'}}>
             <p style={{marginLeft:'-335px',marginBottom:'-10px',fontWeight:'bold',fontSize:'12px',fontFamily: 'Playfair Display'}}>Email Address<sup style={{color:'#EF476F'}}>*</sup></p>
