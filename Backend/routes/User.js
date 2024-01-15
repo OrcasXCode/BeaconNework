@@ -1,11 +1,13 @@
 const {Router} =require("express")
 const router=Router();
-const {User} =require("../db/index")
-const {JWT_SECRET} = require("../config")
 const jwt =require("jsonwebtoken")
 const {userCreate} = require("../type")
-const otpgenerator=require("otp-generator")
-
+const otpgenerator=require("otp-generator");
+const { OTP } = require("../db/OTP.JS");
+const mailSender = require("../utils/mailSender");
+const { sendOTP } = require("../mail/templates/sendOTP");
+const dotenv=require("dotenv")
+require("dotenv").config()
 
 router.post('/signup',async (req,res)=>{
     const createUser=req.body;
@@ -37,7 +39,7 @@ router.post("/signin",async(req,res)=>{
             password
         })
         if(user){
-            const token=jwt.sign(email,JWT_SECRET)
+            const token=jwt.sign(email,process.env.JWT_SECRET)
             res.status(200).json({
                 token
             })
@@ -111,6 +113,22 @@ router.post("/send-otp",async(req,res)=>{
             specialChars:false,
             specialChars:false,
             numbersOnly:true
+        })
+        const result=await OTP.findOne({
+            otp
+        })
+        while(result){
+            otp=otpgenerator.generate(6,{
+                upperCaseAlphabets:false
+            })
+        }
+        const otpPayload={email,otp}
+        const otpBody=await OTP.create(otpPayload)
+        const sendOTPEmail=await mailSender(email,"OPT sent successsfuly",sendOTP(email,otp))
+        res.status(200).json({
+            success:true,
+            msg:"OTP sent successfully",
+            otp,
         })
     }
     catch(error){

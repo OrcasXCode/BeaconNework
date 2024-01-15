@@ -1,7 +1,7 @@
 const mongoose=require("mongoose");
 
 
-mongoose.connect("mongodb+srv://userdb:1234@cluster0.fqpdeka.mongodb.net/Beacon-Network")
+// mongoose.connect("mongodb+srv://userdb:1234@cluster0.fqpdeka.mongodb.net/Beacon-Network")
 
 const UserSchema=new mongoose.Schema({
     name:String,
