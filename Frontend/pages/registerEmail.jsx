@@ -11,10 +11,10 @@ export function RegisterEmail(){
 
     return(
         <div style={{ width: "100%", height: "100%"}}>
-              <img src={favicon} style={{height:'70px'}}></img>   
+            <img src={favicon} style={{height:'70px'}}></img>   
             <div style={{height:'545px',width:'665px',textAlign:"center", margin:'0 auto'}}>
             <h1>{!sentOTP ? <HighlightText text="Register Email"></HighlightText> : <HighlightText text="Check Email"></HighlightText>}</h1>
-            <p style={{ fontFamily: 'Playfair Display' }}>{!sentOTP ? "Have no fear. We'll email you instructions to register your email.  " : `We have sent the reset email to ${email}`}</p>
+            <p style={{ fontFamily: 'Playfair Display' }}>{!sentOTP ? "Have no fear. We'll email you instructions to register your email.  " : `We have sent the otp to ${email} , please do not share with anyone else or it may lead to some security issues`}</p>
             <form> {!sentOTP ? (<label>
                 <div style={{marginTop:'50px'}}>
                     <p style={{marginLeft:'-328px',marginBottom:'-10px',fontWeight:'bold',fontSize:'12px',fontFamily: 'Playfair Display'}}>Email Address<sup style={{color:'#EF476F'}}>*</sup></p>
@@ -23,7 +23,7 @@ export function RegisterEmail(){
                     }}></input>
                 </div><br></br>
                     <button style={{fontFamily: 'Playfair Display' ,margin:10, padding:5,width:'415px',height:'35px', color:'white',background:'#084C98', borderRadius: '8px',border:'none',marginTop:'30px'}} onClick={()=>{
-                        fetch("http://localhost:3000/user/forgot-password",{
+                        fetch("http://localhost:3000/user/register-email",{
                             method:"POST",
                             body:JSON.stringify({
                                 email,
@@ -35,11 +35,11 @@ export function RegisterEmail(){
                         .then(async function(res){
                             if(res.ok){
                                 const userEmail=res.json();
-                                alert("Email sent successfull")
-                                setsentOTP==true;
+                                alert("otp sent successfully")
+                                setSentOTP==true;
                             }
                             else{
-                                alert("Email not sent")
+                                alert("otp not sent")
                             }
                         })
                     }}>Send OTP</button>
