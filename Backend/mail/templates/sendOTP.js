@@ -1,7 +1,12 @@
-exports.sendOTP= (
-    otp,
-    email
-  ) => {
+// const fs=require("fs")
+
+
+
+exports.sendOTP= (otp,email) => {
+
+    // const logoPath = '../../logo/logo.png'
+    // const logoData=fs.readFileSync(logoPath)
+    // const logoBase64=logoData.toString('base64')
     return `<!DOCTYPE html>
     <html>
     
@@ -70,12 +75,12 @@ exports.sendOTP= (
     
     <body>
         <div class="container">
-            <a href="https://studynotion-edtech-project.vercel.app"><img class="logo"
-                    src="https://i.ibb.co/7Xyj3PC/logo.png" alt="StudyNotion Logo"></a>
+            <a href=""><img class="logo"
+                    src=${logoBase64} alt="Beacon Network"></a>
             <div class="message">OTP Confirmatiom</div>
             <div class="body">
                 <p>Dear Customer</p>
-                <p>Thank you for connecting with  us. We have sent your otp for your regitered email</p>
+                <p>Thank you for connecting with  us. We have sent your otp for registering your  email</p>
                 <p>Email : ${otp}</p>
                 <p>OTP: ${email}</p>
                 <p>We appreciate your interest and will get connect with you.</p>
