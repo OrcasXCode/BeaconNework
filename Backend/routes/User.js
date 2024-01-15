@@ -6,6 +6,7 @@ const otpgenerator=require("otp-generator");
 const { OTP } = require("../db/OTP.JS");
 const mailSender = require("../utils/mailSender");
 const { sendOTP } = require("../mail/templates/sendOTP");
+const {User} = require("../db/User")
 const dotenv=require("dotenv")
 require("dotenv").config()
 
@@ -74,7 +75,33 @@ router.post("/forgot-password",async(req,res)=>{
 
 router.post("/register-email",async(req,res)=>{
     const email=req.body.email;
+    const otp=req.body.otp;
     try{
+        if(!email || !otp){
+            return  res.status(400).json({
+                success:false,
+                msg: "Email and OTP are required fields!"
+            })
+        }
+
+        const otpCheck=await OTP.find({
+            email,
+        }).sort({
+            createdAt:-1
+        }).limit(1)
+        if(otpCheck.length===0){
+            return  res.status(403).json({
+                success:false,
+                msg:"Invalid OTP",
+            })
+        }
+        else if(otp!==otpCheck[0].otp){
+            return res.status(404).json({
+                success: false,
+                msg:"Invalid OTPs"
+            })
+        }
+
         const checkEmail= await User.findOne({
             email:email
         })
