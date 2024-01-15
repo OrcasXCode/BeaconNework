@@ -4,6 +4,8 @@ const {User} =require("../db/index")
 const {JWT_SECRET} = require("../config")
 const jwt =require("jsonwebtoken")
 const {userCreate} = require("../type")
+const otpgenerator=require("otp-generator")
+
 
 router.post('/signup',async (req,res)=>{
     const createUser=req.body;
@@ -52,10 +54,10 @@ router.post("/signin",async(req,res)=>{
 })
 
 
-router.post("/forgot-password",(req,res)=>{
+router.post("/forgot-password",async(req,res)=>{
     const email=req.body.email;
     try{
-        const userCheck=User.findOne({
+        const userCheck= await User.findOne({
             email,
         })
         if(userCheck){
@@ -64,6 +66,59 @@ router.post("/forgot-password",(req,res)=>{
     }
     catch(e){
         console.log("Error in forgot password")
+    }
+})
+
+
+router.post("/register-email",async(req,res)=>{
+    const email=req.body.email;
+    try{
+        const checkEmail= await User.findOne({
+            email:email
+        })
+        if(checkEmail){
+            return res.status(404).json({
+                success:false,
+                msg:'This email is already registered.'
+            })
+        }
+
+        const registerNewEmail=await User.create({
+            email:email
+        })
+        return res.status(200).json({
+            success:true,
+            msg:"User email successfully registered",
+            registerNewEmail
+        })
+    }
+    catch(error){
+        console.log(error)
+        return res.status(500).json({
+            success:false,
+            msg:"server error  failed to register your email"
+        })
+    }
+})
+
+
+router.post("/send-otp",async(req,res)=>{
+    try{
+        const email=req.body.email;
+        let otp=otpgenerator.generate(6,{
+            upperCaseAlphabets:false,
+            lowerCaseAlphabets:false,
+            specialChars:false,
+            specialChars:false,
+            numbersOnly:true
+        })
+    }
+    catch(error){
+        console.log("Error in sending OTP : ",error);
+        return res.status(500).json({
+            success: false,
+            message: "Server Error! Failed to send OTP."
+        })
     }
 })
 
