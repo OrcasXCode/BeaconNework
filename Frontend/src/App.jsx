@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { Signup } from '../pages/signup'
 import { SignIn } from '../pages/signin'
-import { Home } from '../components/home'
+import  {Home}  from '../components/Home/Home'
 import {Route,Routes,useNavigate} from "react-router-dom"
 import { ForgotPassword } from '../pages/forgot-password'
 import { RegisterEmail } from '../pages/registerEmail'
