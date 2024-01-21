@@ -7,6 +7,7 @@ import {Home}  from '../components/Home/Home.jsx'
 import { SignIn } from '../pages/signin.jsx'
 import { Signup } from '../pages/signup.jsx'
 import { VerifyEmail } from '../pages/verifyEmail.jsx'
+import { ForgotPassword } from '../pages/forgot-password.jsx'
 
 
 const router=createBrowserRouter([
@@ -29,6 +30,10 @@ const router=createBrowserRouter([
       {
         path:'verify-email',
         element:<VerifyEmail></VerifyEmail>
+      },
+      {
+        path:'forgot-password',
+        element:<ForgotPassword></ForgotPassword>
       }
     ]
   }
