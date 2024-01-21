@@ -1,14 +1,43 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
-import { BrowserRouter } from 'react-router-dom'
+import {  RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Layout } from './Layout.jsx'
+import {Home}  from '../components/Home/Home.jsx'
+import { SignIn } from '../pages/signin.jsx'
+import { Signup } from '../pages/signup.jsx'
+import { VerifyEmail } from '../pages/verifyEmail.jsx'
+
+
+const router=createBrowserRouter([
+  {
+    path:"/",
+    element:<Layout></Layout>,
+    children:[
+      {
+        path:"",
+        element:<Home></Home>
+      },
+      {
+        path:'signin',
+        element:<SignIn></SignIn>
+      },
+      {
+        path:'signup',
+        element:<Signup></Signup>
+      },
+      {
+        path:'verify-email',
+        element:<VerifyEmail></VerifyEmail>
+      }
+    ]
+  }
+
+])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <RouterProvider router={router}></RouterProvider>
   </React.StrictMode>,
 )
  
