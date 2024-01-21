@@ -59,12 +59,31 @@ router.post("/signin",async(req,res)=>{
 
 router.post("/forgot-password",async(req,res)=>{
     const email=req.body.email;
+    const otp=req.body.otp;
     try{
-        const userCheck= await User.findOne({
+        if(!email || !otp){
+            return  res.status(400).json({
+                success:false,
+                msg: "Email and OTP are required fields!"
+            })
+        }
+
+        const otpCheck=await OTP.find({
             email,
-        })
-        if(userCheck){
-            
+        }).sort({
+            createdAt:-1
+        }).limit(1)
+        if(otpCheck.length===0){
+            return  res.status(403).json({
+                success:false,
+                msg:"Invalid OTP",
+            })
+        }
+        else if(otp!==otpCheck[0].otp){
+            return res.status(404).json({
+                success: false,
+                msg:"Invalid OTPs"
+            })
         }
     }
     catch(e){
@@ -133,7 +152,7 @@ router.post("/register-email",async(req,res)=>{
 
 router.post("/send-otp",async(req,res)=>{
     try{
-        const email=req.body.email;
+        const email=await req.body.email;
         let otp=otpgenerator.generate(6,{
             upperCaseAlphabets:false,
             lowerCaseAlphabets:false,
