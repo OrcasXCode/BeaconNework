@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import HighlightText from "../components/HighLightText";
-import favicon from "../src/assets/faviconbn (1).png"
+import favicon from "../src/assets/logo.png"
 
 
 export function VerifyEmail(){

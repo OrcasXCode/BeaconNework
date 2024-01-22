@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import favicon from "../src/assets/faviconbn (1).png";
+import favicon from "../src/assets/logo.png";
 import HighlightText from "../components/HighLightText";
 import { toast, Toaster } from "react-hot-toast";
 import React from 'react'

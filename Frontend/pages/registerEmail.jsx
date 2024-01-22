@@ -62,7 +62,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import HighlightText from "../components/HighLightText";
-import favicon from "../src/assets/faviconbn (1).png";
+import favicon from "../src/assets/logo.png";
 
 export function RegisterEmail() {
   const [email, setEmail] = useState("");

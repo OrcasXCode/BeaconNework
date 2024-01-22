@@ -1,5 +1,5 @@
 import { useState } from "react"
-import favicon from "../src/assets/faviconbn (1).png"
+import favicon from "../src/assets/logo.png"
 import HighlightText from "../components/HighLightText";
 import { Link } from "react-router-dom";
 import { Toaster,toast } from "react-hot-toast";
