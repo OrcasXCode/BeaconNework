@@ -1,6 +1,7 @@
 import React from 'react'
 import HighlightText from '../HighLightText'
 import man from '../../src/assets/man.png'
+import seller from '../../src/assets/seller.jpg'
 
 
 export function Home() {
@@ -63,6 +64,78 @@ export function Home() {
             </p>
           </div>
         </div>
+      </div>
+      {/* Become A seller */}
+      <div className="mx-auto mt-10 max-w-7xl px-2 py-10 lg:px-0">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:space-x-10">
+       <div className="mb-10 w-full md:w-2/3 lg:mb-0 lg:w-1/2">
+          <img
+            className="h-[700px] w-full rounded-md object-contain"
+            src={seller}
+            alt="Become a Seller"
+          />
+        </div>
+
+        <div className="w-full md:w-2/3 lg:w-1/2">
+          <p className="text-sm font-italics text-gray-700">Grow . Improve . Empower Your Business</p>
+          <h2 className="mt-4 text-3xl font-bold text-black">Become the part of <HighlightText text={"Beacon Network"} /> as a Seller</h2>
+          <p className="mt-4 text-gray-600">
+            Unlock new opportunities and reach a wider audience by becoming a seller on the Beacon Network. Take your business to the next level!
+          </p>
+          <div className="mt-4">
+            <p className="font-semibold text-gray-800">
+              Trusted by over 100,000+ businesses and individuals
+            </p>
+            <div className="mt-2 flex items-center">
+            </div>
+            <div className="mt-4 flex items-center space-x-4">
+              <div className="isolate flex -space-x-2">
+                <img
+                  className="relative z-30 inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                  src="https://images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  alt="Dan_Abromov"
+                />
+                <img
+                  className="relative z-20 inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                  src="https://images.pexels.com/photos/7752846/pexels-photo-7752846.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  alt="Guillermo_Rauch"
+                />
+                <img
+                  className="relative z-10 inline-block h-10 w-10 rounded-full object-cover ring-2 ring-white"
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+                  alt="Lee_Robinson"
+                />
+                <img
+                  className="relative z-0 inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                  src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  alt="Delba"
+                />
+              </div>
+              <span className="text-sm font-semibold text-gray-700">Join 1000+ Sellers</span>
+            </div>
+          </div>
+          <form className="mt-6">
+            <div className="flex w-full max-w-md flex-col space-y-4">
+              <input
+                className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                type="email"
+                placeholder="Email"
+              ></input>
+              <button
+                type="button"
+                className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              >
+                Subscribe
+              </button>
+            </div>
+          </form>
+          <p className="mt-2">
+            <span className="text-sm text-gray-600">
+              By signing up, you agree to our terms of service and privacy policy.
+            </span>
+          </p>
+        </div>
+      </div>
       </div>
     </div>
   )
