@@ -8,6 +8,7 @@ export function Home() {
 
   return (
     <div className="relative w-full">
+
       {/* Hero Section */}
       <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
         <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
@@ -26,6 +27,7 @@ export function Home() {
           />
         </div>
       </div>
+
       {/* Dominating Sector */}
       <div className="relative isolate z-0 bg-white px-6 pt-14 lg:px-8">
         <div className="relative mx-auto max-w-2xl py-24">
@@ -65,6 +67,7 @@ export function Home() {
           </div>
         </div>
       </div>
+
       {/* Become A seller */}
       <div className="mx-auto mt-10 max-w-7xl px-2 py-10 lg:px-0">
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:space-x-10">
@@ -137,6 +140,151 @@ export function Home() {
         </div>
       </div>
       </div>
-    </div>
+
+      {/* Why Us? */}
+      <div style={{textAlign:'center'}}>
+        <h1>Why Us?</h1>
+
+        {/* 1 */}
+        <div className="px-5 relative mx-auto py-24">
+          <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+            <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
+              <img
+                loading="lazy"
+                srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&"className="aspect-[1.72] object-contain object-center w-full overflow-hidden grow max-md:max-w-full max-md:mt-7"
+                alt=""
+              />
+            </header>
+            <div className="flex flex-col items-stretch w-[31%] ml-5 max-md:w-full max-md:ml-0">
+              
+                <h1 className="text-sky-800 font-bold text-5xl whitespace-nowrap max-md:text-4xl">
+                  <HighlightText style={{}} text={"Design"} />
+                </h1>
+                <p className="text-black text-2xl mt-9">
+                  Our detailed blueprints optimize product fitting during site installation, enhancing efficiency and accuracy for a successful deployment. Your project's success is our priority.
+                </p>
+            </div>
+            <div className="flex flex-col items-stretch w-[16%] ml-5 max-md:w-full max-md:ml-0">
+              <span className="text-black text-[160px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
+                01
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* 2 */}
+        <div className="px-5 relative mx-auto py-24">
+          <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+            <div className="flex flex-col items-stretch w-[16%] ml-5 max-md:w-full max-md:ml-0">
+              <span className="text-black text-[160px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
+                02
+              </span>
+            </div>
+           
+            <div className="flex flex-col items-stretch w-[31%] ml-5 max-md:w-full max-md:ml-0">
+              
+                <h1 className="text-sky-800 font-bold text-5xl whitespace-nowrap max-md:text-4xl">
+                  <HighlightText style={{}} text={"Next-Gen Solutions"} />
+                </h1>
+                <p className="text-black text-2xl mt-9">
+                  Our commitment is to provide customers with cutting-edge technology products, delivering a full spectrum of features and capabilities to meet their needs. Your satisfaction with our advanced solutions is our priority.
+                </p>
+            </div>
+            
+             <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
+              <img
+                loading="lazy"
+                srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&"className="aspect-[1.72] object-contain object-center w-full overflow-hidden max-w-[636px]"
+                alt=""
+              />
+            </header>
+          </div>
+        </div>
+
+        {/* 3 */}
+        <div className="px-5 relative mx-auto py-24">
+          <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+            <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
+              <img
+                loading="lazy"
+                 srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&"className="w-full h-full"
+                alt=""
+              />
+            </header>
+            <div className="flex flex-col items-stretch w-[31%] ml-5 max-md:w-full max-md:ml-0">
+              
+                <h1 className="text-sky-800 font-bold text-5xl whitespace-nowrap max-md:text-4xl">
+                  <HighlightText style={{}} text={"Product Installation "} />
+                </h1>
+                <p className="text-black text-2xl mt-9">
+                  Our team of experienced engineers is dedicated to installing your purchased products, ensuring a smooth and efficient setup process for your convenience and satisfaction.
+                </p>
+            </div>
+            <div className="flex flex-col items-stretch w-[16%] ml-5 max-md:w-full max-md:ml-0">
+              <span className="text-black text-[160px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
+                03
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* 4 */}
+         <div className="px-5 relative mx-auto py-24">
+          <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+            <div className="flex flex-col items-stretch w-[16%] ml-5 max-md:w-full max-md:ml-0">
+              <span className="text-black text-[160px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
+                04
+              </span>
+            </div>
+           
+            <div className="flex flex-col items-stretch w-[31%] ml-5 max-md:w-full max-md:ml-0">
+              
+                <h1 className="text-sky-800 font-bold text-5xl whitespace-nowrap max-md:text-4xl">
+                  <HighlightText style={{}} text={"Maintenance "} />
+                </h1>
+                <p className="text-black text-2xl mt-9">
+                  Our experienced engineers are committed to assisting with the maintenance of your purchased products, guaranteeing their reliability and longevity while keeping you satisfied with our service.
+                </p>
+            </div>
+            
+             <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
+              <img
+                loading="lazy"
+               srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&"className="aspect-[1.72] object-contain object-center w-full overflow-hidden max-w-[637px]"
+                alt=""
+              />
+            </header>
+          </div>
+        </div>
+
+        {/* 5 */}
+        <div className="px-5 relative mx-auto py-24">
+          <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+            <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
+              <img
+                loading="lazy"
+                 srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&"className="aspect-[1.72] object-contain object-center w-full overflow-hidden max-w-[635px]"
+                alt=""
+              />
+            </header>
+            <div className="flex flex-col items-stretch w-[31%] ml-5 max-md:w-full max-md:ml-0">
+              
+                <h1 className="text-sky-800 font-bold text-5xl whitespace-nowrap max-md:text-4xl">
+                  <HighlightText style={{}} text={"Customer Support"} />
+                </h1>
+                <p className="text-black text-2xl mt-9">
+                  We provide 24 X 7 customer service to ensure that you can reach us at any time, day or night, to assist you with your needs and address any inquiries or concerns you may have.
+                </p>
+            </div>
+            <div className="flex flex-col items-stretch w-[16%] ml-5 max-md:w-full max-md:ml-0">
+              <span className="text-black text-[160px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
+                05
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
   )
 }
