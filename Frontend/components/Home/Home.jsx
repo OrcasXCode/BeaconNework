@@ -2,6 +2,7 @@ import React from 'react'
 import HighlightText from '../HighLightText'
 import man from '../../src/assets/man.png'
 import seller from '../../src/assets/seller.jpg'
+import { Star } from 'lucide-react'
 
 
 export function Home() {
@@ -81,7 +82,7 @@ export function Home() {
 
         <div className="w-full md:w-2/3 lg:w-1/2">
           <p className="text-sm font-italics text-gray-700">Grow . Improve . Empower Your Business</p>
-          <h2 className="mt-4 text-3xl font-bold text-black">Become the part of <HighlightText text={"Beacon Network"} /> as a Seller</h2>
+          <h2 className="mt-4 text-3xl font-bold text-black">Become the part of <HighlightText text={"Beacon Network"} /> as a <HighlightText text={"Seller"} /></h2>
           <p className="mt-4 text-gray-600">
             Unlock new opportunities and reach a wider audience by becoming a seller on the Beacon Network. Take your business to the next level!
           </p>
@@ -126,9 +127,10 @@ export function Home() {
               ></input>
               <button
                 type="button"
+                style={{background:'#084C98',borderRadius:'20px'}}
                 className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
               >
-                Subscribe
+                Join Us
               </button>
             </div>
           </form>
@@ -291,6 +293,90 @@ export function Home() {
           </div>
         </div>
       </div>
+
+
+      {/* we Are Hiring */}
+      <div className="mx-auto max-w-7xl px-2 py-2 lg:px-0">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+        <div className="w-full md:w-2/3 lg:w-1/2">
+          <h2 className="text-3xl font-bold text-black">We Are Hiring ! : Crack the <HighlightText text={"Interview"} /> at <HighlightText text={"Beacon Network"} /></h2>
+          <p className="mt-4 text-gray-600">
+           Want a full time job at Beacon Network? Build essential tips and skills to crack the interview process
+        and secure your position in the exciting world of Beacon Network.
+          </p>
+          <div className="mt-4">
+            <p className="font-semibold text-gray-800">
+              Register your email to get all the detailed information about the interview process
+            </p>
+          </div>
+          <form className="mt-6">
+            <div className="flex w-full max-w-md flex-col space-y-4">
+              <input
+                className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                type="email"
+                placeholder="Email"
+              ></input>
+              <button
+                type="button"
+                style={{background:'#084C98',borderRadius:'20px'}}
+                className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              >
+                Apply For Job
+              </button>
+            </div>
+          </form>
+          <p className="mt-2">
+            <span className="text-sm text-gray-600">
+              By signing up, you agree to our terms of service and privacy policy.
+            </span>
+          </p>
+        </div>
+        <div className="mt-10 w-full md:w-2/3 lg:mt-0 lg:w-1/2">
+          <img
+            className="h-full w-full rounded-md object-cover"
+            src="https://images.pexels.com/photos/7255416/pexels-photo-7255416.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Newsletter"
+          />
+        </div>
+      </div>
+    </div>
+
+      {/* Get A Part Time Job */}
+      <div className="mx-auto max-w-7xl px-2 py-10 lg:px-0">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+        <div className="w-full md:w-1/2">
+          <h2 className="text-3xl font-bold text-black">Alredy got a job ! But want a part-time job ?</h2>
+          <p className="mt-2 text-gray-600">
+            Already working as a full-time employee ? But want to earn more , we also offer part-time job on daily basis.
+          </p>
+          <div className="mt-4">
+            <p className="font-semibold text-gray-800">
+              Register your email to get all the detailed information about the part-time job scheme.
+            </p>
+          </div>
+        </div>
+        
+        <div className="mt-10 w-full md:w-1/2 lg:mt-0">
+          <form className="flex lg:justify-center">
+            <div className="flex w-full max-w-md items-center space-x-2">
+              <input
+                className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                type="email"
+                placeholder="Email"
+              ></input>
+              <button
+                type="button"
+                style={{background:'#084C98',borderRadius:'20px'}}
+                className="rounded-md  px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              >
+                Register
+              </button>
+            </div>
+          </form>
+          
+        </div>
+      </div>
+    </div>
 
       </div>
   )
