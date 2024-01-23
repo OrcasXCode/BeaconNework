@@ -1,13 +1,10 @@
 // const fs=require("fs")
 
-
-
-exports.sendOTP= (otp,email) => {
-
-    // const logoPath = '../../logo/logo.png'
-    // const logoData=fs.readFileSync(logoPath)
-    // const logoBase64=logoData.toString('base64')
-    return `<!DOCTYPE html>
+exports.sendOTP = (otp, email) => {
+  // const logoPath = '../../logo/logo.png'
+  // const logoData=fs.readFileSync(logoPath)
+  // const logoBase64=logoData.toString('base64')
+  return `<!DOCTYPE html>
     <html>
     
     <head>
@@ -90,9 +87,5 @@ exports.sendOTP= (otp,email) => {
         </div>
     </body>
     
-    </html>`
-  
-}
-
-
-  
+    </html>`;
+};

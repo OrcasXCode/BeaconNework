@@ -270,6 +270,7 @@ export function Home() {
         <div className="px-5 relative mx-auto py-24">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
+              
               <img
                 style={{borderRadius:'10px'}}
                 loading="lazy"

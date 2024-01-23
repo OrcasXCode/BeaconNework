@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {toast,Toaster} from "react-hot-toast"
-
+import video from '../../src/assets/vid1.mp4'
 
 
 const locations = [
@@ -12,16 +12,11 @@ const locations = [
 ]
 
 export function ContactUs() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   const [firstname,setFirstName]=useState("")
   const [lastname,setLastName]=useState("")
   const [email,setEmail]=useState("")
   const [phonenumber,setPhoneNumber]=useState("")
   const [message,setMessage]=useState("")
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
 
   return (
     <div>
@@ -165,7 +160,8 @@ export function ContactUs() {
                 </form>
               </div>        
             </div>
-            <img style={{borderRadius:'10px'}} src='https://images.pexels.com/photos/8867376/pexels-photo-8867376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></img>
+            <video style={{borderRadius:'10px'}} src={video} autoPlay muted loop></video>
+            {/* <img style={{borderRadius:'10px'}} src='https://images.pexels.com/photos/8867376/pexels-photo-8867376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></img> */}
             <div className="absolute inset-x-0 -top-[10rem] -z-10 transform-gpu overflow-hidden blur-3xl md:-top-[10rem]">
                     <svg
                     className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
