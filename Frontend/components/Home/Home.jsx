@@ -74,6 +74,7 @@ export function Home() {
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:space-x-10">
        <div className="mb-10 w-full md:w-2/3 lg:mb-0 lg:w-1/2">
           <img
+            style={{borderRadius:'10px'}}
             className="h-[700px] w-full rounded-md object-contain"
             src={seller}
             alt="Become a Seller"
@@ -333,6 +334,7 @@ export function Home() {
         </div>
         <div className="mt-10 w-full md:w-2/3 lg:mt-0 lg:w-1/2">
           <img
+            style={{borderRadius:'10px'}}
             className="h-full w-full rounded-md object-cover"
             src="https://images.pexels.com/photos/7255416/pexels-photo-7255416.jpeg?auto=compress&cs=tinysrgb&w=600"
             alt="Newsletter"
