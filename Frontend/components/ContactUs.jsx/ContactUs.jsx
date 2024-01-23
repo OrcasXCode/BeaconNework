@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {toast,Toaster} from "react-hot-toast"
-import video from '../../src/assets/vid1.mp4'
+import video from '../../src/assets/vid3.mp4'
 
 
 const locations = [

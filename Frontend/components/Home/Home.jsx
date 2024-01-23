@@ -347,7 +347,7 @@ export function Home() {
       <div className="mx-auto max-w-7xl px-2 py-10 lg:px-0">
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
         <div className="w-full md:w-1/2">
-          <h2 className="text-3xl font-bold text-black">Alredy got a job ! But want a part-time job ?</h2>
+          <h2 className="text-3xl font-bold text-black">Already got a job ! But want a part-time job ?</h2>
           <p className="mt-2 text-gray-600">
             Already working as a full-time employee ? But want to earn more , we also offer part-time job on daily basis.
           </p>

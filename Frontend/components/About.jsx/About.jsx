@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { Menu, X, MapPin, ImageOff } from 'lucide-react'
+import React from 'react'
 import HighlightText from '../HighLightText'
 import list from '../../src/assets/list.png'
+import guj from '../../src/assets/guj.png'
 
 const users= [
   {
@@ -85,7 +85,7 @@ export function About() {
         <div className="w-full space-y-4">
           <img
             className="h-[200px] w-full rounded-xl object-cover md:h-full"
-            src="https://dev-ui-image-assets.s3.ap-south-1.amazonaws.com/google-map.jpg"
+            src={guj}
             alt=""
           />
         </div>
