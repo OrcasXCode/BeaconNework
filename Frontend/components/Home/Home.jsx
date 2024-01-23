@@ -145,7 +145,7 @@ export function Home() {
       </div>
 
       {/* Why Us? */}
-      <div style={{textAlign:'center'}}>    
+      <div style={{textAlign:'center'}} className='mt-10 max-w-7xl mx-auto'>    
             <h1 style={{fontSize:'50px'}} className="text-xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Performance-Boosting
               <HighlightText text={"Solutions "} />
@@ -161,17 +161,17 @@ export function Home() {
                 alt=""
               />
             </header>
-            <div className="flex flex-col items-stretch w-[31%] ml-5 max-md:w-full max-md:ml-0">
+            <div className="flex flex-col gap-y-6 items-center justify-center mx-auto  w-[31%] ml-5 max-md:w-full max-md:ml-0">
               
-                <h1 className="text-sky-800 font-bold text-5xl whitespace-nowrap max-md:text-4xl">
+                <h1 className="font-bold text-4xl whitespace-nowrap max-md:text-4xl">
                   <HighlightText style={{}} text={"Design"} />
                 </h1>
-                <p className="text-black text-2xl mt-9">
+                 <p className="max-w-4xl text-base text-gray-600 md:text-xl">
                   Our detailed blueprints optimize product fitting during site installation, enhancing efficiency and accuracy for a successful deployment. Your project's success is our priority.
-                </p>
+                  </p>
             </div>
-            <div className="flex flex-col items-stretch w-[16%] ml-5 max-md:w-full max-md:ml-0">
-              <span className="text-black text-[160px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
+            <div className="flex flex-col items-center justify-center w-[16%] ml-5 max-md:w-full max-md:ml-0">
+              <span className="text-black text-[100px] whitespace-nowrap items-stretch bg-stone-300 w-full pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
                 01
               </span>
             </div>
@@ -182,19 +182,19 @@ export function Home() {
         <div className="px-5 relative mx-auto py-24">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-[16%] ml-5 max-md:w-full max-md:ml-0">
-              <span className="text-black text-[160px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
+              <span className="text-black text-[100px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
                 02
               </span>
             </div>
            
-            <div className="flex flex-col items-stretch w-[31%] ml-5 max-md:w-full max-md:ml-0">
+            <div className="flex flex-col gap-y-6 items-center justify-center mx-auto  w-[31%] ml-5 max-md:w-full max-md:ml-0">
               
-                <h1 className="text-sky-800 font-bold text-5xl whitespace-nowrap max-md:text-4xl">
+                <h1 className=" font-bold text-4xl whitespace-nowrap max-md:text-4xl">
                   <HighlightText style={{}} text={"Next-Gen Solutions"} />
                 </h1>
-                <p className="text-black text-2xl mt-9">
+                <p className="max-w-4xl text-base text-gray-600 md:text-xl">
                   Our commitment is to provide customers with cutting-edge technology products, delivering a full spectrum of features and capabilities to meet their needs. Your satisfaction with our advanced solutions is our priority.
-                </p>
+                  </p>
             </div>
             
              <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
@@ -219,17 +219,17 @@ export function Home() {
                 alt=""
               />
             </header>
-            <div className="flex flex-col items-stretch w-[31%] ml-5 max-md:w-full max-md:ml-0">
+            <div className="flex flex-col gap-y-6 items-center justify-center mx-auto  w-[31%] ml-5 max-md:w-full max-md:ml-0">
               
-                <h1 className="text-sky-800 font-bold text-5xl whitespace-nowrap max-md:text-4xl">
+                <h1 className="text-sky-800 font-bold text-4xl whitespace-nowrap max-md:text-4xl">
                   <HighlightText style={{}} text={"Product Installation "} />
                 </h1>
-                <p className="text-black text-2xl mt-9">
+                <p className="max-w-4xl text-base text-gray-600 md:text-xl">
                   Our team of experienced engineers is dedicated to installing your purchased products, ensuring a smooth and efficient setup process for your convenience and satisfaction.
-                </p>
+                  </p>
             </div>
             <div className="flex flex-col items-stretch w-[16%] ml-5 max-md:w-full max-md:ml-0">
-              <span className="text-black text-[160px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
+              <span className="text-black text-[100px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
                 03
               </span>
             </div>
@@ -240,19 +240,19 @@ export function Home() {
          <div className="px-5 relative mx-auto py-24">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-[16%] ml-5 max-md:w-full max-md:ml-0">
-              <span className="text-black text-[160px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
+              <span className="text-black text-[100px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
                 04
               </span>
             </div>
            
-            <div className="flex flex-col items-stretch w-[31%] ml-5 max-md:w-full max-md:ml-0">
+            <div className="flex flex-col gap-y-6 items-center justify-center mx-auto  w-[31%] ml-5 max-md:w-full max-md:ml-0">
               
-                <h1 className="text-sky-800 font-bold text-5xl whitespace-nowrap max-md:text-4xl">
+                <h1 className="text-sky-800 font-bold text-4xl whitespace-nowrap max-md:text-4xl">
                   <HighlightText style={{}} text={"Maintenance "} />
                 </h1>
-                <p className="text-black text-2xl mt-9">
+                <p className="max-w-4xl text-base text-gray-600 md:text-xl">
                   Our experienced engineers are committed to assisting with the maintenance of your purchased products, guaranteeing their reliability and longevity while keeping you satisfied with our service.
-                </p>
+                  </p>
             </div>
             
              <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
@@ -277,17 +277,16 @@ export function Home() {
                 alt=""
               />
             </header>
-            <div className="flex flex-col items-stretch w-[31%] ml-5 max-md:w-full max-md:ml-0">
-              
-                <h1 className="text-sky-800 font-bold text-5xl whitespace-nowrap max-md:text-4xl">
+            <div style={{textAlign:'center'}} className="flex flex-col gap-y-6 items-center justify-center mx-auto  w-[31%] ml-5 max-md:w-full max-md:ml-0">
+                <h1 className="text-sky-800 font-bold text-4xl whitespace-nowrap max-md:text-4xl">
                   <HighlightText style={{}} text={"Customer Support"} />
                 </h1>
-                <p className="text-black text-2xl mt-9">
+                 <p className="max-w-4xltext-base text-gray-600 md:text-xl">
                   We provide 24 X 7 customer service to ensure that you can reach us at any time, day or night, to assist you with your needs and address any inquiries or concerns you may have.
-                </p>
+                  </p>
             </div>
             <div className="flex flex-col items-stretch w-[16%] ml-5 max-md:w-full max-md:ml-0">
-              <span className="text-black text-[160px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
+              <span className="text-black text-[100px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
                 05
               </span>
             </div>
