@@ -9,6 +9,7 @@ import { Signup } from '../pages/signup.jsx'
 import { VerifyEmail } from '../pages/verifyEmail.jsx'
 import { ForgotPassword } from '../pages/forgot-password.jsx'
 import { ContactUs } from '../components/ContactUs.jsx/ContactUs.jsx'
+import { About } from '../components/About.jsx/About.jsx'
 
 
 const router=createBrowserRouter([
@@ -23,6 +24,10 @@ const router=createBrowserRouter([
       {
         path:"contact-us",
         element:<ContactUs></ContactUs>
+      },
+      {
+        path:"about",
+        element:<About></About>
       },
       {
         path:'signin',
