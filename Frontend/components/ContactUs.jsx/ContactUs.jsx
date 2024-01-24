@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {toast,Toaster} from "react-hot-toast"
-import video from '../../src/assets/vid3.mp4'
+import cs from '../../src/assets/cs.jpg'
 
 
 const locations = [
@@ -160,8 +160,7 @@ export function ContactUs() {
                 </form>
               </div>        
             </div>
-            <video style={{borderRadius:'10px'}} src={video} autoPlay muted loop></video>
-            {/* <img style={{borderRadius:'10px'}} src='https://images.pexels.com/photos/8867376/pexels-photo-8867376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></img> */}
+            <img style={{borderRadius:'10px'}} src={cs}></img>
             <div className="absolute inset-x-0 -top-[10rem] -z-10 transform-gpu overflow-hidden blur-3xl md:-top-[10rem]">
                     <svg
                     className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
