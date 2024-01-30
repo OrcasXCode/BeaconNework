@@ -11,6 +11,9 @@ import { ForgotPassword } from '../pages/forgot-password.jsx'
 import { ContactUs } from '../components/ContactUs.jsx/ContactUs.jsx'
 import { About } from '../components/About.jsx/About.jsx'
 import { Products } from '../components/Products/Products.jsx'
+import { Provider } from 'react-redux'
+import rootReducer from './reducer/index.js'
+import { configureStore } from '@reduxjs/toolkit'
 
 
 const router=createBrowserRouter([
@@ -55,9 +58,16 @@ const router=createBrowserRouter([
 
 ])
 
+
+const store = configureStore({
+  reducer:rootReducer
+})
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <Provider store={store}>
+      <RouterProvider router={router}></RouterProvider>
+    </Provider>
   </React.StrictMode>,
 )
  

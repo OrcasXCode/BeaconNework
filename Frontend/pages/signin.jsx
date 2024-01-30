@@ -92,12 +92,13 @@ export function SignIn() {
               },
             })
               .then(async function (res) {
-                if (res.ok) {
+               
                   const json = await res.json();
                   toast.success("Sign In successful");
-                } else {
-                  throw new Error("Sign In Failed");
-                }
+                  console.log(json);
+                  const token=json.token;
+                  localStorage.setItem('jsonwebtoken',token);
+
               })
               .catch((e) => {
                 toast.error("Incorrect username or password");
