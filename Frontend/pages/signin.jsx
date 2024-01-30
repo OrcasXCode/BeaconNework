@@ -4,14 +4,13 @@ import { toast, Toaster } from "react-hot-toast";
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import signin from '../src/assets/signin.png'
-import { useNavigate } from 'react-router-dom';
+
 
 
 export function SignIn() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
 
   return (
@@ -101,8 +100,9 @@ export function SignIn() {
                   const token=json.token;
                   localStorage.setItem('jsonwebtoken',token);
                   setTimeout(() => {
-                    navigate('/');
-                  }, 2000);
+                    window.location.reload();
+                    window.location.href = '/';
+                  }, 1000);
               })
               .catch((e) => {
                 toast.error("Incorrect username or password");

@@ -111,10 +111,10 @@ export function Signup() {
                 })
                 .then(async function(res){
                     if(res.ok){
-                        const json=await res.json();
+                        // const json=await res.json();
                         toast.success("Sign Up successfull")
                         setTimeout(() => {
-                          navigate('/signin');
+                          window.location.href = '/signin';
                         }, 2000);
                     }
                     else{
