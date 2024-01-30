@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import favicon from "../src/assets/logo.png";
 import HighlightText from "../components/HighLightText";
 import { toast, Toaster } from "react-hot-toast";
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import signin from '../src/assets/signin.png'
+import { useNavigate } from 'react-router-dom';
 
 
 export function SignIn() {
 
-    const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+
   return (
     <section>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
@@ -98,7 +100,9 @@ export function SignIn() {
                   console.log(json);
                   const token=json.token;
                   localStorage.setItem('jsonwebtoken',token);
-
+                  setTimeout(() => {
+                    navigate('/');
+                  }, 2000);
               })
               .catch((e) => {
                 toast.error("Incorrect username or password");

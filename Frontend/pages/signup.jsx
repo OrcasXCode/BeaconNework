@@ -1,7 +1,6 @@
 import { useState } from "react"
-import favicon from "../src/assets/logo.png"
 import HighlightText from "../components/HighLightText";
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { Toaster,toast } from "react-hot-toast";
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
@@ -11,9 +10,12 @@ import signup from '../src/assets/signup.png'
 
 export function Signup() {
 
-     const[name,setName]=useState("");
+    const[name,setName]=useState("");
     const[email,setEmail]=useState("");
     const[password,setPassword]=useState("");
+    const navigate = useNavigate();
+
+
   return (
     <section className="w-full h-screen">
       <div  className=" flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
@@ -102,7 +104,6 @@ export function Signup() {
                         name,
                         email,
                         password,
-                        // gender
                     }),
                     headers:{
                         "Content-type":"application/json"
@@ -112,6 +113,9 @@ export function Signup() {
                     if(res.ok){
                         const json=await res.json();
                         toast.success("Sign Up successfull")
+                        setTimeout(() => {
+                          navigate('/signin');
+                        }, 2000);
                     }
                     else{
                         throw new Error("Sign Up Failed")
