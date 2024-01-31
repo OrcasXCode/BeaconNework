@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import HighlightText from "../components/HighLightText";
-import favicon from "../src/assets/logo.png"
 import { Toaster } from "react-hot-toast";
 import { ArrowRight } from 'lucide-react'
 import { ArrowLeft } from 'lucide-react'
@@ -10,9 +9,8 @@ import forgotpassword from '../src/assets/forgot-password.png'
 
 
 export function ForgotPassword() {
+  const [email, setEmail] = useState("");
 
-    const [email, setEmail] = useState("");
-   const [sentEmail,setsentEmail]=useState(false);
   return (
     <section>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
@@ -25,12 +23,12 @@ export function ForgotPassword() {
             <img src={forgotpassword} style={{height:'60px'}}></img>
           </div>
           <h2  style={{fontFamily: 'Playfair Display'}}className="text-center text-4xl font-bold leading-tight text-black">
-            {!sentEmail ? <HighlightText text="Reset your password "></HighlightText>: <HighlightText text='Check Email'></HighlightText>}
+            <HighlightText text="Reset your password "></HighlightText>
           </h2>
-        <p className="text-center " style={{margin:'15px',fontFamily: 'Playfair Display' }}>{!sentEmail ? "Have no fear. We'll email you instructions to reset your password. If you dont have access to your email we can try account recovery" : `We have sent the reset email to ${email}`}</p>
+        <p className="text-center " style={{margin:'15px',fontFamily: 'Playfair Display' }}>"Have no fear. We'll email you instructions to reset your password. If you dont have access to your email we can try account recovery"</p>
 
             <form action="#" method="POST" className="mt-8">
-                {!sentEmail ? <div className="space-y-5">
+                <div className="space-y-5">
               <div>
                 <label htmlFor="" className="text-base font-medium text-gray-900">
                   {' '}
@@ -53,6 +51,7 @@ export function ForgotPassword() {
                   style={{background:'#084C98'}}
                   className="inline-flex w-full items-center justify-center rounded-md  px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                   onClick={()=>{
+                         window.location.href = '/verify-email';
                         fetch("http://localhost:3000/user/forgot-password",{
                             method:"POST",
                             body:JSON.stringify({
@@ -66,7 +65,7 @@ export function ForgotPassword() {
                             if(res.ok){
                                 const userEmail=res.json();
                                 alert("Email sent successfull")
-                                setsentEmail==true;
+                                // window.location.href = '/';
                             }
                             else{
                                 alert("Email not sent")
@@ -86,7 +85,7 @@ export function ForgotPassword() {
                 </Link>
   
               </div>
-            </div> : <button>Resend Email</button> }    
+            </div>  
           </form>
         </div>
       </div>

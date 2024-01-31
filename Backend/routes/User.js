@@ -45,7 +45,11 @@ router.post("/signin", async (req, res) => {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
       };
-      const token = jwt.sign(email, process.env.JWT_SECRET);
+      const token = jwt.sign(
+        { _id: user._id.toString(), email: user.email },
+        process.env.JWT_SECRET,
+        { expiresIn: "24h" }
+      );
       res.cookie("token", token, options).status(200).json({
         token,
       });
@@ -53,6 +57,7 @@ router.post("/signin", async (req, res) => {
       res.status(403).json({ msg: "Invalid Email or Password" });
     }
   } catch (e) {
+    console.log(e);
     res.json({
       msg: "User dosen't exists",
     });
@@ -63,6 +68,10 @@ router.post("/forgot-password", async (req, res) => {
   const email = req.body.email;
   const otp = req.body.otp;
   try {
+    const user = await User.findOne({
+      email,
+    });
+
     if (!email || !otp) {
       return res.status(400).json({
         success: false,
@@ -77,6 +86,7 @@ router.post("/forgot-password", async (req, res) => {
         createdAt: -1,
       })
       .limit(1);
+
     if (otpCheck.length === 0) {
       return res.status(403).json({
         success: false,
@@ -88,6 +98,14 @@ router.post("/forgot-password", async (req, res) => {
         msg: "Invalid OTPs",
       });
     }
+    const token = jwt.sign(
+      { _id: user._id.toString(), email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" }
+    );
+    res.cookie("token", token, options).status(200).json({
+      token,
+    });
     return res.status(200).json({
       success: true,
       msg: "otp and email verified successfully",
@@ -99,10 +117,10 @@ router.post("/forgot-password", async (req, res) => {
 
 router.post("/change-password", async (req, res) => {
   try {
-    const userDetails = await User.findById(req.user.id);
+    // const userDetails = await User.findById(req.user.id);
     const NewPassword = req.body.NewPassword;
 
-    const updatedNewPassword = findByIdAndUpdate(
+    const updatedNewPassword = await User.findByIdAndUpdate(
       req.user.id,
       {
         password: NewPassword,
@@ -134,6 +152,7 @@ router.post("/change-password", async (req, res) => {
       msg: "Password changed successfully",
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       success: false,
       msg: "Failed to change the password",

@@ -3,6 +3,7 @@ import {Link, NavLink} from 'react-router-dom'
 import Logo from "../../src/assets/logo.png"
 import user from "../../src/assets/user.png"
 import {useSelector} from "react-redux"
+// import Typewriter from 'typewriter-effect';
 
 export  function Header() {
     const {token} =useSelector((state)=>state.auth);
@@ -37,7 +38,7 @@ export  function Header() {
                             src={user}
                             className="h-10 object-cover"
                             alt="Logo"
-                        /> <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p></div>) }
+                        /> <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p> </div>) }
                     </div>
                     <div
                         className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"

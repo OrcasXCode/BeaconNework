@@ -18,6 +18,7 @@ import HighlightText from '../HighLightText';
 import variety from '../../src/assets/variety.jpg';
 import {Link} from 'react-router-dom'
 
+
 const spanStyle = {
   padding: '20px',
   background: 'your_background_color_here',
