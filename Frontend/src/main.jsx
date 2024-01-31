@@ -14,6 +14,7 @@ import { Products } from '../components/Products/Products.jsx'
 import { Provider } from 'react-redux'
 import rootReducer from './reducer/index.js'
 import { configureStore } from '@reduxjs/toolkit'
+import { ChangePassword } from '../pages/changePassword.jsx'
 
 
 const router=createBrowserRouter([
@@ -52,6 +53,10 @@ const router=createBrowserRouter([
       {
         path:'forgot-password',
         element:<ForgotPassword></ForgotPassword>
+      },
+      {
+        path:'change-password',
+        element:<ChangePassword></ChangePassword>
       }
     ]
   }

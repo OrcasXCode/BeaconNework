@@ -4,15 +4,16 @@ import HighlightText from "../components/HighLightText";
 import { Toaster } from "react-hot-toast";
 import { ArrowRight } from 'lucide-react'
 import { ArrowLeft } from 'lucide-react'
-import forgotpassword from '../src/assets/forgot-password.png'
+import changepassword from '../src/assets/changepassword.png'
 
 
 
-export function ForgotPassword() {
-  const [email, setEmail] = useState("");
 
-  return (
-    <section>
+export function ChangePassword(props) {
+    
+
+    return (
+        <section>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
         <div>
         <Toaster/>
@@ -20,25 +21,40 @@ export function ForgotPassword() {
        
         <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
             <div className="mb-2 flex justify-center">
-            <img src={forgotpassword} style={{height:'60px'}}></img>
+            <img src={changepassword} style={{height:'60px'}}></img>
           </div>
           <h2  style={{fontFamily: 'Playfair Display'}}className="text-center text-4xl font-bold leading-tight text-black">
-            <HighlightText text="Reset your password "></HighlightText>
+            <HighlightText text="Choose a new password"></HighlightText>
           </h2>
-        <p className="text-center " style={{margin:'15px',fontFamily: 'Playfair Display' }}>"Have no fear. We'll email you instructions to reset your password. If you dont have access to your email we can try account recovery"</p>
+        <p className="text-center " style={{margin:'15px',fontFamily: 'Playfair Display' }}>Enter a new password that is both secure and easy to remember to prevent further security issues.</p>
 
             <form action="#" method="POST" className="mt-8">
                 <div className="space-y-5">
               <div>
                 <label htmlFor="" className="text-base font-medium text-gray-900">
                   {' '}
-                  Email address{' '}
+                  New password{' '}
                 </label>
                 <div className="mt-2">
                   <input
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-#084C98 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="email"
-                    placeholder="Email"
+                    placeholder="Enter your new password"
+                    onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+                  ></input>
+                </div>
+              </div>
+              <div>
+                <label htmlFor="" className="text-base font-medium text-gray-900">
+                  {' '}
+                  Confirm new password{' '}
+                </label>
+                <div className="mt-2">
+                  <input
+                    className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-#084C98 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    type="email"
                     onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -73,22 +89,13 @@ export function ForgotPassword() {
                         })
                     }}
                 >
-                  Get started <ArrowRight className="ml-2" size={16} />
+                  Change Password <ArrowRight className="ml-2" size={16} />
                 </button>
-                <Link
-                    className="inline-flex items-center justify-center px-3.5 py-2.5 text-black font-bold text-base font-playfair"
-                    style={{ textDecoration: "none" }}
-                    to={"/signin"}
-                    >
-                    <ArrowLeft className="mr-2" size={16} />
-                    <p className="pt-1">Back to Login</p>
-                </Link>
-  
               </div>
             </div>  
           </form>
         </div>
       </div>
     </section>
-  )
+    )
 }

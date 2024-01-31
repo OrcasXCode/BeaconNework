@@ -58,6 +58,7 @@ export function VerifyEmail(){
                             style={{background:'#084C98'}}
                             className="inline-flex mt-7 w-full items-center justify-center rounded-md  px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                             onClick={()=>{
+                                    window.location.href = '/change-password';
                                     fetch("http://localhost:3000/user/register-email",{
                                     method:"POST",
                                     body:JSON.stringify({
