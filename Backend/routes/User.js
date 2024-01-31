@@ -9,6 +9,7 @@ const { sendOTP } = require("../mail/templates/sendOTP");
 const { User } = require("../db/User");
 const dotenv = require("dotenv");
 const { passwordUpdated } = require("../mail/templates/passwordUpdate");
+const { userMiddleware } = require("../middlewares/User");
 require("dotenv").config();
 
 router.post("/signup", async (req, res) => {
@@ -115,13 +116,24 @@ router.post("/forgot-password", async (req, res) => {
   }
 });
 
+router.use("/change-password", userMiddleware);
 router.post("/change-password", async (req, res) => {
   try {
-    // const userDetails = await User.findById(req.user.id);
+    const userDetails = await User.findById(req.user._id);
     const NewPassword = req.body.NewPassword;
+    const ConfirmNewPassword = req.body.ConfirmNewPassword;
+
+    if (NewPassword === ConfirmNewPassword) {
+      return res.status(401).json({
+        success: false,
+        msg: "Passwords does not match please try again",
+      });
+    }
 
     const updatedNewPassword = await User.findByIdAndUpdate(
-      req.user.id,
+      {
+        _id: userDetails._id.toString(),
+      },
       {
         password: NewPassword,
       },

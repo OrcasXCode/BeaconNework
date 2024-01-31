@@ -65,7 +65,6 @@ export function ForgotPassword() {
                             if(res.ok){
                                 const userEmail=res.json();
                                 alert("Email sent successfull")
-                                // window.location.href = '/';
                             }
                             else{
                                 alert("Email not sent")
