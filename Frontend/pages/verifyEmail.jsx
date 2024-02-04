@@ -3,20 +3,23 @@ import HighlightText from "../components/HighLightText";
 import OtpInput from "react-otp-input";
 import { ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom';
+import { toast, Toaster } from "react-hot-toast";
 
 
 export function VerifyEmail(){
 
     const[email,setEmail]=useState("");
-    const[otp,setOTP]=useState("");
+    const [otp, setOtp] = useState("");
     const navigate = useNavigate();
 
     return(
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
-            
+             <div>
+                <Toaster />
+            </div>
             <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
             <h1 style={{fontFamily: 'Playfair Display'}}className="text-center text-4xl font-bold leading-tight text-black">{<HighlightText text="Check Email"></HighlightText>}</h1>
-            <p className="text-center " style={{margin:'15px',fontFamily: 'Playfair Display' }}>{`We have sent the otp to ${email} , please do not share with anyone else or it may lead to some security issues`}</p>
+            <p className="text-center " style={{margin:'15px',fontFamily: 'Playfair Display' }}>{`We have sent the otp to your email , please do not share with anyone else or it may lead to some security issues`}</p>
             <form> { 
                     (<label>
                         <div style={{marginTop:'50px'}}>
@@ -39,7 +42,7 @@ export function VerifyEmail(){
                     </p>
                     <OtpInput
                     value={otp}
-                    onChange={setOTP}
+                    onChange={setOtp}
                     numInputs={6}
                     renderInput={(props) => (
                         <input
@@ -60,30 +63,31 @@ export function VerifyEmail(){
                             <button  
                             style={{background:'#084C98'}}
                             className="inline-flex mt-7 w-full items-center justify-center rounded-md  px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
-                            onClick={()=>{
-                                    navigate('/change-password');
-                                    console.log("clicked");
-                                    fetch("http://localhost:3000/user/register-email",{
-                                    method:"POST",
-                                    body:JSON.stringify({
-                                        email,
-                                    }),
-                                    headers:{
-                                        "Content-type":"application/json"
+                            onClick={async () => {
+                                try {
+                                    const response = await fetch("http://localhost:3000/user/forgot-password", {
+                                        method: "POST",
+                                        body: JSON.stringify({
+                                            email,
+                                            otp,
+                                        }),
+                                        headers: {
+                                            "Content-type": "application/json",
+                                        },
+                                    });
+
+                                    if (response.ok) {
+                                        const userotp = await response.json();
+                                        alert("OTP verified");
+                                    } else {
+                                        toast.error("Invalid OTP");
+                                        alert("Error in verifying OTP");
                                     }
-                                    })
-                                    .then(async function(res){
-                                        if(res.ok){
-                                            const userotp=await res.json();
-                                            alert("otp sent successfully")
-                                        }
-                                        else{
-                                            alert("otp not sent")
-                                        }
-                                    })
+                                } catch (error) {
+                                    console.error(error);
+                                    toast.error("Error during OTP verification");
                                 }
-                            }>Verify the Credentials <ArrowRight className="ml-2" size={16}></ArrowRight></button>
-                            
+                            }}>Verify OTP<ArrowRight className="ml-2" size={16}></ArrowRight></button>  
                         </label>)
                 }             
             </form>

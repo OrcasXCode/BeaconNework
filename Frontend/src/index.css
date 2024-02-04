@@ -5,4 +5,29 @@
 @import "tailwindcss/utilities";
 
 
+/* 
+#torqafflogo {
+    border-radius: 0%;
+    -webkit-transition: -webkit-transform .8s ease-in-out;
+            transition:         transform .8s ease-in-out;
+  }
+  
+  #torqafflogo:hover {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  } */
 
+
+#torqafflogo {
+    border-radius: 0%;
+    animation: moveUp 30s linear infinite; /* Adjust the duration and timing function as needed */
+}
+
+@keyframes moveUp {
+    0%, 100% {
+        transform: translateY(0px); /* Start and end position */
+    }
+    50% {
+        transform: translateY(-100px); /* Middle position, adjust the distance as needed */
+    }
+}

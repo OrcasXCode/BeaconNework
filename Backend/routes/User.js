@@ -7,7 +7,8 @@ const { OTP } = require("../db/OTP.JS");
 const mailSender = require("../utils/mailSender");
 const { sendOTP } = require("../mail/templates/sendOTP");
 const { User } = require("../db/User");
-const dotenv = require("dotenv");
+const LocalStorage = require("node-localstorage").LocalStorage;
+const localStorage = new LocalStorage("./scratch");
 const { passwordUpdated } = require("../mail/templates/passwordUpdate");
 const { userMiddleware } = require("../middlewares/User");
 require("dotenv").config();
@@ -41,25 +42,26 @@ router.post("/signin", async (req, res) => {
       email,
       password,
     });
-    if (user) {
-      const options = {
-        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-        httpOnly: true,
-      };
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        msg: "User not found",
+      });
+    } else {
       const token = jwt.sign(
         { _id: user._id.toString(), email: user.email },
         process.env.JWT_SECRET,
         { expiresIn: "24h" }
       );
-      res.cookie("token", token, options).status(200).json({
+      localStorage.setItem("jsonwebtoken", token);
+      return res.status(200).json({
+        success: true,
         token,
       });
-    } else {
-      res.status(403).json({ msg: "Invalid Email or Password" });
     }
   } catch (e) {
     console.log(e);
-    res.json({
+    return res.status(500).json({
       msg: "User dosen't exists",
     });
   }
@@ -91,12 +93,12 @@ router.post("/forgot-password", async (req, res) => {
     if (otpCheck.length === 0) {
       return res.status(403).json({
         success: false,
-        msg: "Invalid OTP",
+        msg: "No OTP found",
       });
     } else if (otp !== otpCheck[0].otp) {
       return res.status(404).json({
         success: false,
-        msg: "Invalid OTPs",
+        msg: "Invalid OTP",
       });
     }
     const token = jwt.sign(
@@ -104,15 +106,18 @@ router.post("/forgot-password", async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "24h" }
     );
-    res.cookie("token", token, options).status(200).json({
-      token,
-    });
-    return res.status(200).json({
+    const options = {
+      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+    };
+
+    return res.cookie("token", token, options).status(200).json({
       success: true,
       msg: "otp and email verified successfully",
+      token,
     });
   } catch (e) {
-    console.log("Error in forgot password");
+    console.log(e);
   }
 });
 

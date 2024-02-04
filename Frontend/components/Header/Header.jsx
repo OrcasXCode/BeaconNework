@@ -2,11 +2,11 @@ import React from 'react'
 import {Link, NavLink} from 'react-router-dom'
 import Logo from "../../src/assets/logo.png"
 import user from "../../src/assets/user.png"
-import {useSelector} from "react-redux"
-// import Typewriter from 'typewriter-effect';
+
+
 
 export  function Header() {
-    const {token} =useSelector((state)=>state.auth);
+    const token = localStorage.getItem('jsonwebtoken');
 
     return (
         <header className="shadow sticky z-50 top-0">

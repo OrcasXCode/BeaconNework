@@ -2,7 +2,8 @@ import React from 'react'
 import HighlightText from '../HighLightText'
 import man from '../../src/assets/man.png'
 import seller from '../../src/assets/seller.jpg'
-import { Star } from 'lucide-react'
+import CountUp from 'react-countup';
+
 
 
 export function Home() {
@@ -14,7 +15,7 @@ export function Home() {
       <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
         <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
           <h1 className="mt-8 text-3xl font-bold tracking-tight text-black md:text-4xl lg:text-6xl">
-            Celebrating <HighlightText text={"27"} /> Years Of Excellence 
+            Celebrating <CountUp className="text-[#084C98]" start={10} end={27} duration={5}></CountUp> Years Of Excellence 
           </h1>
           <p className="mt-8 text-[20px] text-gray-700">
             &ldquo; Committed to Excellence &rdquo;
