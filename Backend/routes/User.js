@@ -245,6 +245,12 @@ router.post("/becomeaseller", async (req, res) => {
   const email = req.body.email;
 
   try {
+    if (!email) {
+      return res.status(404).json({
+        success: false,
+        msg: "email is required",
+      });
+    }
     await BeacomeASeller.create({
       email: email,
     });
@@ -264,6 +270,12 @@ router.post("/registerforinterview", async (req, res) => {
   const email = req.body.email;
 
   try {
+    if (!email) {
+      return res.status(404).json({
+        success: false,
+        msg: "email is required",
+      });
+    }
     await RegisterForInterview.create({
       email: email,
     });
@@ -283,6 +295,12 @@ router.post("/getpartimejob", async (req, res) => {
   const email = req.body.email;
 
   try {
+    if (!email) {
+      return res.status(404).json({
+        success: false,
+        msg: "email is required",
+      });
+    }
     await GetAPartTimeJob.create({
       email: email,
     });

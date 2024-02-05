@@ -144,7 +144,7 @@ export function Home() {
                   fetch("http://localhost:3000/user/becomeaseller", {
                           method: "POST",
                           body: JSON.stringify({
-                            SellerEmail
+                            email:SellerEmail
                           }),
                           headers: {
                             "Content-type": "application/json",
@@ -361,7 +361,7 @@ export function Home() {
                   fetch("http://localhost:3000/user/registerforinterview", {
                           method: "POST",
                           body: JSON.stringify({
-                            InterviewEmail
+                            email:InterviewEmail
                           }),
                           headers: {
                             "Content-type": "application/json",
@@ -436,7 +436,7 @@ export function Home() {
                   fetch("http://localhost:3000/user/registerforinterview", {
                           method: "POST",
                           body: JSON.stringify({
-                            PartTimeJobEmail
+                            email:PartTimeJobEmail
                           }),
                           headers: {
                             "Content-type": "application/json",
