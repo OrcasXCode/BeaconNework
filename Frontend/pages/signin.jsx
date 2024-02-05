@@ -4,10 +4,78 @@ import { toast, Toaster } from "react-hot-toast";
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import signin from '../src/assets/signin.png'
-
+import { GoogleLogin } from 'react-google-login';
+import { useEffect } from "react";
+import {gapi} from "gapi-script";
 
 
 export function SignIn() {
+
+  
+const clientId ="537879712076-qaonqhsbtt9ft8bn57p7g4lnda0odeto.apps.googleusercontent.com";
+
+  const responseGoogle = async (response) => {
+  try {
+    if (response?.profileObj) {
+      // Assuming you have a server endpoint for handling Google login
+      const serverResponse = await fetch("http://localhost:3000/user/google-login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          idToken: response.tokenId, // Google's ID token
+          email: response.profileObj.email,
+          name: response.profileObj.name,
+        }),
+      });
+
+      if (serverResponse.ok) {
+        const serverData = await serverResponse.json();
+        console.log(serverData);
+
+        // Handle successful login on the client side
+        // You may want to set user authentication state or redirect the user
+        // For example, you can use localStorage or cookies to store user information
+
+        // Example: store user information in localStorage
+        localStorage.setItem("user", JSON.stringify(serverData.user));
+
+        // Redirect or perform any other action
+        // For example, you can use the 'useHistory' hook from 'react-router-dom' to redirect
+        // import { useHistory } from 'react-router-dom';
+        // const history = useHistory();
+        // history.push('/dashboard');
+      } else {
+        // Handle server error or display an error message
+        console.error("Server error:", serverResponse.statusText);
+      }
+    } else {
+      // Handle Google login failure
+      console.error("Google login failed");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+
+  useEffect(() => {
+    // Load the Google API client
+    const script = document.createElement('script');
+    script.src = 'https://apis.google.com/js/api.js';
+    script.async = true;
+    script.onload = () => {
+      // Initialize the Google API client
+      window.gapi.load('client:auth2', () => {
+        window.gapi.client.init({
+          clientId: clientId,
+          scope: "email",
+        });
+      });
+    };
+    document.body.appendChild(script);
+  }, [clientId]);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -115,6 +183,13 @@ export function SignIn() {
                 >
                   Get started <ArrowRight className="ml-2" size={16} />
                 </button>
+                 <GoogleLogin
+                clientId={clientId}
+                buttonText="Login with Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={'single_host_origin'}
+              />
               </div>
             </div>
           </form>

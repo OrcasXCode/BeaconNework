@@ -75,7 +75,8 @@ export function ChangePassword() {
                                 email,
                             }),
                             headers:{
-                                "Content-type":"application/json"
+                                "Content-type":"application/json",
+                                "Authorization" : `Bearer ${localStorage.getItem('changepassword')}`
                             }
                         })
                         .then(async function(res){

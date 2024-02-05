@@ -26,7 +26,6 @@ router.post("/signup", async (req, res) => {
     name: createUser.name,
     email: createUser.email,
     password: createUser.password,
-    // gender:createUser.gender
   });
   res.json({
     msg: "User created successfully",
@@ -68,12 +67,9 @@ router.post("/signin", async (req, res) => {
 });
 
 router.post("/forgot-password", async (req, res) => {
-  const email = req.body.email;
-  const otp = req.body.otp;
   try {
-    const user = await User.findOne({
-      email,
-    });
+    const email = req.body.email;
+    const otp = req.body.otp;
 
     if (!email || !otp) {
       return res.status(400).json({
@@ -82,42 +78,64 @@ router.post("/forgot-password", async (req, res) => {
       });
     }
 
-    const otpCheck = await OTP.find({
-      email,
-    })
-      .sort({
-        createdAt: -1,
-      })
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        msg: "User not found with the provided email",
+      });
+    }
+
+    const latestOtp = await OTP.findOne({ email })
+      .sort({ createdAt: -1 })
       .limit(1);
 
-    if (otpCheck.length === 0) {
+    if (!latestOtp) {
       return res.status(403).json({
         success: false,
-        msg: "No OTP found",
+        msg: "No OTP found for the provided email",
       });
-    } else if (otp !== otpCheck[0].otp) {
-      return res.status(404).json({
+    }
+
+    const otpExpirationTime = 3 * 60 * 1000; // 3 minutes in milliseconds
+    if (Date.now() - latestOtp.createdAt > otpExpirationTime) {
+      return res.status(403).json({
+        success: false,
+        msg: "OTP has expired",
+      });
+    }
+
+    if (otp !== latestOtp.otp) {
+      return res.status(403).json({
         success: false,
         msg: "Invalid OTP",
       });
     }
+
     const token = jwt.sign(
       { _id: user._id.toString(), email: user.email },
       process.env.JWT_SECRET,
       { expiresIn: "24h" }
     );
+
     const options = {
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
       httpOnly: true,
     };
 
+    localStorage.setItem("changepassword", token);
     return res.cookie("token", token, options).status(200).json({
       success: true,
-      msg: "otp and email verified successfully",
+      msg: "OTP and email verified successfully",
       token,
     });
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      msg: "Internal server error",
+    });
   }
 });
 
@@ -128,7 +146,7 @@ router.post("/change-password", async (req, res) => {
     const NewPassword = req.body.NewPassword;
     const ConfirmNewPassword = req.body.ConfirmNewPassword;
 
-    if (NewPassword === ConfirmNewPassword) {
+    if (NewPassword !== ConfirmNewPassword) {
       return res.status(401).json({
         success: false,
         msg: "Passwords does not match please try again",
@@ -176,89 +194,35 @@ router.post("/change-password", async (req, res) => {
     });
   }
 });
-
-// router.post("/register-email", async (req, res) => {
-//   const email = req.body.email;
-//   const otp = req.body.otp;
-//   try {
-//     if (!email || !otp) {
-//       return res.status(400).json({
-//         success: false,
-//         msg: "Email and OTP are required fields!",
-//       });
-//     }
-
-//     const otpCheck = await OTP.find({
-//       email,
-//     })
-//       .sort({
-//         createdAt: -1,
-//       })
-//       .limit(1);
-//     if (otpCheck.length === 0) {
-//       return res.status(403).json({
-//         success: false,
-//         msg: "Invalid OTP",
-//       });
-//     } else if (otp !== otpCheck[0].otp) {
-//       return res.status(404).json({
-//         success: false,
-//         msg: "Invalid OTPs",
-//       });
-//     }
-
-//     const checkEmail = await User.findOne({
-//       email: email,
-//     });
-//     if (checkEmail) {
-//       return res.status(404).json({
-//         success: false,
-//         msg: "This email is already registered.",
-//       });
-//     }
-
-//     const registerNewEmail = await User.create({
-//       email: email,
-//     });
-//     return res.status(200).json({
-//       success: true,
-//       msg: "User email successfully registered",
-//       registerNewEmail,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(500).json({
-//       success: false,
-//       msg: "server error  failed to register your email",
-//     });
-//   }
-// });
-
 router.post("/send-otp", async (req, res) => {
   try {
-    const email = await req.body.email;
-    let otp = otpgenerator.generate(6, {
-      upperCaseAlphabets: false,
-      lowerCaseAlphabets: false,
-      specialChars: false,
-      specialChars: false,
-      numbersOnly: true,
-    });
-    const result = await OTP.findOne({
-      otp,
-    });
-    while (result) {
+    const email = req.body.email;
+    let otp;
+
+    let existingOtp;
+    do {
       otp = otpgenerator.generate(6, {
         upperCaseAlphabets: false,
+        lowerCaseAlphabets: false,
+        specialChars: false,
+        numbersOnly: true,
       });
-    }
+
+      existingOtp = await OTP.findOne({ otp });
+    } while (existingOtp);
+
     const otpPayload = { email, otp };
+
+    // Use create to insert a new OTP
     const otpBody = await OTP.create(otpPayload);
+
+    // Use the generated OTP in the email
     const sendOTPEmail = await mailSender(
       email,
-      "OPT sent successsfuly",
+      "OTP sent successfully",
       sendOTP(email, otp)
     );
+
     res.status(200).json({
       success: true,
       msg: "OTP sent successfully",

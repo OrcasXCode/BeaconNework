@@ -303,7 +303,7 @@ export function Home() {
         <div className="w-full md:w-2/3 lg:w-1/2">
           <h2 className="text-3xl font-bold text-black">We Are Hiring ! : Crack the <HighlightText text={"Interview"} /> at <HighlightText text={"Beacon Network"} /></h2>
           <p className="mt-4 text-gray-600">
-           Want a full time job at Beacon Network? Build essential tips and skills to crack the interview process
+           Want a full time job at Beacon Network? Build essential qualities and skills to crack the interview process
         and secure your position in the exciting world of Beacon Network.
           </p>
           <div className="mt-4">

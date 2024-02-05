@@ -5,11 +5,12 @@ import toast, { Toaster } from "react-hot-toast";
 import { ArrowRight } from 'lucide-react'
 import { ArrowLeft } from 'lucide-react'
 import forgotpassword from '../src/assets/forgot-password.png'
-
+import { useNavigate } from "react-router-dom";
 
 
 export function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const navigate=useNavigate();
 
   return (
     <section>
@@ -66,7 +67,7 @@ export function ForgotPassword() {
                                 const userEmail=res.json();
                                 toast.success("OTP sent successfully");
                                 setTimeout(() => {
-                                  window.location.href = '/verify-email';
+                                  navigate("/verify-email");
                                 }, 1000);
                             }
                             else{
