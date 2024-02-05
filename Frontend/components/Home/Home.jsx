@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import HighlightText from '../HighLightText'
 import man from '../../src/assets/man.png'
 import seller from '../../src/assets/seller.jpg'
 import CountUp from 'react-countup';
 
 
-
 export function Home() {
+
+  const [InterviewEmail,setInterviewEmail]=useState("");
+  const [SellerEmail,setSellerEmail]=useState("");
 
   return (
     <div className="relative w-full">
@@ -126,11 +128,17 @@ export function Home() {
                 className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 type="email"
                 placeholder="Email"
+                onChange={(e)=>{
+                  setSellerEmail(e.target.value)
+                }}
               ></input>
               <button
                 type="button"
                 style={{background:'#084C98',borderRadius:'20px'}}
                 className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                onClick={()=>{
+                  
+                }}
               >
                 Join Us
               </button>

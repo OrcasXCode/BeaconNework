@@ -11,6 +11,9 @@ const LocalStorage = require("node-localstorage").LocalStorage;
 const localStorage = new LocalStorage("./scratch");
 const { passwordUpdated } = require("../mail/templates/passwordUpdate");
 const { userMiddleware } = require("../middlewares/User");
+const { BeacomeASeller } = require("../db/becomeaseller");
+const { RegisterForInterview } = require("../db/registerforinterview");
+const { GetAPartTimeJob } = require("../db/getpartimejob");
 require("dotenv").config();
 
 router.post("/signup", async (req, res) => {
@@ -194,6 +197,7 @@ router.post("/change-password", async (req, res) => {
     });
   }
 });
+
 router.post("/send-otp", async (req, res) => {
   try {
     const email = req.body.email;
@@ -233,6 +237,63 @@ router.post("/send-otp", async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Server Error! Failed to send OTP.",
+    });
+  }
+});
+
+router.post("/becomeaseller", async (req, res) => {
+  const email = req.body.email;
+
+  try {
+    await BeacomeASeller.create({
+      email: email,
+    });
+    return res.status(200).json({
+      success: true,
+      msg: "Registrered as a seller successfully",
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      msg: "Failed to register as a seller",
+    });
+  }
+});
+
+router.post("/registerforinterview", async (req, res) => {
+  const email = req.body.email;
+
+  try {
+    await RegisterForInterview.create({
+      email: email,
+    });
+    return res.status(200).json({
+      success: true,
+      msg: "Registrered for interview successfully",
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      msg: "Failed to register for interview",
+    });
+  }
+});
+
+router.post("/getpartimejob", async (req, res) => {
+  const email = req.body.email;
+
+  try {
+    await GetAPartTimeJob.create({
+      email: email,
+    });
+    return res.status(200).json({
+      success: true,
+      msg: "Registrered for part time job successfully",
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      msg: "Failed to register for part time job",
     });
   }
 });
