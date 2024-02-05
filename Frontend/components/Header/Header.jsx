@@ -7,6 +7,8 @@ import user from "../../src/assets/user.png"
 
 export  function Header() {
     const token = localStorage.getItem('jsonwebtoken');
+    const googletoken=localStorage.getItem('googletoken');
+    const googleprofile=localStorage.getItem('googleprofile');
 
     return (
         <header className="shadow sticky z-50 top-0">
@@ -20,23 +22,30 @@ export  function Header() {
                         />
                     </Link>
                     <div className="flex items-center lg:order-2">
-                        {token === null && (<Link
+                        {googletoken==null && token == null && (<Link
                             to="/signin"
                             className=" text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-white font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
                         >
                             Log in
                         </Link>)
                         }
-                        {token === null && ( <Link
+                        {googletoken==null && token == null && ( <Link
                             to="/signup"
                             style={{background:'#084C98'}}
                             className="text-white focus:ring-4 focus:ring-white font-medium rounded-[20px]  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
                         >
                             Get started
                         </Link>)}
+                        {/* beaconnetwork login user */}
                        {token !== null && (<div className='flex  items-center'><img
                             src={user}
                             className="h-10 object-cover"
+                            alt="Logo"
+                        /> <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p> </div>) }
+                        {/* google login user */}
+                       {googletoken !== null && (<div className='flex  items-center'><img
+                            src={googleprofile}
+                            className="h-10 object-cover rounded-full"
                             alt="Logo"
                         /> <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p> </div>) }
                     </div>

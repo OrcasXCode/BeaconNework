@@ -25,6 +25,10 @@ export function SignIn() {
     console.log("Logged in successfully welcome", res);
     localStorage.setItem("googletoken",res.tokenId);
     localStorage.setItem("googleprofile",res.profileObj.imageUrl);
+    setTimeout(() => {
+      window.location.reload();
+      window.location.href = '/';
+    }, 2000);
   };
   const onFailure = (res) => {
     console.error("LOGIN FAILED! res:", res);
@@ -32,8 +36,7 @@ export function SignIn() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const[googletoken,setGoogleToken]=useState("");
-  const[profileurl,setProfileUrl]=useState("");
+
 
 
   return (
@@ -137,9 +140,10 @@ export function SignIn() {
                 >
                   Get started <ArrowRight className="ml-2" size={16} />
                 </button>
-                <GoogleLogin
+                <GoogleLogin 
+                  className="inline-flex w-full items-center justify-center rounded-md mt-5 p-3 font-semibold leading-7 text-white"
                   clientId={clientId}
-                  buttonText="Login"
+                  buttonText="SignIn with Google"
                   onSuccess={onSuccess}
                   onFailure={onFailure}
                   cookiePolicy={"single_host_origin"}
