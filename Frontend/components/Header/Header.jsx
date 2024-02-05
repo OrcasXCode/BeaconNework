@@ -8,7 +8,6 @@ import user from "../../src/assets/user.png"
 export  function Header() {
     const token = localStorage.getItem('jsonwebtoken');
     const googletoken=localStorage.getItem('googletoken');
-    const googleprofile=localStorage.getItem('googleprofile');
 
     return (
         <header className="shadow sticky z-50 top-0">
@@ -44,7 +43,7 @@ export  function Header() {
                         /> <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p> </div>) }
                         {/* google login user */}
                        {googletoken !== null && (<div className='flex  items-center'><img
-                            src={googleprofile}
+                            src={user}
                             className="h-10 object-cover rounded-full"
                             alt="Logo"
                         /> <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p> </div>) }

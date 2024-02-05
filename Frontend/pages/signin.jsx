@@ -5,39 +5,38 @@ import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import signin from '../src/assets/signin.png'
 import { useEffect } from "react";
-import { GoogleLogin } from "react-google-login";
-import {gapi} from "gapi-script";
+
+
 
 
 export function SignIn() {
-
-  const clientId ="537879712076-qaonqhsbtt9ft8bn57p7g4lnda0odeto.apps.googleusercontent.com";
-  useEffect(()=>{
-    function start(){
-      gapi.client.init({
-        clientId:clientId,
-        scope:"email"
-      })
-    };
-    gapi.load('client:auth2',start);
-  });
-  const onSuccess = (res) => {
-    console.log("Logged in successfully welcome", res);
-    localStorage.setItem("googletoken",res.tokenId);
-    localStorage.setItem("googleprofile",res.profileObj.imageUrl);
+  const handleCallbackResponse = (response) => {
+    console.log("jwt id token" + response.credential);
+    localStorage.setItem("googletoken",response.credential);
     setTimeout(() => {
       window.location.reload();
       window.location.href = '/';
-    }, 2000);
+    },2000);
   };
-  const onFailure = (res) => {
-    console.error("LOGIN FAILED! res:", res);
-  };
+
+  useEffect(() => {
+    const google = window.google;
+
+    google.accounts.id.initialize({
+      client_id: "537879712076-heftuo9k66u5hac0dr0dbsu73aoun5cb.apps.googleusercontent.com",
+      callback: handleCallbackResponse,
+    });
+
+    google.accounts.id.renderButton(document.getElementById('sign-in-div'), {
+      theme: 'outline',
+      size: '100%',
+      width:'100%'
+      });
+  }, []);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-
+   
 
   return (
     <section>
@@ -140,15 +139,7 @@ export function SignIn() {
                 >
                   Get started <ArrowRight className="ml-2" size={16} />
                 </button>
-                <GoogleLogin 
-                  className="inline-flex w-full items-center justify-center rounded-md mt-5 p-3 font-semibold leading-7 text-white"
-                  clientId={clientId}
-                  buttonText="SignIn with Google"
-                  onSuccess={onSuccess}
-                  onFailure={onFailure}
-                  cookiePolicy={"single_host_origin"}
-                  isSignedIn={true}
-                ></GoogleLogin>
+                <div id="sign-in-div"></div>
               </div>
             </div>
           </form>
