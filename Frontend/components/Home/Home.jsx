@@ -3,15 +3,19 @@ import HighlightText from '../HighLightText'
 import man from '../../src/assets/man.png'
 import seller from '../../src/assets/seller.jpg'
 import CountUp from 'react-countup';
-
+import { toast, Toaster } from "react-hot-toast";
 
 export function Home() {
 
   const [InterviewEmail,setInterviewEmail]=useState("");
+  const [PartTimeJobEmail,setPartTimeJobEmail]=useState("");
   const [SellerEmail,setSellerEmail]=useState("");
 
   return (
     <div className="relative w-full">
+      <div>
+        <Toaster />
+      </div>
 
       {/* Hero Section */}
       <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
@@ -137,7 +141,27 @@ export function Home() {
                 style={{background:'#084C98',borderRadius:'20px'}}
                 className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                 onClick={()=>{
-                  
+                  fetch("http://localhost:3000/user/becomeaseller", {
+                          method: "POST",
+                          body: JSON.stringify({
+                            SellerEmail
+                          }),
+                          headers: {
+                            "Content-type": "application/json",
+                          },
+                        })
+                          .then(async function (res) {
+                              if(res.ok){
+                                const json = await res.json();
+                                toast.success("Registered as a seller");
+                              }
+                              else{
+                                throw new Error();
+                              }
+                          })
+                          .catch((e) => {
+                            toast.error("Failed to Register");
+                  });
                 }}
               >
                 Join Us
@@ -325,11 +349,37 @@ export function Home() {
                 className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 type="email"
                 placeholder="Email"
+                onChange={(e)=>{
+                  setInterviewEmail(e.target.value);
+                }}
               ></input>
               <button
                 type="button"
                 style={{background:'#084C98',borderRadius:'20px'}}
                 className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                onClick={()=>{
+                  fetch("http://localhost:3000/user/registerforinterview", {
+                          method: "POST",
+                          body: JSON.stringify({
+                            InterviewEmail
+                          }),
+                          headers: {
+                            "Content-type": "application/json",
+                          },
+                        })
+                          .then(async function (res) {
+                              if(res.ok){
+                                const json = await res.json();
+                                toast.success("Registered for Interview");
+                              }
+                              else{
+                                throw new Error();
+                              }
+                          })
+                          .catch((e) => {
+                            toast.error("Failed to Register");
+                  });
+                }}
               >
                 Apply For Job
               </button>
@@ -374,11 +424,37 @@ export function Home() {
                 className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 type="email"
                 placeholder="Email"
+                onChange={(e)=>{
+                  setPartTimeJobEmail(e.target.value);
+                }}
               ></input>
               <button
                 type="button"
                 style={{background:'#084C98',borderRadius:'20px'}}
                 className="rounded-md  px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                onClick={()=>{
+                  fetch("http://localhost:3000/user/registerforinterview", {
+                          method: "POST",
+                          body: JSON.stringify({
+                            PartTimeJobEmail
+                          }),
+                          headers: {
+                            "Content-type": "application/json",
+                          },
+                        })
+                          .then(async function (res) {
+                              if(res.ok){
+                                const json = await res.json();
+                                toast.success("Registered for part-time job");
+                              }
+                              else{
+                                throw new Error();
+                              }
+                          })
+                          .catch((e) => {
+                            toast.error("Failed to Register");
+                  });
+                }}
               >
                 Register
               </button>
