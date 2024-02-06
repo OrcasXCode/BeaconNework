@@ -78,11 +78,13 @@ export function VerifyEmail(){
                                 if(res.ok){
                                     const data = await res.json();
                                     console.log(data);
+                                    localStorage.setItem("changepassword",data.token);
                                     toast.success("OTP Verified");
                                     setTimeout(() => {
                                         window.location.href = '/change-password';
                                     }, 1000);
                                 }
+                               
                             })
                         } catch (error) {
                             console.error(error);

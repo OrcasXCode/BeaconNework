@@ -23,14 +23,14 @@ export function SignIn() {
     const google = window.google;
 
     google.accounts.id.initialize({
-      client_id: "537879712076-heftuo9k66u5hac0dr0dbsu73aoun5cb.apps.googleusercontent.com",
+      client_id: "537879712076-f6bbqkf0gmo76hs5lba72qklkvc8no02.apps.googleusercontent.com",
       callback: handleCallbackResponse,
     });
 
     google.accounts.id.renderButton(document.getElementById('sign-in-div'), {
       theme: 'outline',
       size: '100%',
-      width:'100%'
+      width: '600px'
       });
   }, []);
 
@@ -105,7 +105,7 @@ export function SignIn() {
                 <button
                   type="button"
                   style={{background:'#084C98'}}
-                  className="inline-flex w-full items-center justify-center rounded-md  px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                  className="inline-flex mb-4 w-full items-center justify-center rounded-md  px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                   onClick={() => {
                         fetch("http://localhost:3000/user/signin", {
                           method: "POST",
@@ -139,7 +139,7 @@ export function SignIn() {
                 >
                   Get started <ArrowRight className="ml-2" size={16} />
                 </button>
-                <div id="sign-in-div"></div>
+                <div id="sign-in-div" className="flex w-full justify-center items-center"></div>
               </div>
             </div>
           </form>

@@ -4,12 +4,10 @@ import { ArrowRight } from 'lucide-react'
 import changepassword from '../src/assets/changepassword.png'
 import { useState } from "react";
 
-
-
-
 export function ChangePassword() {
 
-    
+    const [NewPassword,SetNewPassword]=useState("");
+    const [ConfirmNewPassword,SetConfirmNewPassword]=useState("");
 
 
     return (
@@ -38,11 +36,11 @@ export function ChangePassword() {
                 <div className="mt-2">
                   <input
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-#084C98 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                    type="email"
+                    type="text"
                     placeholder="Enter your new password"
                     onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+                      SetNewPassword(e.target.value);
+                    }}
                   ></input>
                 </div>
               </div>
@@ -57,8 +55,8 @@ export function ChangePassword() {
                     type="email"
                     placeholder="Confirm new password"
                     onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+                      SetConfirmNewPassword(e.target.value);
+                    }}
                   ></input>
                 </div>
               </div>
@@ -68,26 +66,29 @@ export function ChangePassword() {
                   style={{background:'#084C98'}}
                   className="inline-flex w-full items-center justify-center rounded-md  px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                   onClick={()=>{
-                        window.location.href = '/verify-email';
-                        fetch("http://localhost:3000/user/forgot-password",{
+                        fetch("http://localhost:3000/user/change-password",{
                             method:"POST",
                             body:JSON.stringify({
-                                email,
+                              NewPassword:NewPassword,
+                              ConfirmNewPassword:ConfirmNewPassword
                             }),
                             headers:{
-                                "Content-type":"application/json",
-                                "Authorization" : `Bearer ${localStorage.getItem('changepassword')}`
+                              "Content-type":"application/json",
+                             "Authorization": `Bearer ${localStorage.getItem("token")}`
                             }
                         })
                         .then(async function(res){
                             if(res.ok){
                                 const userEmail=res.json();
-                                alert("Email sent successfull")
-                                // window.location.href = '/';
+                                alert("Password Changed Successfully")
+                                setTimeout(() => {
+                                  window.location.href = '/signin';
+                                }, 1500);
                             }
-                            else{
-                                alert("Email not sent")
-                            }
+                        })
+                        .catch(error => {
+                          alert("Failed to update the password. Please try again."); // Show alert for failed password change
+                          console.log(error); // Log error to console for debugging
                         })
                     }}
                 >

@@ -122,6 +122,7 @@ export function Signup() {
                     }
                 })
                 .catch((e)=>{
+                    console.log(e)
                     toast.error("Fill out all the required fields correctly")
                 })
             } }

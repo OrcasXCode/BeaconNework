@@ -36,17 +36,21 @@ export  function Header() {
                             Get started
                         </Link>)}
                         {/* beaconnetwork login user */}
-                       {token !== null && (<div className='flex  items-center'><img
+                       {token !== null && (<div className='flex  items-center'>
+                        <img
                             src={user}
                             className="h-10 object-cover"
                             alt="Logo"
-                        /> <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p> </div>) }
+                        /> 
+                        <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p> </div>) }
                         {/* google login user */}
-                       {googletoken !== null && (<div className='flex  items-center'><img
+                       {googletoken !== null && (<div className='flex items-center'>
+                        <img
                             src={user}
                             className="h-10 object-cover rounded-full"
                             alt="Logo"
-                        /> <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p> </div>) }
+                        /> 
+                        <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p> </div>) }
                     </div>
                     <div
                         className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"

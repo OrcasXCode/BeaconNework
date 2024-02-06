@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import HighlightText from '../HighLightText'
-import man from '../../src/assets/man.png'
 import seller from '../../src/assets/seller.jpg'
 import CountUp from 'react-countup';
 import { toast, Toaster } from "react-hot-toast";
+import Lottie from 'lottie-react'
+import animationData from '../../src/assets/Animation.json'
+import interview from '../../src/assets/interview1.json'
 
 export function Home() {
 
@@ -28,11 +30,7 @@ export function Home() {
           </p>
         </div>
        <div className="relative lg:col-span-5 lg:-mr-8 xl:col-span-6">
-          <img
-            className="aspect-[3/2] object-contain lg:aspect-[4/3] lg:h-[700px] xl:aspect-[16/9]"
-            src={man}
-            alt=""
-          />
+          <Lottie animationData={animationData}></Lottie>
         </div>
       </div>
 
@@ -392,12 +390,13 @@ export function Home() {
           </p>
         </div>
         <div className="mt-10 w-full md:w-2/3 lg:mt-0 lg:w-1/2">
-          <img
+          <Lottie animationData={interview}></Lottie>
+          {/* <img
             style={{borderRadius:'10px'}}
             className="h-full w-full rounded-md object-cover"
             src="https://images.pexels.com/photos/7255416/pexels-photo-7255416.jpeg?auto=compress&cs=tinysrgb&w=600"
             alt="Newsletter"
-          />
+          /> */}
         </div>
       </div>
     </div>

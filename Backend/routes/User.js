@@ -69,6 +69,49 @@ router.post("/signin", async (req, res) => {
   }
 });
 
+router.post("/send-otp", async (req, res) => {
+  try {
+    const email = req.body.email;
+    let otp;
+
+    let existingOtp;
+    do {
+      otp = otpgenerator.generate(6, {
+        upperCaseAlphabets: false,
+        lowerCaseAlphabets: false,
+        specialChars: false,
+        numbersOnly: true,
+      });
+
+      existingOtp = await OTP.findOne({ otp });
+    } while (existingOtp);
+
+    const otpPayload = { email, otp };
+
+    // Use create to insert a new OTP
+    const otpBody = await OTP.create(otpPayload);
+
+    // Use the generated OTP in the email
+    const sendOTPEmail = await mailSender(
+      email,
+      "OTP sent successfully",
+      sendOTP(email, otp)
+    );
+
+    res.status(200).json({
+      success: true,
+      msg: "OTP sent successfully",
+      otp,
+    });
+  } catch (error) {
+    console.log("Error in sending OTP : ", error);
+    return res.status(500).json({
+      success: false,
+      message: "Server Error! Failed to send OTP.",
+    });
+  }
+});
+
 router.post("/forgot-password", async (req, res) => {
   try {
     const email = req.body.email;
@@ -142,8 +185,7 @@ router.post("/forgot-password", async (req, res) => {
   }
 });
 
-router.use("/change-password", userMiddleware);
-router.post("/change-password", async (req, res) => {
+router.post("/change-password", userMiddleware, async (req, res) => {
   try {
     const userDetails = await User.findById(req.user._id);
     const NewPassword = req.body.NewPassword;
@@ -194,49 +236,6 @@ router.post("/change-password", async (req, res) => {
     return res.status(500).json({
       success: false,
       msg: "Failed to change the password",
-    });
-  }
-});
-
-router.post("/send-otp", async (req, res) => {
-  try {
-    const email = req.body.email;
-    let otp;
-
-    let existingOtp;
-    do {
-      otp = otpgenerator.generate(6, {
-        upperCaseAlphabets: false,
-        lowerCaseAlphabets: false,
-        specialChars: false,
-        numbersOnly: true,
-      });
-
-      existingOtp = await OTP.findOne({ otp });
-    } while (existingOtp);
-
-    const otpPayload = { email, otp };
-
-    // Use create to insert a new OTP
-    const otpBody = await OTP.create(otpPayload);
-
-    // Use the generated OTP in the email
-    const sendOTPEmail = await mailSender(
-      email,
-      "OTP sent successfully",
-      sendOTP(email, otp)
-    );
-
-    res.status(200).json({
-      success: true,
-      msg: "OTP sent successfully",
-      otp,
-    });
-  } catch (error) {
-    console.log("Error in sending OTP : ", error);
-    return res.status(500).json({
-      success: false,
-      message: "Server Error! Failed to send OTP.",
     });
   }
 });
