@@ -11,12 +11,13 @@ import { useEffect } from "react";
 
 export function SignIn() {
   const handleCallbackResponse = (response) => {
-    console.log("jwt id token" + response.credential);
-    localStorage.setItem("googletoken",response.credential);
-    setTimeout(() => {
-      window.location.reload();
-      window.location.href = '/';
-    },2000);
+      console.log("jwt id token" + response.credential);
+      localStorage.setItem("googletoken",response.credential);
+      toast.success("SignIn successful")
+      setTimeout(() => {
+        window.location.reload();
+        window.location.href = '/';
+      },2000);
   };
 
   useEffect(() => {

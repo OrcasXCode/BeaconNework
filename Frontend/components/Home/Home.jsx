@@ -77,10 +77,11 @@ export function Home() {
       {/* Become A seller */}
       <div className="mx-auto mt-10 max-w-7xl px-2 py-10 lg:px-0">
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:space-x-10">
-       <div className="mb-10 w-full md:w-2/3 lg:mb-0 lg:w-1/2">
+       <div className="mb-10 w-full md:w-2/3 lg:mb-0 lg:w-1/2 rounded-lg"
+        style={{ boxShadow: '0 0 20px 5px rgba(8, 76, 152, 0.5)', animation: 'glow 2s infinite' }}>
           <img
             style={{borderRadius:'10px'}}
-            className="h-[700px] w-full rounded-md object-contain"
+            className="h-[700px] w-full object-contain'"
             src={seller}
             alt="Become a Seller"
           />
