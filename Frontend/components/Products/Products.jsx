@@ -147,7 +147,7 @@ export function Products() {
                   <a className='mt-12 '>
                       <div className="my-2 pt-2 md:ml-6 md:mt-0">
                         <h4 className="text-xl font-semibold text-gray-900">
-                          For any further queries related to any products, please feel free to <Link style={{color:'#084c98',textDecoration: 'underline'}} to='/contact-us'>contact us</Link>. Our team is ready to assist you.
+                          For any additional questions regarding our products, please don't hesitate to <Link style={{color:'#084c98',textDecoration: 'underline'}} to='/contact-us'>contact us</Link> . Our dedicated team is standing by to provide assistance                   
                         </h4>
                       </div>
                     </a>

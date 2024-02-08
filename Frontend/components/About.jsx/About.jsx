@@ -54,8 +54,8 @@ export function About() {
                     We have established strategic partnerships with over 3,000 renowned technology giants worldwide.
                 </p>
             </div>
-            <div style={{  height: '800px', width: '900px', position: 'relative' }}>
-                <img id="torqafflogo" style={{ objectFit: 'contain', width: '100%', height: '100%', backgroundColor: 'transparent'}} src={list} alt="Your Alt Text" />
+            <div style={{  height: '800px', width: '800px', position: 'relative', overflow:'hidden'}}>
+                <img id="torqafflogo" style={{ objectFit: 'contain',opacity:0.8, width: '100%', height: '100%', backgroundColor: 'transparent'}} src={list} alt="Your Alt Text" />
             </div>
         </div>
         

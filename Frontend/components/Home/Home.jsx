@@ -14,7 +14,7 @@ export function Home() {
   const [SellerEmail,setSellerEmail]=useState("");
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full scroll-smooth">
       <div>
         <Toaster />
       </div>
@@ -75,7 +75,7 @@ export function Home() {
       </div>
 
       {/* Become A seller */}
-      <div className="mx-auto mt-10 max-w-7xl px-2 py-10 lg:px-0">
+      <div className="mx-auto mt-10 max-w-7xl px-2 py-10 lg:px-0" id='become-seller'>
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:space-x-10">
        <div className="mb-10 w-full md:w-2/3 lg:mb-0 lg:w-1/2 rounded-lg"
         style={{ boxShadow: '0 0 20px 5px rgba(8, 76, 152, 0.5)', animation: 'glow 2s infinite' }}>
@@ -184,7 +184,7 @@ export function Home() {
             </h1>
         {/* 1 */}
         <div className="px-5 relative mx-auto py-24">
-          <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+          <div className= "flex justify-evenly max-md:flex-col max-md:items-stretch max-md:gap-0">
             <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
               <img
                 style={{borderRadius:'10px'}}
@@ -202,8 +202,8 @@ export function Home() {
                   Our detailed blueprints optimize product fitting during site installation, enhancing efficiency and accuracy for a successful deployment. Your project's success is our priority.
                   </p>
             </div>
-            <div className="flex flex-col items-center justify-center w-[16%] ml-5 max-md:w-full max-md:ml-0">
-              <span className="text-black text-[100px] whitespace-nowrap items-stretch bg-stone-300 w-full pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
+              <div className="flex flex-col items-stretch w-[16%] ml-5 max-md:w-full max-md:ml-0">
+              <span className="text-black text-[100px] whitespace-nowrap justify-center items-stretch bg-stone-300 w-full my-auto pl-6 pr-12 pt-20 pb-14 max-md:text-4xl max-md:mt-10 max-md:px-5">
                 01
               </span>
             </div>
@@ -329,7 +329,7 @@ export function Home() {
 
 
       {/* we Are Hiring */}
-      <div className="mx-auto max-w-7xl px-2 py-2 lg:px-0">
+      <div className="mx-auto max-w-7xl px-2 py-2 lg:px-0" id='join-team'>
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
         <div className="w-full md:w-2/3 lg:w-1/2">
           <h2 className="text-3xl font-bold text-black">We Are Hiring ! : Crack the <HighlightText text={"Interview"} /> at <HighlightText text={"Beacon Network"} /></h2>
@@ -392,12 +392,6 @@ export function Home() {
         </div>
         <div className="mt-10 w-full md:w-2/3 lg:mt-0 lg:w-1/2">
           <Lottie animationData={interview}></Lottie>
-          {/* <img
-            style={{borderRadius:'10px'}}
-            className="h-full w-full rounded-md object-cover"
-            src="https://images.pexels.com/photos/7255416/pexels-photo-7255416.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt="Newsletter"
-          /> */}
         </div>
       </div>
     </div>

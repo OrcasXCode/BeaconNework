@@ -1,5 +1,3 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Diphylleia&display=swap'); */
-
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 @import url('http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css');
 @import "react-slideshow-image/dist/styles.css";
@@ -8,12 +6,4 @@
     border-radius: 0%;
     -webkit-transition: -webkit-transform .8s ease-in-out;
             transition:         transform .8s ease-in-out;
-  }
-  
-  #torqafflogo:hover {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-
-
-
+}
