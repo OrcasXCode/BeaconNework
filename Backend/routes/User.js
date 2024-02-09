@@ -69,6 +69,46 @@ router.post("/signin", async (req, res) => {
   }
 });
 
+router.post("/googlesignin", async (req, res) => {
+  const googlesignintoken = req.body.googlesignintoken;
+
+  try {
+    if (!googlesignintoken) {
+      return res.status(401).json({
+        success: false,
+        message: "No Token Provided!",
+      });
+    }
+    const decodedToken = jwt.decode(googlesignintoken);
+    const name = decodedToken.name;
+    const email = decodedToken.email;
+    const password = decodedToken.sub;
+
+    const user = await User.create({
+      name,
+      email,
+      password,
+    });
+
+    const token = jwt.sign(
+      { _id: user._id.toString(), email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" }
+    );
+    localStorage.setItem("jsonwebtoken", token);
+    return res.status(200).json({
+      success: true,
+      msg: "token decoded successfully",
+      token,
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      msg: "Failed to decode the token",
+    });
+  }
+});
+
 router.post("/send-otp", async (req, res) => {
   try {
     const email = req.body.email;

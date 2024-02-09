@@ -16,7 +16,7 @@ export  function Header() {
                     <Link to="/" className="flex items-center">
                         <img
                             src={Logo}
-                            className="mr-3 h-12"
+                            className="mr-3 h-10"
                             alt="Logo"
                         />
                     </Link>
@@ -52,6 +52,7 @@ export  function Header() {
                         /> 
                         <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p> </div>) }
                     </div>
+                    
                     <div
                         className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
                         id="mobile-menu-2"

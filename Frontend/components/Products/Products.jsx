@@ -129,7 +129,7 @@ export function Products() {
                     </a>
                     <a className="group mb-8 md:flex flex justify-center items-center">
                       <Lottie animationData={bigcomp}></Lottie>
-                      <div className="my-4 pt-2 md:ml-6 md:mt-0">
+                      <div className="my-4 w-[400px] pt-2 md:ml-6 md:mt-0">
                         <h4 className="text-l text-center font-semibold text-gray-900">
                           Whether you are a giant corporation or a nimble startup, we provide state-of-the-art solutions.
                         </h4>
