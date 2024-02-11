@@ -82,15 +82,16 @@ export function Products() {
     return (
       <div  className="slide-container">
 
-        <Slide>
-         {slideImages.map((slideImage, index)=> (
-            <div key={index}>
-              <div style={{ ...divStyle, 'backgroundImage': `url(${slideImage.url})` }}>
-                <span style={spanStyle}>{slideImage.caption}</span>
-              </div>
-            </div>
-          ))} 
+       <Slide id="slider">
+            {slideImages.map((slideImage, index) => (
+                <div key={index} style={{ backgroundImage: `url(${slideImage.url})`,objectFit: 'contain', backgroundSize: 'cover' }}>
+                    <div style={divStyle}>
+                        <span style={spanStyle}>{slideImage.caption}</span>
+                    </div>
+                </div>
+            ))}
         </Slide>
+
 
         <div className="max-w-7xl mx-auto">
           <section className="relative overflow-hidden py-20">

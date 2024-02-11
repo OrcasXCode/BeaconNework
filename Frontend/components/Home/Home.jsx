@@ -6,6 +6,8 @@ import { toast, Toaster } from "react-hot-toast";
 import Lottie from 'lottie-react'
 import animationData from '../../src/assets/Animation.json'
 import interview from '../../src/assets/interview1.json'
+import  {TypeAnimation}  from 'react-type-animation';
+
 
 export function Home() {
 
@@ -23,7 +25,21 @@ export function Home() {
       <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
         <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
           <h1 className="mt-8 text-3xl font-bold tracking-tight text-black md:text-4xl lg:text-6xl">
-            Celebrating <CountUp className="text-[#084C98]" start={10} end={27} duration={5}></CountUp> Years Of Excellence 
+            Celebrating <CountUp className="text-[#084C98]" start={10} end={27} duration={5}></CountUp> Years Of <TypeAnimation 
+          sequence={[
+            'Excellence',
+            1500, // wait 1s before replacing "Mice" with "Hamsters"
+            'Innovation',
+            1500,
+            'Dominance',
+            1500,
+            'Legacy',
+            1500
+          ]}
+          speed={50}
+          className="text-6xl"
+          style={{ fontFamily: 'Playfair Display',color: '#084C98', display: 'inline-block' }}      
+          repeat={Infinity}></TypeAnimation> 
           </h1>
           <p className="mt-8 text-[20px] text-gray-700">
             &ldquo; Committed to Excellence &rdquo;
@@ -75,7 +91,7 @@ export function Home() {
       </div>
 
       {/* Become A seller */}
-      <div className="mx-auto mt-10 max-w-7xl px-2 py-10 lg:px-0" id='become-seller'>
+      <div className="mx-auto mt-10 max-w-7xl px-2 py-10 lg:px-0 md:mx-auto sm-mx-auto" id='become-seller'>
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:space-x-10">
        <div className="mb-10 w-full md:w-2/3 lg:mb-0 lg:w-1/2 rounded-lg"
         style={{ boxShadow: '0 0 20px 5px rgba(8, 76, 152, 0.5)', animation: 'glow 2s infinite' }}>
@@ -178,7 +194,7 @@ export function Home() {
 
       {/* Why Us? */}
       <div style={{textAlign:'center'}} className='mt-10 max-w-7xl mx-auto'>    
-            <h1 style={{fontSize:'50px'}} className="text-xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            <h1 style={{fontSize:'50px'}} className="text-xl font-bold tracking-tight text-gray-900 sm:text-6xl md:">
               Performance-Boosting
               <HighlightText text={"Solutions "} />
             </h1>

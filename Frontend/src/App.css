@@ -7,3 +7,18 @@
     -webkit-transition: -webkit-transform .8s ease-in-out;
             transition:         transform .8s ease-in-out;
 }
+
+
+/* @media (max-width: 640px){
+    #slider{
+        object-fit: contain;
+    }
+} */
+#slider .inner-div {
+    display: flex;
+    overflow-x: auto;
+}
+
+#slider .inner-div > div {
+    object-fit: cover; /* Or 'contain' for a different behavior */
+}
