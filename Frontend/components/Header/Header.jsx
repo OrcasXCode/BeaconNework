@@ -1,7 +1,19 @@
 import React from 'react'
-import {Link, NavLink} from 'react-router-dom'
+import {Link, NavLink,useLocation} from 'react-router-dom'
 import Logo from "../../src/assets/logo.png"
 import user from "../../src/assets/user.png"
+import { useState } from 'react'
+import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  mobileNavContainerVariant,
+  mobileNavListVariant,
+  mobileNavExitProps,
+} from "../../data/animationConfig";
+
+const activeClassName = "selected navlink";
+const activeStyleCallback = ({ isActive }) =>
+  isActive ? activeClassName : "navlink";
 
 
 
@@ -9,7 +21,13 @@ export  function Header() {
     const token = localStorage.getItem('jsonwebtoken');
     const googletoken=localStorage.getItem('googletoken');
 
-    return (
+    const [isOpen, setIsOpen] = useState(false);
+      const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+  };
+
+ 
+   return (
         <header className="shadow sticky z-50 top-0">
             <nav className="bg-white border-gray-200 bg-opacity-100 px-4 lg:px-6 py-2.5">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
@@ -101,8 +119,50 @@ export  function Header() {
                             
                         </ul>
                     </div>
+                    <div className="flex w-[75px] justify-end md:hidden">
+                       <button onClick={toggleNavbar}>{isOpen ? <X /> : <Menu />}</button>
+                    </div>
+
+                     <AnimatePresence mode="wait">
+                        {isOpen && (
+                        <motion.div
+                            layout="position"
+                            key="nav-links"
+                            variants={mobileNavContainerVariant}
+                            initial="hidden"
+                            animate="show"
+                            className="mt-4 basis-full md:hidden"
+                        >
+                            <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}>
+                            <NavLink to="/" className={activeStyleCallback}>
+                                Home
+                            </NavLink>
+                            </motion.div>
+                            <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}>
+                            <NavLink to="/blog" className={activeStyleCallback}>
+                                Blog
+                            </NavLink>
+                            </motion.div>
+                            <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}>
+                            <NavLink to="/blog" className={activeStyleCallback}>
+                                Products
+                            </NavLink>
+                            </motion.div>
+                            <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}>
+                            <NavLink to="/blog" className={activeStyleCallback}>
+                                Contact
+                            </NavLink>
+                            </motion.div>
+                        </motion.div>
+                        )}
+                        </AnimatePresence>
+
+
                 </div>
             </nav>
         </header>
     );
 }
+
+
+

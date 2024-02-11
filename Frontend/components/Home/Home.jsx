@@ -28,13 +28,13 @@ export function Home() {
             Celebrating <CountUp className="text-[#084C98]" start={10} end={27} duration={5}></CountUp> Years Of <TypeAnimation 
           sequence={[
             'Excellence',
-            1500, // wait 1s before replacing "Mice" with "Hamsters"
+            2500, // wait 1s before replacing "Mice" with "Hamsters"
             'Innovation',
-            1500,
+            2500,
             'Dominance',
-            1500,
+            2500,
             'Legacy',
-            1500
+            2500
           ]}
           speed={50}
           className="text-6xl"
