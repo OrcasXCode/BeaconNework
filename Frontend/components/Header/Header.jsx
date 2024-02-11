@@ -131,27 +131,27 @@ export  function Header() {
                             variants={mobileNavContainerVariant}
                             initial="hidden"
                             animate="show"
-                            className="mt-4 basis-full md:hidden"
+                            className="mt-4 text-[17px] basis-full md:hidden text-gray-700 font-semibold flex flex-col items-end border-t border-b-black"
                         >
-                            <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}>
-                            <NavLink to="/" className={activeStyleCallback}>
-                                Home
-                            </NavLink>
+                            <motion.div style={{borderBottom:'1px solid black'}} variants={mobileNavListVariant} {...mobileNavExitProps}>
+                                <NavLink to="/"  className={activeStyleCallback }>
+                                    Home
+                                </NavLink>
                             </motion.div>
-                            <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}>
-                            <NavLink to="/blog" className={activeStyleCallback}>
-                                Blog
-                            </NavLink>
+                            <motion.div style={{borderBottom:'1px solid black'}} variants={mobileNavListVariant} {...mobileNavExitProps}>
+                                <NavLink to="/about" className={activeStyleCallback}>
+                                    About
+                                </NavLink>
                             </motion.div>
-                            <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}>
-                            <NavLink to="/blog" className={activeStyleCallback}>
-                                Products
-                            </NavLink>
+                            <motion.div style={{borderBottom:'1px solid black'}} variants={mobileNavListVariant} {...mobileNavExitProps}>
+                                <NavLink to="/contact-us" className={activeStyleCallback}>
+                                    Contact Us
+                                </NavLink>
                             </motion.div>
-                            <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}>
-                            <NavLink to="/blog" className={activeStyleCallback}>
-                                Contact
-                            </NavLink>
+                            <motion.div style={{borderBottom:'1px solid black'}} variants={mobileNavListVariant} {...mobileNavExitProps}>
+                                <NavLink to="/products" className={activeStyleCallback}>
+                                    Products
+                                </NavLink>
                             </motion.div>
                         </motion.div>
                         )}
