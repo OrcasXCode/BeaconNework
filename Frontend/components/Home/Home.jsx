@@ -194,10 +194,10 @@ export function Home() {
 
       {/* Why Us? */}
       <div style={{textAlign:'center'}} className='mt-10 max-w-7xl mx-auto'>    
-            <h1 style={{fontSize:'50px'}} className="text-xl font-bold tracking-tight text-gray-900 sm:text-6xl md:">
-              Performance-Boosting
-              <HighlightText text={"Solutions "} />
-            </h1>
+          <div style={{ fontSize: '50px' }} className="text-xl items-center justify-center space-x-3 flex flex-wrap font-bold tracking-tight text-gray-900 md:text-[20px] sm:text-[10px]">
+            <h1>Performance Boosting</h1><HighlightText text="Solutions" />
+          </div>
+
         {/* 1 */}
         <div className="px-5 relative mx-auto py-24">
           <div className= "flex justify-evenly max-md:flex-col max-md:items-stretch max-md:gap-0">

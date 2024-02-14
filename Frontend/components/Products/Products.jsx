@@ -80,17 +80,30 @@ const slideImages = [
 
 export function Products() {
     return (
-      <div  className="slide-container">
+      <>
+      <div>
 
-       <Slide id="slider">
-            {slideImages.map((slideImage, index) => (
-                <div key={index} style={{ backgroundImage: `url(${slideImage.url})`,objectFit: 'contain', backgroundSize: 'cover' }}>
-                    <div style={divStyle}>
-                        <span style={spanStyle}>{slideImage.caption}</span>
-                    </div>
-                </div>
-            ))}
-        </Slide>
+      <Slide id="slider">
+        {slideImages.map((slideImage, index) => (
+          <div 
+           className='flex flex-wrap w-100% h-100% md:object-center'  
+            key={index} 
+            style={{ 
+              backgroundImage: `url(${slideImage.url})`, 
+              backgroundSize: 'cover', // Initially set to cover
+              backgroundRepeat: 'no-repeat', // Ensure background doesn't repeat
+              backgroundAttachment:'fixed',
+              backgroundPosition:'center'
+            }}>
+            <div>
+              <div style={divStyle}></div>
+            </div>
+          </div>
+        ))}
+      </Slide>
+
+    </div>
+
 
 
         <div className="max-w-7xl mx-auto">
@@ -158,7 +171,9 @@ export function Products() {
           </section>
           <hr className="my-8" />
     </div>
-      </div>
+      
+      </>
+      
     )
 }
 
