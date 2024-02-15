@@ -23,3 +23,8 @@
     object-fit: cover; /* Or 'contain' for a different behavior */
 }
 
+@media (max-width: 736px) {
+    .headerfoot {
+        margin-bottom: 20px;
+    }
+}
