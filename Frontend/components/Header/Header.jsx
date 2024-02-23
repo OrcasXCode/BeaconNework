@@ -8,10 +8,10 @@ import "./Header.css";
 export function Header(){
   const [menuOpen, setMenuOpen] = useState(false);
   const token = localStorage.getItem('jsonwebtoken');
-  const googletoken=localStorage.getItem('googletoken');
+  // const googletoken=localStorage.getItem('googletoken');
 
   return (
-     <nav className='flex font-bold w-full justify-between 'style={{ fontFamily: 'Playfair Display'}}>
+     <nav className='flex font-bold w-full justify-between '>
       <Link to="/" className="flex items-center">
        <img src={Logo} className="mr-3 h-12" alt="Logo" />
       </Link>
@@ -34,14 +34,24 @@ export function Header(){
           <NavLink to="/contact-us">Contact</NavLink>
         </li>
       </ul>
-     <ul className={`${menuOpen ? "open" : ""}`}>
+    <ul className={`${menuOpen ? "open" : ""}`}>
+  {token !== null ? (
+    <div className='flex items-center justify-center'>
+      <img src={user} className="h-10 object-cover" alt="Logo"/> 
+      <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p>
+    </div>
+  ) : (
+    <>
       <li>
         <NavLink to="/signin">Login</NavLink>
       </li>
       <li>
         <NavLink to="/signup">Sign Up</NavLink>
       </li>
-    </ul>
+    </>
+  )}
+</ul>
+
 
     </nav>
   );

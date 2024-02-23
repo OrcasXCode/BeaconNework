@@ -55,7 +55,8 @@ export function About() {
                 </p>
             </div>
             <div style={{  height: '800px', width: '800px', position: 'relative', overflow:'hidden'}}>
-                <img id="torqafflogo" style={{ objectFit: 'contain',opacity:0.8, width: '100%', height: '100%', backgroundColor: 'transparent'}} src={list} alt="Your Alt Text" />
+              {/* id="torqafflogo" */}
+                <img  style={{ objectFit: 'contain',opacity:0.8, width: '100%', height: '100%', backgroundColor: 'transparent'}} src={list} alt="Your Alt Text" />
             </div>
         </div>
         
