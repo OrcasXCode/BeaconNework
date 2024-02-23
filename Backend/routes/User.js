@@ -14,6 +14,8 @@ const { userMiddleware } = require("../middlewares/User");
 const { BeacomeASeller } = require("../db/becomeaseller");
 const { RegisterForInterview } = require("../db/registerforinterview");
 const { GetAPartTimeJob } = require("../db/getpartimejob");
+const { SingleTeam } = require("../db/singleteam");
+const { Team } = require("../db/team");
 require("dotenv").config();
 
 router.post("/signup", async (req, res) => {
@@ -70,9 +72,8 @@ router.post("/signin", async (req, res) => {
 });
 
 router.post("/googlesignin", async (req, res) => {
-  const googlesignintoken = req.body.googlesignintoken;
-
   try {
+    const googlesignintoken = req.body.googlesignintoken;
     if (!googlesignintoken) {
       return res.status(401).json({
         success: false,
@@ -80,14 +81,15 @@ router.post("/googlesignin", async (req, res) => {
       });
     }
     const decodedToken = jwt.decode(googlesignintoken);
+    console.log(decodedToken);
     const name = decodedToken.name;
     const email = decodedToken.email;
     const password = decodedToken.sub;
 
     const user = await User.create({
-      name,
-      email,
-      password,
+      name: name,
+      email: email,
+      password: password,
     });
 
     const token = jwt.sign(
@@ -112,32 +114,41 @@ router.post("/googlesignin", async (req, res) => {
 router.post("/send-otp", async (req, res) => {
   try {
     const email = req.body.email;
-    let otp;
 
-    let existingOtp;
-    do {
+    const findEmail = await User.findOne({ email });
+    if (!findEmail) {
+      return res.status(401).json({
+        success: false,
+        msg: "No user found with this email you need to register first",
+      });
+    }
+
+    var otp = otpgenerator.generate(6, {
+      upperCaseAlphabets: false,
+      lowerCaseAlphabets: false,
+      specialChars: false,
+    });
+    const result = await OTP.findOne({ otp: otp });
+    console.log("Result is Generate OTP Func");
+    console.log("OTP", otp);
+    console.log("Result", result);
+    while (result) {
       otp = otpgenerator.generate(6, {
         upperCaseAlphabets: false,
-        lowerCaseAlphabets: false,
-        specialChars: false,
-        numbersOnly: true,
       });
-
-      existingOtp = await OTP.findOne({ otp });
-    } while (existingOtp);
+    }
 
     const otpPayload = { email, otp };
 
     // Use create to insert a new OTP
     const otpBody = await OTP.create(otpPayload);
-
+    console.log("OTP Body", otpBody);
     // Use the generated OTP in the email
     const sendOTPEmail = await mailSender(
       email,
       "OTP sent successfully",
       sendOTP(email, otp)
     );
-
     res.status(200).json({
       success: true,
       msg: "OTP sent successfully",
@@ -354,5 +365,128 @@ router.post("/getpartimejob", async (req, res) => {
     });
   }
 });
+
+//CREATE A TEAM FOR SINGLE PARTICIPANT
+// router.post("/singleParticipant", async (req, res) => {
+//   try {
+//     const { participant, participantemail } = req.body; // Extract participant and participantemail from req.body
+
+//     if (!participant || !participantemail) {
+//       throw new Error("Please provide participant details");
+//     }
+
+//     // Create a new single team participant
+//     const singleTeamParticipant = await SingleTeam.create({
+//       teamLeader: participant,
+//       teamLeaderemail: participantemail,
+//     });
+
+//     // Log the output   console.log("Single team participant created:", singleTeamParticipant);
+
+//     // Return the created single team participant
+//     res.json({
+//       success: true,
+//       data: singleTeamParticipant,
+//       error: null,
+//     });
+//   } catch (error) {
+//     // Log the error
+//     console.error(
+//       "Error occurred while creating single team participant:",
+//       error
+//     );
+//     // Return the error
+//     res.status(500).json({
+//       success: false,
+//       data: null,
+//       error: error.message, // Return only the error message
+//     });
+//   }
+// });
+
+// //CREATE A NEW TEAM
+// router.post("/createteam", async (req, res) => {
+//   try {
+//     const { teamLeader, teamLeaderEmail, participants } = req.body;
+
+//     // Check if there are at least one and at most three participants
+//     if (!participants || participants.length < 1 || participants.length > 3) {
+//       return res.status(400).json({
+//         success: false,
+//         error:
+//           "Invalid number of participants. There should be at least one participant but not more than three.",
+//       });
+//     }
+
+//     // Check if the participants exist or not
+//     const participantEmails = participants.map(
+//       (participant) => participant.email
+//     );
+//     const existingParticipants = await User.find({
+//       email: { $in: participantEmails },
+//     });
+
+//     // Create a new team
+//     const newTeamData = {
+//       teamLeader,
+//       teamLeaderEmail,
+//       participants,
+//     };
+//     const newTeam = await Team.create(newTeamData);
+
+//     // Return the new team
+//     res.json(newTeam.toJSON());
+//   } catch (error) {
+//     // Handle the error
+//     console.error("Error occurred while creating team:", error);
+//     res.status(500).json({ success: false, data: null, error: error.message });
+//   }
+// });
+
+// //JOIN AN EXISTING TEAM
+// router.post("/jointeam", async (req, res) => {
+//   try {
+//     const { teamId } = req.body;
+//     const { participant, participantemail } = req.body;
+
+//     // Find the team to join by its ID
+//     const teamtoJoin = await Team.findById(teamId);
+//     if (!teamtoJoin) {
+//       return res
+//         .status(404)
+//         .json({ error: "The team with this ID is not found" });
+//     }
+
+//     // Check if the participant is already a member
+//     const isParticipant = teamtoJoin.participants.some(
+//       (participant) => participant.email === participantemail
+//     );
+//     if (isParticipant) {
+//       return res
+//         .status(400)
+//         .json({ error: "Participant is already a member of this team" });
+//     }
+
+//     // Create a new participant object
+//     const newParticipant = { name: participant, email: participantemail };
+
+//     // Update the team document to add the new participant
+//     teamtoJoin.participants.push(newParticipant);
+//     const updatedTeam = await teamtoJoin.save();
+
+//     // Update user's teamId
+//     const userToUpdate = await User.findOneAndUpdate(
+//       { email: participantemail },
+//       { teamId },
+//       { new: true }
+//     );
+
+//     // Return the updated team
+//     res.json(updatedTeam.toJSON());
+//   } catch (error) {
+//     console.error("Error occurred while joining team:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
 
 module.exports = router;

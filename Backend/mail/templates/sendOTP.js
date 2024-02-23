@@ -1,9 +1,4 @@
-// const fs=require("fs")
-
 exports.sendOTP = (otp, email) => {
-  // const logoPath = '../../logo/logo.png'
-  // const logoData=fs.readFileSync(logoPath)
-  // const logoBase64=logoData.toString('base64')
   return `<!DOCTYPE html>
     <html>
     
@@ -72,7 +67,7 @@ exports.sendOTP = (otp, email) => {
     
     <body>
         <div class="container">
-            <a href=""><img class="logo"
+            <a href=""><img class="logo" src="http://localhost:5173/src/assets/logo.png"
                      alt="Beacon Network"></a>
             <div class="message">OTP Confirmatiom</div>
             <div class="body">

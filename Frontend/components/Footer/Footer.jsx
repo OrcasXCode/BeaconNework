@@ -2,6 +2,7 @@ import React from 'react'
 import Logo from "../../src/assets/logo.png"
 import name from "../../src/assets/name.png"
 
+
 export function Footer() {
   return (
     <section className="relative overflow-hidden py-10">
