@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import HighlightText from "../components/HighLightText";
 import { ArrowRight } from 'lucide-react';
 import { toast, Toaster } from "react-hot-toast";
+import mail from '../src/assets/mail.png'
 
 export function Verifyregisteredemail(props) {
     const [otp, setOtp] = useState("");
@@ -52,8 +53,11 @@ export function Verifyregisteredemail(props) {
                 <Toaster />
             </div>
             <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
+                <div className="mb-2 flex justify-center">
+                    <img src={mail} style={{height:'80px'}}></img>
+                </div>
                 <h1 style={{ fontFamily: 'Playfair Display' }} className="text-center text-4xl font-bold leading-tight text-black"><HighlightText text="Check Email" /></h1>
-                <p className="text-center " style={{ margin: '15px', fontFamily: 'Playfair Display' }}>{`We have sent the OTP to your email, please do not share it with anyone else as it may lead to security issues`}</p>
+                <p className="text-center text-gray-600" style={{ margin: '15px', fontFamily: 'Playfair Display' }}>We have sent the OTP to your email, please do not share it with anyone else as it may lead to security issues</p>
                 <form>
                     <label>
                         <div style={{ marginTop: '50px' }}>

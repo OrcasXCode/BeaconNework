@@ -52,29 +52,28 @@ export function ForgotPassword() {
                   style={{background:'#084C98'}}
                   className="inline-flex w-full items-center justify-center rounded-md  px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                   onClick={()=>{
-                       
-                        fetch("http://localhost:3000/user/send-otp",{
-                            method:"POST",
-                            body:JSON.stringify({
-                                email,
-                            }),
-                            headers:{
-                                "Content-type":"application/json"
-                            }
+                        fetch("http://localhost:3000/user/send-otp", {
+                          method: "POST",
+                          body: JSON.stringify({
+                            email,
+                          }),
+                          headers: {
+                            "Content-type": "application/json",
+                          },
                         })
-                        .then(async function(res){
-                            if(res.ok){
-                                const userEmail=res.json();
-                                toast.success("OTP sent successfully");
-                                setTimeout(() => {
-                                  navigate("/verify-email");
-                                }, 1000);
+                          .then(async function (res) {
+                            if (res.ok) {
+                              const userEmail = await res.json(); // Await the result of res.json()
+                              console.log(userEmail)
+                              toast.success("OTP sent successfully");
+                              setTimeout(() => {
+                                navigate(`/verify-email?email=${encodeURIComponent(email)}`);
+                              }, 1000);
+                            } else {
+                              toast.error("Failed to send OTP");
                             }
-                            else{
-                                 toast.error("Failed to send OTP");
-                            }
-                        })
-                    }}
+                          })
+                  }}
                 >
                   Get started <ArrowRight className="ml-2" size={16} />
                 </button>
