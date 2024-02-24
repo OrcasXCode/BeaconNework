@@ -127,7 +127,7 @@ export function ContactUs() {
                     style={{background:'#084C98',borderRadius:'20px'}}
                     className="w-full rounded-mdpx-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                     onClick={()=>{
-                      fetch('http://localhost:3000/api/v1/contact/contactUs',{
+                      fetch('http://localhost:3000/user/contactus',{
                         method:"POST",
                         body:JSON.stringify({
                           firstname:firstname,
@@ -146,7 +146,7 @@ export function ContactUs() {
                           toast.success("Message Sent")
                         }
                         else{
-                          throw new error("Failed sent message");
+                          throw new error("Failed to send message");
                         }
                       })
                       .catch((error)=>{

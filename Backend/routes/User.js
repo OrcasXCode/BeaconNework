@@ -15,6 +15,7 @@ const { BeacomeASeller } = require("../db/becomeaseller");
 const { RegisterForInterview } = require("../db/registerforinterview");
 const { GetAPartTimeJob } = require("../db/getpartimejob");
 const { registerEmail } = require("../db/registeremail");
+const { ContactUs } = require("../db/contactus");
 const bcrypt = require("bcryptjs");
 // const { SingleTeam } = require("../db/singleteam");
 // const { Team } = require("../db/team");
@@ -446,6 +447,38 @@ router.post("/getpartimejob", async (req, res) => {
     console.log(e);
     return res.status(500).json({
       msg: "Failed to register for part time job",
+    });
+  }
+});
+
+router.post("/contactus", async (req, res) => {
+  try {
+    const { firstname, lastname, phonenumber, message, email } = req.body;
+
+    if (!firstname || !lastname || !phonenumber || !message || !email) {
+      return res.status(401).json({
+        success: false,
+        msg: "All fields are required",
+      });
+    }
+
+    await ContactUs.create({
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      phonenumber: phonenumber,
+      message: message,
+    });
+
+    return res.status(200).json({
+      success: true,
+      msg: "Done",
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      msg: "Internal Server Error",
     });
   }
 });

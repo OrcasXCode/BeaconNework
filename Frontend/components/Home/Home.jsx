@@ -176,7 +176,7 @@ export function Home() {
                           .then(async function (res) {
                               if(res.ok){
                                 const json = await res.json();
-                                toast.success("Registered as a seller");
+                                toast.success("Registered");
                               }
                               else{
                                 throw new Error();
@@ -395,7 +395,7 @@ export function Home() {
                           .then(async function (res) {
                               if(res.ok){
                                 const json = await res.json();
-                                toast.success("Registered for Interview");
+                                toast.success("Registered");
                               }
                               else{
                                 throw new Error();
@@ -467,7 +467,7 @@ export function Home() {
                           .then(async function (res) {
                               if(res.ok){
                                 const json = await res.json();
-                                toast.success("Registered for part-time job");
+                                toast.success("Registered");
                               }
                               else{
                                 throw new Error();

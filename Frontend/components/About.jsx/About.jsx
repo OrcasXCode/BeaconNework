@@ -73,7 +73,7 @@ export function About() {
         <div className="relative lg:col-span-5 lg:-mr-8 xl:col-span-6 overflow-y-hidden">
           <img
             id="torqafflogo"
-            className="aspect-[3/2] bg-gray-50 object-cover lg:aspect-[4/3] lg:h-[700px] xl:aspect-[16/9]"
+            className="aspect-[3/2] opacity-[0.5] bg-gray-50 object-cover lg:aspect-[4/3] lg:h-[700px] xl:aspect-[16/9]"
             src={list}
             alt=""
           />
