@@ -35,6 +35,9 @@ router.post("/registeremail", async (req, res) => {
       digits: true,
       alphabets: false,
       specialChars: false,
+      upperCaseAlphabets: false,
+      lowerCaseAlphabets: false,
+      specialChars: false,
     });
 
     const otpPayload = { email, otp };
@@ -48,7 +51,7 @@ router.post("/registeremail", async (req, res) => {
 
     const sendOTPEmail = await mailSender(
       email,
-      "OTP sent successfully",
+      `Your OTP is : ${otp}`,
       sendOTP(email, otp)
     );
     return res.status(200).json({
@@ -68,7 +71,7 @@ router.post("/registeremail", async (req, res) => {
 
 router.post("/verifyemail", async (req, res) => {
   try {
-    const email = req.query.email || req.body;
+    const email = req.query.email || req.body.email;
     const { otp } = req.body;
 
     if (!otp) {
@@ -235,7 +238,7 @@ router.post("/send-otp", async (req, res) => {
     // Send OTP email (implement your mailSender function)
     const sendOTPEmail = await mailSender(
       email,
-      "OTP sent successfully",
+      `Your OTP is : ${otp}`,
       sendOTP(email, otp)
     );
 
@@ -252,11 +255,11 @@ router.post("/send-otp", async (req, res) => {
     });
   }
 });
-
 router.post("/forgot-password", async (req, res) => {
   try {
-    let email = req.body.email || req.query.email; // Get email from body or query
+    let email = req.query.email; // Get email from query parameters
     const otp = req.body.otp;
+
     if (!email) {
       return res.status(400).json({
         success: false,
@@ -311,10 +314,8 @@ router.post("/forgot-password", async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "24h" }
     );
-    // Store the token in localStorage on the client-side
-    localStorage.setItem("changepassword", token);
 
-    // Send the response with the token in the JSON payload
+    // Send the token in the response payload
     return res.status(200).json({
       success: true,
       msg: "OTP and email verified successfully",

@@ -76,11 +76,13 @@ exports.sendOTP = (otp, email) => {
                      alt="Beacon Network"></a>
             <div class="message">OTP Code Confirmation</div>
             <div class="body">
-                <p>Dear Customer,</p>
-                <p>Thank you for connecting with us. We have sent your OTP to your email.</p>
+                <p>Dear valued customer,</p>
+                <p>Thank you for connecting with us. We have generated an OTP (One-Time Password) to ensure the security of your account.</p>
                 <p>Email: ${otp}</p>
                 <p class="otp">OTP: ${email}</p>
-                <p>We appreciate your interest and will connect with you shortly.</p>
+                <p>Please use the provided OTP to complete your action securely.</p>
+                <p>If you did not request this OTP, please ignore this email or contact us immediately.</p>
+                <p>We appreciate your trust in our services and look forward to assisting you further.</p>
             </div>
             <div class="support">If you have any further questions or need immediate assistance, please feel free to reach
                 out to us at <a href="mailto:beaconnetworkcs@gmail.com">beaconnetworkcs@gmail.com</a>. We are here to help!</div>

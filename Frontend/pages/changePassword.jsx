@@ -7,6 +7,7 @@ import changepassword from '../src/assets/changepassword.png';
 export function ChangePassword() {
     const [NewPassword, SetNewPassword] = useState("");
     const [ConfirmNewPassword, SetConfirmNewPassword] = useState("");
+    const token=localStorage.getItem("cpToken");
 
     return (
         <section>
@@ -67,11 +68,12 @@ export function ChangePassword() {
                                                 method: "POST",
                                                 body: JSON.stringify({
                                                     NewPassword: NewPassword,
-                                                    ConfirmNewPassword: ConfirmNewPassword
+                                                    ConfirmNewPassword: ConfirmNewPassword,
+                                                    token:token
                                                 }),
                                                 headers: {
                                                     "Content-type": "application/json",
-                                                    "Authorization": `Bearer ${localStorage.getItem("cptkn")}`
+                                                    "Authorization": `Bearer ${token}`
                                                 }
                                             });
                                             if (response.ok) {
