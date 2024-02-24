@@ -16,6 +16,7 @@ import rootReducer from './reducer/index.js'
 import { configureStore } from '@reduxjs/toolkit'
 import { ChangePassword } from '../pages/changePassword.jsx'
 import { RegisterEmail } from '../pages/registerEmail.jsx'
+import { Verifyregisteredemail } from '../pages/verifyregisteredemail.jsx'
 
 
 
@@ -51,6 +52,10 @@ const router=createBrowserRouter([
       {
         path:'verify-email',
         element:<VerifyEmail></VerifyEmail>
+      },
+      {
+        path:'/verifyemail',
+        element:<Verifyregisteredemail></Verifyregisteredemail>
       },
       {
         path:'forgot-password',

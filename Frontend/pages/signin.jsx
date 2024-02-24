@@ -4,67 +4,9 @@ import { toast, Toaster } from "react-hot-toast";
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import signin from '../src/assets/signin.png'
-import { useEffect } from "react";
-
 
 
 export function SignIn() {
-
-const [googlesignintoken, setGoogleSignInToken] = useState("");
-
-// const handleCallbackResponse = async (response) => {
-//   const data = await response.credential;
-
-//   setGoogleSignInToken(prevToken => {
-//     console.log("google token", data);
-//     return data; 
-//   });
-
-//   try {
-//     const res = await fetch("http://localhost:3000/user/googlesignin", {
-//       method: "POST",
-//       body: JSON.stringify({
-//         googlesignintoken: googlesignintoken 
-//       }),
-//       headers: {
-//         "Content-type": "application/json",
-//       },
-//     });
-
-//     if (res.ok) {
-//       const json = await res.json();
-//       const token = json.token;
-//       localStorage.setItem('jsonwebtoken', token);
-//       toast.success("Sign In successful");
-//       setTimeout(() => {
-//         window.location.reload();
-//         window.location.href = '/';
-//       }, 1000);
-//     } else {
-//       throw new Error();
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     toast.error("Failed to Sign In");
-//   }
-// };
-
-// useEffect(() => {
-//   const google = window.google;
-
-//   google.accounts.id.initialize({
-//     client_id: "537879712076-f6bbqkf0gmo76hs5lba72qklkvc8no02.apps.googleusercontent.com",
-//     callback: handleCallbackResponse,
-//   });
-
-//   google.accounts.id.renderButton(document.getElementById('sign-in-div'), {
-//     theme: 'outline',
-//     size: '100%',
-//     width:'700px'
-//   });
-// }, []);
-
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
    

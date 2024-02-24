@@ -19,54 +19,46 @@ const bcrypt = require("bcryptjs");
 // const { SingleTeam } = require("../db/singleteam");
 // const { Team } = require("../db/team");
 require("dotenv").config();
+const otpGenerator = require("otp-generator");
 
 router.post("/registeremail", async (req, res) => {
   try {
-    const email = req.body.email;
+    const { email } = req.body;
     if (!email) {
-      return res.status(401).json({
+      return res.status(400).json({
         success: false,
-        msg: "Please provide email to register your email",
+        msg: "Please provide an email to register",
       });
     }
-    let otp = otpgenerator.generate(6, {
-      upperCaseAlphabets: false,
-      lowerCaseAlphabets: false,
+
+    const otp = otpGenerator.generate(6, {
+      digits: true,
+      alphabets: false,
       specialChars: false,
     });
-    let result = await OTP.findOne({ otp: otp });
-    console.log("Result is Generate OTP Func");
-    console.log("OTP", otp);
-    console.log("Result", result);
-    // Check if the generated OTP already exists, regenerate if it does
-    while (result) {
-      otp = otpgenerator.generate(6, {
-        upperCaseAlphabets: false,
-        lowerCaseAlphabets: false,
-        specialChars: false,
-      });
-      result = await OTP.findOne({ otp: otp });
-    }
 
     const otpPayload = { email, otp };
-
-    // Use create to insert a new OTP
     const otpBody = await OTP.create(otpPayload);
-    console.log("OTP Body", otpBody);
-    // Use the generated OTP in the email
+    if (!otpBody) {
+      return res.status(500).json({
+        success: false,
+        msg: "Failed to generate OTP",
+      });
+    }
+
     const sendOTPEmail = await mailSender(
       email,
       "OTP sent successfully",
       sendOTP(email, otp)
     );
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       msg: "OTP sent successfully",
-      email,
       otp,
+      email,
     });
   } catch (error) {
-    console.log(error);
+    console.error("Error in registering email:", error);
     return res.status(500).json({
       success: false,
       msg: "Internal Server Error",
@@ -87,7 +79,6 @@ router.post("/verifyemail", async (req, res) => {
     }
 
     const latestOtp = await OTP.findOne({ email }).sort({ createdAt: -1 });
-
     if (!latestOtp) {
       return res.status(404).json({
         success: false,
@@ -113,7 +104,7 @@ router.post("/verifyemail", async (req, res) => {
       });
     }
 
-    // Assuming `registerEmail.create({ email })` is a valid operation to register the email
+    // Register the email after OTP verification
     await registerEmail.create({ email });
 
     return res.status(200).json({
@@ -124,7 +115,7 @@ router.post("/verifyemail", async (req, res) => {
     console.error("Error in verifying email:", error);
     return res.status(500).json({
       success: false,
-      msg: "Internal Server Error!",
+      msg: "Internal Server Error",
     });
   }
 });
