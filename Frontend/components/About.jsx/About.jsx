@@ -45,7 +45,7 @@ export function About() {
         <hr className="mt-20" />
 
 
-        <div className="flex flex-row max-w-7xl mx-auto space-y-8 pb-10 pt-12 md:pt-24">
+        {/* <div className="flex flex-row h-full max-w-7xl mx-auto space-y-8 pb-10 pt-12 max-sm:flex  bg-black">
             <div className="flex flex-col space-y-8 pb-10 pt-12 md:pt-24">
                 <p className="text-3xl font-bold text-gray-900 md:text-5xl md:leading-10">
                     Our <HighlightText text={"Companies"}></HighlightText>
@@ -56,14 +56,35 @@ export function About() {
             </div>
             <div style={{  height: '800px', width: '800px', position: 'relative', overflow:'hidden'}}>
               {/* id="torqafflogo" */}
-                <img  style={{ objectFit: 'contain',opacity:0.8, width: '100%', height: '100%', backgroundColor: 'transparent'}} src={list} alt="Your Alt Text" />
+                {/* <img  style={{ objectFit: 'contain',opacity:0.8, width: '100%', height: '100%', backgroundColor: 'transparent'}} src={list} alt="Your Alt Text" />
             </div>
+        </div> */} 
+
+    <div className="relative w-full bg-white">
+      <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
+        <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
+          <h1 className="mt-8 text-3xl font-bold tracking-tight text-black md:text-4xl lg:text-6xl">
+            Our <HighlightText text="Companies"></HighlightText>
+          </h1>
+          <p className="mt-8 text-lg text-gray-700">
+            We have established strategic partnerships with over 3,000 renowned technology giants worldwide.
+          </p>
         </div>
+        <div className="relative lg:col-span-5 lg:-mr-8 xl:col-span-6 overflow-y-hidden">
+          <img
+            id="torqafflogo"
+            className="aspect-[3/2] bg-gray-50 object-cover lg:aspect-[4/3] lg:h-[700px] xl:aspect-[16/9]"
+            src={list}
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
         
       </div>
       <hr className="mt-20 max-w-7xl mx-auto" />
 
-            <div style={{textAlign:'center'}} className="flex flex-col items-center">
+            <div style={{textAlign:'center'}} className="flex flex-col items-center ">
             <div className="w-full max-w-[1104px] mt-12 px-5 max-md:max-w-full max-md:mt-10">
                 <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
                 <div className="flex flex-col items-stretch w-3/12 max-md:w-full max-md:ml-0">
