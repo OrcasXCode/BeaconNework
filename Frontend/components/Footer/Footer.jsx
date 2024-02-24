@@ -1,7 +1,10 @@
 import React from 'react'
 import Logo from "../../src/assets/logo.png"
 import name from "../../src/assets/name.png"
-
+import insta from "../../src/assets/insta.png"
+import linkdin from "../../src/assets/linkdin.png"
+import facebook from "../../src/assets/facebook.png"
+import x from "../../src/assets/x.png"
 
 export function Footer() {
   return (
@@ -38,12 +41,12 @@ export function Footer() {
                   </a>
                 </li>
                 <li className="mb-4">
-                  <a className=" text-base font-medium text-gray-900 hover:text-gray-700" href="#join-team">
+                  <a className=" text-base font-medium text-gray-900 hover:text-gray-700" href="/">
                     Join Our Team
                   </a>
                 </li>
                 <li>
-                  <a className=" text-base font-medium text-gray-900 hover:text-gray-700" href="#become-seller">
+                  <a className=" text-base font-medium text-gray-900 hover:text-gray-700" href="/">
                     Become a Seller
                   </a>
                 </li>
@@ -74,6 +77,46 @@ export function Footer() {
               </ul>
             </div>
           </div>
+
+    <section className="relative overflow-hidden bg-white py-8">
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="-m-8 flex flex-wrap items-center justify-between">
+
+          <div className="w-auto p-8">
+            <div className="-m-1.5 flex items-center justify-center flex-wrap">
+              <div className="w-auto p-1.5">
+                <a href="#">
+                  <div className="flex h-8 w-8 items-center justify-center">
+                    <img src={facebook}></img>
+                  </div>
+                </a>
+              </div>
+              <div className="w-auto p-1.5">
+                <a href="#">
+                  <div className="flex h-8 w-8 items-center justify-center">
+                    <img src={insta}></img>
+                  </div>
+                </a>
+              </div>
+              <div className="w-auto p-1.5">
+                <a href="#">
+                  <div className="flex h-8 w-8 items-center justify-center">
+                    <img src={linkdin}></img>
+                  </div>
+                </a>
+              </div>
+              <div className="w-auto p-1.5">
+                <a href="#">
+                  <div className="flex h-7 w-7 items-center justify-center">
+                    <img src={x}></img>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
         </div>
       </div>
     </section>

@@ -66,7 +66,7 @@ export function About() {
           <h1 className="mt-8 text-3xl font-bold tracking-tight text-black md:text-4xl lg:text-6xl">
             Our <HighlightText text="Companies"></HighlightText>
           </h1>
-          <p className="mt-8 text-lg text-gray-700">
+          <p className="mt-8 text-lg text-gray-600">
             We have established strategic partnerships with over 3,000 renowned technology giants worldwide.
           </p>
         </div>
