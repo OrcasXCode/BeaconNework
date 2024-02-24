@@ -14,88 +14,38 @@ const { userMiddleware } = require("../middlewares/User");
 const { BeacomeASeller } = require("../db/becomeaseller");
 const { RegisterForInterview } = require("../db/registerforinterview");
 const { GetAPartTimeJob } = require("../db/getpartimejob");
-const { SingleTeam } = require("../db/singleteam");
-const { Team } = require("../db/team");
+const { registerEmail } = require("../db/registeremail");
+const bcrypt = require("bcryptjs");
+// const { SingleTeam } = require("../db/singleteam");
+// const { Team } = require("../db/team");
 require("dotenv").config();
 
-router.post("/signup", async (req, res) => {
-  const createUser = req.body;
-  const userPayload = userCreate.safeParse(createUser);
-  if (!userPayload.success) {
-    res.status(411).json({
-      msg: "Wrong Inputs",
-    });
-    return;
-  }
-  await User.create({
-    name: createUser.name,
-    email: createUser.email,
-    password: createUser.password,
-  });
-  res.json({
-    msg: "User created successfully",
-  });
-});
-
-router.post("/signin", async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
-  try {
-    const user = await User.findOne({
-      email,
-      password,
-    });
-    if (!user) {
-      return res.status(400).json({
-        success: false,
-        msg: "User not found",
-      });
-    } else {
-      const token = jwt.sign(
-        { _id: user._id.toString(), email: user.email },
-        process.env.JWT_SECRET,
-        { expiresIn: "24h" }
-      );
-      localStorage.setItem("jsonwebtoken", token);
-      return res.status(200).json({
-        success: true,
-        token,
-      });
-    }
-  } catch (e) {
-    console.log(e);
-    return res.status(500).json({
-      msg: "User dosen't exists",
-    });
-  }
-});
-
-router.post("/send-otp", async (req, res) => {
+router.post("/registeremail", async (req, res) => {
   try {
     const email = req.body.email;
-
-    const findEmail = await User.findOne({ email });
-    if (!findEmail) {
+    if (!email) {
       return res.status(401).json({
         success: false,
-        msg: "No user found with this email you need to register first",
+        msg: "Please provide email to register your email",
       });
     }
-
-    var otp = otpgenerator.generate(6, {
+    let otp = otpgenerator.generate(6, {
       upperCaseAlphabets: false,
       lowerCaseAlphabets: false,
       specialChars: false,
     });
-    const result = await OTP.findOne({ otp: otp });
+    let result = await OTP.findOne({ otp: otp });
     console.log("Result is Generate OTP Func");
     console.log("OTP", otp);
     console.log("Result", result);
+    // Check if the generated OTP already exists, regenerate if it does
     while (result) {
       otp = otpgenerator.generate(6, {
         upperCaseAlphabets: false,
+        lowerCaseAlphabets: false,
+        specialChars: false,
       });
+      result = await OTP.findOne({ otp: otp });
     }
 
     const otpPayload = { email, otp };
@@ -109,6 +59,207 @@ router.post("/send-otp", async (req, res) => {
       "OTP sent successfully",
       sendOTP(email, otp)
     );
+    res.status(200).json({
+      success: true,
+      msg: "OTP sent successfully",
+      email,
+      otp,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      msg: "Internal Server Error",
+    });
+  }
+});
+
+router.post("/verifyemail", async (req, res) => {
+  try {
+    const email = req.query.email || req.body.email;
+    const { otp } = req.body;
+
+    if (!otp) {
+      return res.status(400).json({
+        success: false,
+        msg: "Please provide an OTP to verify your email",
+      });
+    }
+
+    const latestOtp = await OTP.findOne({ email }).sort({ createdAt: -1 });
+
+    if (!latestOtp) {
+      return res.status(404).json({
+        success: false,
+        msg: "No OTP found for the provided email",
+      });
+    }
+
+    const otpExpirationTime = 3 * 60 * 1000; // 3 minutes in milliseconds
+    const otpCreatedAt = new Date(latestOtp.createdAt).getTime();
+    const currentTime = Date.now();
+
+    if (currentTime - otpCreatedAt > otpExpirationTime) {
+      return res.status(403).json({
+        success: false,
+        msg: "OTP has expired",
+      });
+    }
+
+    if (otp !== latestOtp.otp) {
+      return res.status(403).json({
+        success: false,
+        msg: "Invalid OTP",
+      });
+    }
+
+    // Assuming `registerEmail.create({ email })` is a valid operation to register the email
+    await registerEmail.create({ email });
+
+    return res.status(200).json({
+      success: true,
+      msg: "Your email is registered successfully",
+    });
+  } catch (error) {
+    console.error("Error in verifying email:", error);
+    return res.status(500).json({
+      success: false,
+      msg: "Internal Server Error!",
+    });
+  }
+});
+
+router.post("/signup", async (req, res) => {
+  try {
+    const createUser = req.body;
+    const { name, email, password } = createUser;
+
+    // Check if email is registered
+    const findEmail = await registerEmail.findOne({ email });
+    if (!findEmail) {
+      return res.status(400).json({
+        success: false,
+        msg: "You need to register the email first",
+      });
+    }
+
+    // Validate user data
+    const userPayload = userCreate.safeParse(createUser);
+    if (!userPayload.success) {
+      return res.status(422).json({
+        success: false,
+        msg: "Invalid user data",
+        errors: userPayload.error.message,
+      });
+    }
+
+    // Create a new user
+    await User.create({ name, email, password });
+
+    return res.status(201).json({
+      success: true,
+      msg: "User created successfully",
+    });
+  } catch (error) {
+    console.error("Error in user creation:", error);
+    return res.status(500).json({
+      success: false,
+      msg: "Internal Server Error",
+    });
+  }
+});
+// Import bcrypt for password hashing
+
+router.post("/signin", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Find user by email
+    const user = await User.findOne({ email });
+
+    // If user is not found, return error
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        msg: "User not found",
+      });
+    }
+
+    // Compare the provided password with the hashed password in the database
+    // const isPasswordValid = await bcrypt.compare(password, user.password);
+    // if (!isPasswordValid) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     msg: "Invalid email or password",
+    //   });
+    // }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { _id: user._id.toString(), email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" }
+    );
+
+    // Return token in response body
+    return res.status(200).json({
+      success: true,
+      token,
+    });
+  } catch (error) {
+    console.error("Error in signin:", error);
+    return res.status(500).json({
+      msg: "Internal Server Error",
+    });
+  }
+});
+
+router.post("/send-otp", async (req, res) => {
+  try {
+    const email = req.body.email;
+
+    const findEmail = await User.findOne({ email });
+    if (!findEmail) {
+      return res.status(401).json({
+        success: false,
+        msg: "No user found with this email. You need to register first.",
+      });
+    }
+
+    let otp = otpgenerator.generate(6, {
+      upperCaseAlphabets: false,
+      lowerCaseAlphabets: false,
+      specialChars: false,
+    });
+
+    let result = await OTP.findOne({ otp: otp });
+    console.log("Result is Generate OTP Func");
+    console.log("OTP", otp);
+    console.log("Result", result);
+
+    // Check if the generated OTP already exists, regenerate if it does
+    while (result) {
+      otp = otpgenerator.generate(6, {
+        upperCaseAlphabets: false,
+        lowerCaseAlphabets: false,
+        specialChars: false,
+      });
+      result = await OTP.findOne({ otp: otp });
+    }
+
+    const otpPayload = { email, otp };
+
+    // Use create to insert a new OTP
+    const otpBody = await OTP.create(otpPayload);
+    console.log("OTP Body", otpBody);
+
+    // Use the generated OTP in the email
+    const sendOTPEmail = await mailSender(
+      email,
+      "OTP sent successfully",
+      sendOTP(email, otp)
+    );
+
     res.status(200).json({
       success: true,
       msg: "OTP sent successfully",
