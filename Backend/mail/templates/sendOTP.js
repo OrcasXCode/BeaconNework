@@ -11,11 +11,10 @@ exports.sendOTP = (otp, email) => {
                 font-family: Arial, sans-serif;
                 font-size: 16px;
                 line-height: 1.4;
-                color: #333333;
+                color: #000000;
                 margin: 0;
                 padding: 0;
             }
-    
     
             .container {
                 max-width: 600px;
@@ -25,19 +24,22 @@ exports.sendOTP = (otp, email) => {
             }
     
             .logo {
-                max-width: 200px;
-                margin-bottom: 20px;
+                max-width: 100px;
+                max-height: 100px;
+                margin-bottom: 10px;
             }
     
             .message {
                 font-size: 18px;
                 font-weight: bold;
                 margin-bottom: 20px;
+                color: #000000;
             }
     
             .body {
                 font-size: 16px;
                 margin-bottom: 20px;
+                color: #000000;
             }
     
             .cta {
@@ -61,24 +63,27 @@ exports.sendOTP = (otp, email) => {
             .highlight {
                 font-weight: bold;
             }
+            .otp {
+                font-weight: bold;
+            }
         </style>
     
     </head>
     
     <body>
         <div class="container">
-            <a href=""><img class="logo" src="http://localhost:5173/src/assets/logo.png"
+            <a href=""><img class="logo" src="https://lh3.googleusercontent.com/a/ACg8ocJq7S5RC6MK8XnBWfMxztNPfUgmp249XBq4qeNxIlY81Q=s360-c-no"
                      alt="Beacon Network"></a>
-            <div class="message">OTP Confirmatiom</div>
+            <div class="message">OTP Code Confirmation</div>
             <div class="body">
-                <p>Dear Customer</p>
-                <p>Thank you for connecting with  us. We have sent your otp for registering your  email</p>
-                <p>Email : ${otp}</p>
-                <p>OTP: ${email}</p>
-                <p>We appreciate your interest and will get connect with you.</p>
+                <p>Dear Customer,</p>
+                <p>Thank you for connecting with us. We have sent your OTP to your email.</p>
+                <p>Email: ${otp}</p>
+                <p class="otp">OTP: ${email}</p>
+                <p>We appreciate your interest and will connect with you shortly.</p>
             </div>
             <div class="support">If you have any further questions or need immediate assistance, please feel free to reach
-                out to us at <a href="mailto:omsureja@gmail.com">omsureja@gmail.com</a>. We are here to help!</div>
+                out to us at <a href="mailto:beaconnetworkcs@gmail.com">beaconnetworkcs@gmail.com</a>. We are here to help!</div>
         </div>
     </body>
     

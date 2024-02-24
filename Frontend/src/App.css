@@ -9,11 +9,6 @@
 }
 
 
-/* @media (max-width: 640px){
-    #slider{
-        object-fit: contain;
-    }
-} */
 #slider .inner-div {
     display: flex;
     overflow-x: auto;
