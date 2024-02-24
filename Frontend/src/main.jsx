@@ -15,6 +15,7 @@ import { Provider } from 'react-redux'
 import rootReducer from './reducer/index.js'
 import { configureStore } from '@reduxjs/toolkit'
 import { ChangePassword } from '../pages/changePassword.jsx'
+import { RegisterEmail } from '../pages/registerEmail.jsx'
 
 
 
@@ -58,6 +59,10 @@ const router=createBrowserRouter([
       {
         path:'change-password',
         element:<ChangePassword></ChangePassword>
+      },
+      {
+        path:'registeremail',
+        element:<RegisterEmail></RegisterEmail>
       }
     ]
   }

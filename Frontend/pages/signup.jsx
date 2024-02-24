@@ -37,6 +37,16 @@ export function Signup() {
               Sign In
             </a>
           </p>
+          <p className="mt-2 text-center text-base text-gray-600">
+            Register your email before creating an account!{' '}
+            <a
+              href="/registeremail"
+              title=""
+              className="font-medium text-black transition-all duration-200 hover:underline"
+            >
+              Register Email
+            </a>
+          </p>
           <form action="#" method="POST" className="mt-8">
             <div className="space-y-5">
               <div>
