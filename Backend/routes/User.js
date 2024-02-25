@@ -28,7 +28,7 @@ router.post("/registeremail", async (req, res) => {
     if (!email) {
       return res.status(400).json({
         success: false,
-        msg: "Please provide an email to register",
+        msg: "Email required",
       });
     }
 
@@ -57,7 +57,7 @@ router.post("/registeremail", async (req, res) => {
     );
     return res.status(200).json({
       success: true,
-      msg: "OTP sent successfully",
+      msg: "OTP Sent",
       otp,
       email,
     });
@@ -65,7 +65,7 @@ router.post("/registeremail", async (req, res) => {
     console.error("Error in registering email:", error);
     return res.status(500).json({
       success: false,
-      msg: "Internal Server Error",
+      msg: "Internal Server Error, Please try again",
     });
   }
 });
@@ -78,7 +78,7 @@ router.post("/verifyemail", async (req, res) => {
     if (!otp) {
       return res.status(400).json({
         success: false,
-        msg: "Please provide an OTP to verify your email",
+        msg: "OTP required",
       });
     }
 
@@ -119,39 +119,36 @@ router.post("/verifyemail", async (req, res) => {
     console.error("Error in verifying email:", error);
     return res.status(500).json({
       success: false,
-      msg: "Internal Server Error",
+      msg: "Internal Server Error, Please try again",
     });
   }
 });
 
 router.post("/signup", async (req, res) => {
   try {
-    const createUser = req.body;
-    const { name, email, password } = createUser;
+    const { name, email, password } = req.body;
 
     // Check if email is registered
     const findEmail = await registerEmail.findOne({ email });
     if (!findEmail) {
       return res.status(400).json({
         success: false,
-        msg: "You need to register the email first",
+        msg: "Email must be registered",
       });
     }
 
-    // Validate user data
-    const userPayload = userCreate.safeParse(createUser);
-    if (!userPayload.success) {
-      return res.status(422).json({
+    // Validate password length
+    if (password.length < 6) {
+      return res.status(400).json({
         success: false,
-        msg: "Invalid user data",
-        errors: userPayload.error.message,
+        msg: "Password must be at least 6 characters long",
       });
     }
 
     // Create a new user
     await User.create({ name, email, password });
 
-    return res.status(201).json({
+    return res.status(200).json({
       success: true,
       msg: "User created successfully",
     });
@@ -163,6 +160,7 @@ router.post("/signup", async (req, res) => {
     });
   }
 });
+
 // Import bcrypt for password hashing
 
 router.post("/signin", async (req, res) => {
@@ -216,7 +214,7 @@ router.post("/send-otp", async (req, res) => {
     if (!findEmail) {
       return res.status(404).json({
         success: false,
-        msg: "User not found with this email. Please register first.",
+        msg: "Please register first",
       });
     }
 
@@ -280,7 +278,7 @@ router.post("/forgot-password", async (req, res) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        msg: "User not found with the provided email",
+        msg: "User not found",
       });
     }
 
@@ -344,6 +342,14 @@ router.post("/change-password", userMiddleware, async (req, res) => {
       });
     }
 
+    // Validate password length
+    if (NewPassword.length < 6) {
+      return res.status(400).json({
+        success: false,
+        msg: "New password must be at least 6 characters long.",
+      });
+    }
+
     // Update the user's password
     const updatedUser = await User.findByIdAndUpdate(
       userDetails._id,
@@ -383,7 +389,7 @@ router.post("/becomeaseller", async (req, res) => {
     if (!email) {
       return res.status(404).json({
         success: false,
-        msg: "email is required",
+        msg: "Email required",
       });
     }
     await BeacomeASeller.create({
@@ -396,7 +402,7 @@ router.post("/becomeaseller", async (req, res) => {
   } catch (e) {
     console.log(e);
     return res.status(500).json({
-      msg: "Failed to register as a seller",
+      msg: "Internal Server Error, Please try again",
     });
   }
 });
@@ -408,7 +414,7 @@ router.post("/registerforinterview", async (req, res) => {
     if (!email) {
       return res.status(404).json({
         success: false,
-        msg: "email is required",
+        msg: "Email required",
       });
     }
     await RegisterForInterview.create({
@@ -421,7 +427,7 @@ router.post("/registerforinterview", async (req, res) => {
   } catch (e) {
     console.log(e);
     return res.status(500).json({
-      msg: "Failed to register for interview",
+      msg: "Internal Server Error, Please try again",
     });
   }
 });
@@ -433,7 +439,7 @@ router.post("/getpartimejob", async (req, res) => {
     if (!email) {
       return res.status(404).json({
         success: false,
-        msg: "email is required",
+        msg: "Email required",
       });
     }
     await GetAPartTimeJob.create({
@@ -441,12 +447,12 @@ router.post("/getpartimejob", async (req, res) => {
     });
     return res.status(200).json({
       success: true,
-      msg: "Registrered for part time job successfully",
+      msg: "Registrered",
     });
   } catch (e) {
     console.log(e);
     return res.status(500).json({
-      msg: "Failed to register for part time job",
+      msg: "Internal Server Error, Please try again",
     });
   }
 });
@@ -455,13 +461,15 @@ router.post("/contactus", async (req, res) => {
   try {
     const { firstname, lastname, phonenumber, message, email } = req.body;
 
-    if (!firstname || !lastname || !phonenumber || !message || !email) {
+    // Check if any of the required fields are missing
+    if (!firstname || !lastname || !email || !phonenumber || !message) {
       return res.status(401).json({
         success: false,
         msg: "All fields are required",
       });
     }
 
+    // If all required fields are present, create the contact entry
     await ContactUs.create({
       firstname: firstname,
       lastname: lastname,
@@ -472,13 +480,13 @@ router.post("/contactus", async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      msg: "Done",
+      msg: "Message sent successfully",
     });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
       success: false,
-      msg: "Internal Server Error",
+      msg: "Internal Server Error, Please try again",
     });
   }
 });

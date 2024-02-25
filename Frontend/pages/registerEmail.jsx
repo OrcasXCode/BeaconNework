@@ -9,35 +9,44 @@ export function RegisterEmail() {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
-  const handleSendOTP = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/user/registeremail", {
-        method: "POST",
-        body: JSON.stringify({
-          email,
-        }),
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
-      if (response.ok) {
-        toast.success("OTP sent successfully");
-        setTimeout(() => {
-           navigate(`/verifyemail?email=${encodeURIComponent(email)}`); // Navigate to verifyemail with email as a query parameter
-        }, 1000);
-      } else {
-        console.error("Failed to send OTP:", response.statusText);
-        toast.error("Failed to send OTP");
-      }
-    } catch (error) {
-      console.error("Error sending OTP:", error);
-      alert("Error sending OTP");
+const handleSendOTP = async () => {
+  // Show loading spinner using toast.loading
+  const loadingToast = toast.loading("Sending OTP...");
+  try {
+    const response = await fetch("http://localhost:3000/user/registeremail", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    if (response.ok) {
+      toast.success("OTP Sent");
+      setTimeout(() => {
+         navigate(`/verifyemail?email=${encodeURIComponent(email)}`); // Navigate to verifyemail with email as a query parameter
+      }, 1000);
+    } else {
+      console.error("Failed to send OTP:", response.statusText);
+      toast.error("Failed to send OTP");
     }
-  };
+  } catch (error) {
+    const errorMessage = error.response.data.msg;
+    toast.error(errorMessage || "Internal Server");
+  } finally {
+    // Close the loading spinner toast when OTP sending completes
+    toast.dismiss(loadingToast);
+  }
+};
+
+// State to manage loading state
+const [loading, setLoading] = useState(false);
+
 
   return (
     <section>
-      <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24" id="signin">
+      <div className="flex h-screen items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24" id="signin">
         <div>
           <Toaster />
         </div>

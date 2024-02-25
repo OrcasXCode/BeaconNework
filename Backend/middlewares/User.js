@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 function userMiddleware(req, res, next) {
-  const token = req.headers.authorization;
+  const token = req.headers.authorization || req.body.token;
   const words = token.split(" ");
   const jwttoken = words[1];
   try {

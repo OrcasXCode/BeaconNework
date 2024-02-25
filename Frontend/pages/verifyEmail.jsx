@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HighlightText from "../components/HighLightText";
 import { ArrowRight } from 'lucide-react';
 import mail from '../src/assets/mail.png';
 import { toast, Toaster } from "react-hot-toast";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import axios from "axios";
 
 export function VerifyEmail() {
     const [otp, setOtp] = useState("");
@@ -20,20 +20,20 @@ export function VerifyEmail() {
 
     const handleVerifyOTP = async (e) => {
         e.preventDefault();
+        let loadingToast; // Define the loadingToast variable outside of the try block
         try {
-            const response = await fetch(`http://localhost:3000/user/forgot-password?email=${email}`, {
-                method: "POST",
-                body: JSON.stringify({
-                    otp: otp,
-                    email: email,
-                }),
+            loadingToast = toast.loading("Verifying OTP...");
+            const response = await axios.post(`http://localhost:3000/user/forgot-password?email=${email}`, {
+                otp: otp,
+                email: email,
+            }, {
                 headers: {
                     "Content-type": "application/json",
                     "email": email
                 }
             });
-            if (response.ok) {
-                const data = await response.json();
+            if (response.status === 200) {
+                const data = response.data;
                 localStorage.setItem("cpToken", data.token);
                 toast.success("OTP Verified");
                 setTimeout(() => {
@@ -44,13 +44,17 @@ export function VerifyEmail() {
                 toast.error("Invalid OTP");
             }
         } catch (error) {
-            console.error("Error verifying OTP:", error);
-            toast.error("Error verifying OTP");
+            const errorMessage = error.response.data.msg;
+            toast.error(errorMessage || "Internal Server Error");
+        } finally {
+            if (loadingToast) {
+                toast.dismiss(loadingToast); // Dismiss the loading toast if it's defined
+            }
         }
     };
 
     return (
-        <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
+        <div className="flex h-screen items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
             <div>
                 <Toaster />
             </div>

@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 import HighlightText from "../components/HighLightText";
 import { ArrowRight } from 'lucide-react';
 import { toast, Toaster } from "react-hot-toast";
-import mail from '../src/assets/mail.png'
+import mail from '../src/assets/mail.png';
+import axios from 'axios';
 
 export function Verifyregisteredemail(props) {
     const [otp, setOtp] = useState("");
@@ -19,31 +20,30 @@ export function Verifyregisteredemail(props) {
 
     const handleVerifyOTP = async (e) => {
         e.preventDefault();
+        let loadingToast; // Define the loadingToast variable outside of the try block
         try {
-            const response = await fetch(`http://localhost:3000/user/verifyemail`, {
-                method: "POST",
-                body: JSON.stringify({
-                    otp: otp,
-                    email: email,
-                }),
-                headers: {
-                    "Content-type": "application/json",
-                    "email": email
-                }
+            loadingToast = toast.loading("Verifying OTP..."); // Assign the loading toast
+            const response = await axios.post(`http://localhost:3000/user/verifyemail`, {
+                otp: otp,
+                email: email,
             });
-            if (response.ok) {
-                const data = await response.json();
+            if (response.status === 200) {
                 toast.success("OTP Verified");
                 setTimeout(() => {
                     window.location.href = '/signup';
                 }, 1000);
             } else {
-                console.error("Failed to verify OTP:", response.msg);
+                console.error("Failed to verify OTP:", response.data.msg);
                 toast.error("Invalid OTP");
             }
         } catch (error) {
-            console.error("Error verifying OTP:", error);
-            toast.error("Error verifying OTP");
+            const errorMessage = error.response.data.msg;
+            toast.error(errorMessage || "Internal Server Error");
+        } finally {
+            // Close the loading spinner toast when OTP verification completes
+            if (loadingToast) {
+                toast.dismiss(loadingToast);
+            }
         }
     };
 
@@ -54,7 +54,7 @@ export function Verifyregisteredemail(props) {
             </div>
             <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
                 <div className="mb-2 flex justify-center">
-                    <img src={mail} style={{height:'80px'}}></img>
+                    <img src={mail} style={{ height: '80px' }} alt="Mail" />
                 </div>
                 <h1 style={{ fontFamily: 'Playfair Display' }} className="text-center text-4xl font-bold leading-tight text-black"><HighlightText text="Check Email" /></h1>
                 <p className="text-center text-gray-600" style={{ margin: '15px', fontFamily: 'Playfair Display' }}>We have sent the OTP to your email, please do not share it with anyone else as it may lead to security issues</p>
