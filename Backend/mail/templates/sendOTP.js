@@ -85,7 +85,7 @@ exports.sendOTP = (otp, email) => {
                 <p>We appreciate your trust in our services and look forward to assisting you further.</p>
             </div>
             <div class="support">If you have any further questions or need immediate assistance, please feel free to reach
-                out to us at <a href="mailto:beaconnetworkcs@gmail.com">beaconnetworkcs@gmail.com</a>. We are here to help!</div>
+                out to us at <a href="mailto:beaconnetworkhelp@gmail.com">beaconnetworkhelp@gmail.com</a>. We are here to help!</div>
         </div>
     </body>
     
