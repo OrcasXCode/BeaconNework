@@ -104,7 +104,7 @@ export function Signup() {
                                         className="text-sm font-semibold text-black hover:underline"
                                         onClick={() => setShowPassword(!showPassword)}
                                     >
-                                        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                        {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
                                     </button>
                                 </div>
                                 <div className="mt-2">
