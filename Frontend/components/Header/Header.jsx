@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, NavLink,useLocation} from 'react-router-dom'
-import Logo from "/logo.png"
+import Logo from "/logo.svg"
 // import user from "../../src/assets/user.png"
 import { useState } from 'react'
 import "./Header.css";
