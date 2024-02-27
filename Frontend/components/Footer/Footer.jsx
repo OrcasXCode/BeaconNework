@@ -14,8 +14,8 @@ export function Footer() {
           <div className="w-full p-6 md:w-1/2 lg:w-5/12">
             <div className="flex h-full flex-col justify-between">
               <div className="mb-4 inline-flex items-center">
-                <img src={"../../src/assets/logo.png"} className="object-contain h-[50px]" alt="Logo" />
-                <img src={"../../src/assets/name.png"} className="object-contain h-[50px]" alt="Logo" />
+                <img src={"/logo.png"} className="object-contain h-[50px]" alt="Logo" />
+                <img src={"/name.png"} className="object-contain h-[50px]" alt="Logo" />
                 </div>
               <div>
                 <p className="text-sm text-gray-600">
@@ -87,28 +87,28 @@ export function Footer() {
               <div className="w-auto p-1.5">
                 <a href="#">
                   <div className="flex h-8 w-8 items-center justify-center">
-                    <img src={"../../src/assets/facebook.png"}></img>
+                    <img src={"/facebook.png"}></img>
                   </div>
                 </a>
               </div>
               <div className="w-auto p-1.5">
                 <a href="#">
                   <div className="flex h-8 w-8 items-center justify-center">
-                    <img src={"../../src/assets/insta.png"}></img>
+                    <img src={"/insta.png"}></img>
                   </div>
                 </a>
               </div>
               <div className="w-auto p-1.5">
                 <a href="#">
                   <div className="flex h-8 w-8 items-center justify-center">
-                    <img src={"../../src/assets/linkdin.png"}></img>
+                    <img src={"/linkdin.png"}></img>
                   </div>
                 </a>
               </div>
               <div className="w-auto p-1.5">
                 <a href="#">
                   <div className="flex h-7 w-7 items-center justify-center">
-                    <img src={"../../src/assets/x.png"}></img>
+                    <img src={"/x.png"}></img>
                   </div>
                 </a>
               </div>
