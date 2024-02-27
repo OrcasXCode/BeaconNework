@@ -1,10 +1,10 @@
 import React from 'react'
-// import Logo from "../../src/assets/logo.png"
-// import name from "../../src/assets/name.png"
-// import insta from "../../src/assets/insta.png"
-// import linkdin from "../../src/assets/linkdin.png"
-// import facebook from "../../src/assets/facebook.png"
-// import x from "../../src/assets/x.png"
+import Logo from "/logo.svg"
+import name from "/name.svg"
+import insta from "/insta.svg"
+import linkdin from "/linkdin.svg"
+import facebook from "/facebook.svg"
+import x from "/x.svg"
 
 export function Footer() {
   return (
@@ -14,8 +14,8 @@ export function Footer() {
           <div className="w-full p-6 md:w-1/2 lg:w-5/12">
             <div className="flex h-full flex-col justify-between">
               <div className="mb-4 inline-flex items-center">
-                <img src={"/logo.png"} className="object-contain h-[50px]" alt="Logo" />
-                <img src={"/name.png"} className="object-contain h-[50px]" alt="Logo" />
+                <img src={Logo} className="object-contain h-[50px]" alt="Logo" />
+                <img src={name} className="object-contain h-[50px]" alt="Logo" />
                 </div>
               <div>
                 <p className="text-sm text-gray-600">
@@ -87,28 +87,28 @@ export function Footer() {
               <div className="w-auto p-1.5">
                 <a href="#">
                   <div className="flex h-8 w-8 items-center justify-center">
-                    <img src={"/facebook.png"}></img>
+                    <img src={facebook}></img>
                   </div>
                 </a>
               </div>
               <div className="w-auto p-1.5">
                 <a href="#">
                   <div className="flex h-8 w-8 items-center justify-center">
-                    <img src={"/insta.png"}></img>
+                    <img src={insta}></img>
                   </div>
                 </a>
               </div>
               <div className="w-auto p-1.5">
                 <a href="#">
                   <div className="flex h-8 w-8 items-center justify-center">
-                    <img src={"/linkdin.png"}></img>
+                    <img src={linkdin}></img>
                   </div>
                 </a>
               </div>
               <div className="w-auto p-1.5">
                 <a href="#">
                   <div className="flex h-7 w-7 items-center justify-center">
-                    <img src={"/x.png"}></img>
+                    <img src={x}></img>
                   </div>
                 </a>
               </div>

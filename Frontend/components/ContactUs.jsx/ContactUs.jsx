@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { toast, Toaster } from "react-hot-toast";
 import axios from 'axios';
-import cs from '../../src/assets/cs.jpg';
+import cs from '/cs.svg';
 
 const locations = [
   {
