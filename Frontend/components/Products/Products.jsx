@@ -1,16 +1,16 @@
 import React from 'react';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
-import cctv from '../../src/assets/cctv.jpg';
-import cctv1 from '../../src/assets/cctv1.jpg';
-import cctv2 from '../../src/assets/cctv2.jpg';
-import avsol from '../../src/assets/avsol.jpg';
-import fire1 from '../../src/assets/fire1.jpg';
-import sec from '../../src/assets/sec.jpg';
-import server from '../../src/assets/server.jpg';
-import server1 from '../../src/assets/server1.jpg';
-import sha from '../../src/assets/sha.jpg';
-import ucs from '../../src/assets/ucs.jpg';
+import cctv1 from '/cctv1.svg';
+import cctv2 from '/cctv2.svg';
+import cctv3 from '/cctv3.svg';
+import avsol from '/avsol.svg';
+import fire1 from '/fire1.svg';
+import sec from '/sec.svg';
+import server from '/server1.svg';
+import server1 from '/server2.svg';
+import sha from '/sha.svg';
+import ucs from '/ucs.svg';
 import HighlightText from '../HighLightText';
 import {Link} from 'react-router-dom'
 import Lottie from 'lottie-react';
@@ -37,7 +37,7 @@ const divStyle = {
 }
 const slideImages = [
   {
-    url:cctv,
+    url:cctv1,
     // caption: 'CCTV Surveillance'
   },
   {
@@ -53,8 +53,7 @@ const slideImages = [
     // caption: 'Safety and Security Systems'
   },
   {
-    url:cctv1,
-    // caption: 'Camera Security System'
+    url:cctv2    // caption: 'Camera Security System'
   },
   {
     url:sha,
@@ -69,7 +68,7 @@ const slideImages = [
     // caption: 'Digital Technology Infrastructure'
   },
   {
-    url:cctv2,
+    url:cctv3,
     // caption: 'CCTV Surveillance'
   },
   {

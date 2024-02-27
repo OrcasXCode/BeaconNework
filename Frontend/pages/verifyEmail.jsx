@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import HighlightText from "../components/HighLightText";
 import { ArrowRight } from 'lucide-react';
-import mail from '../src/assets/mail.png';
+import mail from '/mail.svg';
 import { toast, Toaster } from "react-hot-toast";
 import { useLocation } from "react-router-dom";
 import axios from "axios";

@@ -1,7 +1,7 @@
 import React from 'react'
 import HighlightText from '../HighLightText'
-import list from '../../src/assets/list.png'
-import guj from '../../src/assets/guj.png'
+import list from '/list.svg'
+import guj from '/guj.svg'
 import CountUp from 'react-countup';
 
 

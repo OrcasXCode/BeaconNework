@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import HighlightText from '../HighLightText'
-// import seller from '../../public/assets/seller.jpg'
+import seller from '/seller.svg'
 import CountUp from 'react-countup';
 import { toast, Toaster } from "react-hot-toast";
 import Lottie from 'lottie-react'
@@ -104,7 +104,7 @@ export function Home() {
           <img
             style={{borderRadius:'10px'}}
             className="h-[700px] w-full object-contain'"
-            src={"/seller.jpg"}
+            src={seller}
             alt="Become a Seller"
           />
         </div>

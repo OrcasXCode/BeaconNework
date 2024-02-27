@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import HighlightText from "../components/HighLightText";
 import { ArrowRight } from 'lucide-react';
 import { toast, Toaster } from "react-hot-toast";
-import mail from '../src/assets/mail.png';
+import mail from '/mail.svg';
 import axios from 'axios';
 
 export function Verifyregisteredemail(props) {

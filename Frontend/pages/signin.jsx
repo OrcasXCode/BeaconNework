@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import HighlightText from "../components/HighLightText";
 import { toast, Toaster } from "react-hot-toast";
 import { ArrowRight, Eye, EyeOff } from 'lucide-react'; // Import Eye and EyeOff icons
-import signin from '../src/assets/signin.png';
+import signin from '/signin.svg';
 import axios from "axios";
 
 export function SignIn() {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import HighlightText from "../components/HighLightText";
 import { ArrowRight, Eye, EyeOff } from 'lucide-react'; // Import Eye and EyeOff icons
-import changepassword from '../src/assets/changepassword.png';
+import changepassword from '/changepassword.svg';
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 

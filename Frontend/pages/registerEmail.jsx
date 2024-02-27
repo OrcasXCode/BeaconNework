@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import HighlightText from "../components/HighLightText";
 import { toast, Toaster } from "react-hot-toast";
-import register from '../src/assets/register.png';
+import register from '/register.svg';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 

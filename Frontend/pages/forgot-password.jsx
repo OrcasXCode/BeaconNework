@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import HighlightText from "../components/HighLightText";
 import { ArrowRight, ArrowLeft } from 'lucide-react';
-import forgotpassword from '../src/assets/forgot-password.png';
+import forgotpassword from '/forgot-password.svg';
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 
