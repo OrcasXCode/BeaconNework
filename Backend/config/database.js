@@ -7,7 +7,7 @@ exports.connect = () => {
   //   console.log("MongoDB URL:", MONGODB_URL); // Add this line for debugging
   mongoose
     .connect(MONGODB_URL, {
-      // useNewUrlparser: true,
+      // useNewUrlParser: true,
       // useUnifiedTopology: true,
     })
     .then(console.log(`DB Connection Success`))
