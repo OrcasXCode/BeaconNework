@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link, NavLink,useLocation} from 'react-router-dom'
-import Logo from "../../src/assets/logo.png"
-import user from "../../src/assets/user.png"
+// import Logo from "../../src/assets/logo.png"
+// import user from "../../src/assets/user.png"
 import { useState } from 'react'
 import "./Header.css";
 
@@ -13,7 +13,7 @@ export function Header(){
   return (
      <nav className='flex font-bold w-full justify-between '>
       <Link to="/" className="flex items-center">
-       <img src={Logo} className="mr-3 h-12" alt="Logo" />
+       <img src={"../../src/assets/logo.png"} className="mr-3 h-12" alt="Logo" />
       </Link>
       <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
         <span></span>
@@ -37,7 +37,7 @@ export function Header(){
     <ul className={`${menuOpen ? "open" : ""}`}>
   {token !== null ? (
     <div className='flex items-center justify-center'>
-      <img src={user} className="h-10 object-cover" alt="Logo"/> 
+      <img src={"../../src/assets/user.png"} className="h-10 object-cover" alt="Logo"/> 
       <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p>
     </div>
   ) : (
