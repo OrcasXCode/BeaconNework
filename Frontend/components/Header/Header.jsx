@@ -1,13 +1,13 @@
 import React from 'react'
 import {Link, NavLink,useLocation} from 'react-router-dom'
 import Logo from "/logo.svg"
-// import user from "../../src/assets/user.png"
 import { useState } from 'react'
 import "./Header.css";
 
 export function Header(){
   const [menuOpen, setMenuOpen] = useState(false);
   const token = localStorage.getItem('jsonwebtoken');
+  const closeMenu = () => setMenuOpen(false);
 
 
   return (
@@ -22,16 +22,16 @@ export function Header(){
       </div>
       <ul  className={`${menuOpen ? "open" : ""}`}>
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/" onClick={closeMenu}>Home</NavLink>
         </li>
         <li>
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="/about" onClick={closeMenu}>About</NavLink>
         </li>
         <li>
-          <NavLink to="/products">Products</NavLink>
+          <NavLink to="/products" onClick={closeMenu}>Products</NavLink>
         </li>
         <li>
-          <NavLink to="/contact-us">Contact</NavLink>
+          <NavLink to="/contact-us" onClick={closeMenu}>Contact</NavLink>
         </li>
       </ul>
     <ul className={`${menuOpen ? "open" : ""}`}>
@@ -43,10 +43,10 @@ export function Header(){
   ) : (
     <>
       <li>
-        <NavLink to="/signin">Login</NavLink>
+        <NavLink to="/signin" onClick={closeMenu}>Login</NavLink>
       </li>
       <li>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/signup" onClick={closeMenu}>Sign Up</NavLink>
       </li>
     </>
   )}

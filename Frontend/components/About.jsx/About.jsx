@@ -2,6 +2,16 @@ import React from 'react'
 import HighlightText from '../HighLightText'
 import list from '/list.svg'
 import guj from '/guj.svg'
+import img1 from "../../src/assets/ajanta.png"
+import img2 from "../../src/assets/atmiya.png"
+import img3 from "../../src/assets/atul.png"
+import img4 from "../../src/assets/balaji.png"
+import img5 from "../../src/assets/ban.png"
+import img6 from "../../src/assets/dharpat.png"
+import img7 from "../../src/assets/echjay.png"
+import img8 from "../../src/assets/giriaj.png"
+import img9 from "../../src/assets/hibond.png"
+import img10 from "../../src/assets/mahindra.png"
 import CountUp from 'react-countup';
 
 
@@ -84,6 +94,48 @@ export function About() {
       </div>
       <hr className="mt-20 max-w-7xl mx-auto" />
 
+      <div className="flex flex-col justify-center items-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
+          <h1 className="mt-8 text-3xl font-bold tracking-tight text-black md:text-4xl lg:text-6xl">
+            Our <HighlightText text="Customers"></HighlightText>
+          </h1>
+          <p className="mt-8 text-lg text-gray-600 flex text-center">
+             Our customer base predominantly consists of top-tier and widely recognized industry leaders.
+          </p>
+        </div>
+
+    <article>
+      <div class='flex'>
+          <ul class='glimsul'>
+              <li class='glimsli'><img class='glimsimg' src={img1}/></li>
+              <li class='glimsli'><img class='glimsimg' src={img2} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img3} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img5} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img4} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img6} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img7} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img8} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img9} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img10} /></li>
+          </ul>
+      </div>
+      <div>
+          <ul class='glimsul'>
+              <li class='glimsli'><img class='glimsimg' src={img1} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img2} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img3} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img5} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img4} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img6} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img7} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img8} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img9} /></li>
+              <li class='glimsli'><img class='glimsimg' src={img10} /></li>
+          </ul>
+      </div>
+    </article>
+
+    <hr className="mt-20 max-w-7xl mx-auto" />
+
             <div style={{textAlign:'center'}} className="flex flex-col items-center ">
             <div className="w-full max-w-[1104px] mt-12 px-5 max-md:max-w-full max-md:mt-10">
                 <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
@@ -125,6 +177,8 @@ export function About() {
 
             </div>
       <hr className="mt-10 max-w-7xl mx-auto" />
+
+
      
     </div>
   )

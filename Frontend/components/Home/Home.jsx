@@ -7,6 +7,7 @@ import Lottie from 'lottie-react'
 import animationData from '../../src/assets/Animation.json'
 import interview from '../../src/assets/interview1.json'
 import  {TypeAnimation}  from 'react-type-animation';
+import frame from "../../src/assets/frame.png"
 
 export function Home() {
 
@@ -103,7 +104,7 @@ export function Home() {
        <div className="mb-10 w-full md:w-2/3 lg:mb-0 lg:w-1/2 rounded-lg">
           <img
             style={{borderRadius:'10px'}}
-            className="h-[700px] w-full object-contain'"
+            className="h-[700px] w-full object-contain"
             src={seller}
             alt="Become a Seller"
           />
@@ -152,13 +153,13 @@ export function Home() {
              <input
               className={`flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 ${localStorage.getItem("jsonwebtoken") ? "" : "disabled:cursor-not-allowed disabled:opacity-50"}`}
               type="email"
-              placeholder="Email"
+              placeholder={!localStorage.getItem("jsonwebtoken") ? "Sign in to access this feature" : "Email"}
               onChange={(e) => {
                 setSellerEmail(e.target.value);
               }}
               disabled={!localStorage.getItem("jsonwebtoken")}
-             title={!localStorage.getItem("jsonwebtoken") ? "You need to sign in first" : ""}
-            />
+              />
+              {/* <p className='text-red-600 text-sm font-semibold'>You need to signin first<span><sup>*</sup></span></p> */}
               <button
                 type="button"
                 style={{background:'#084C98',borderRadius:'20px'}}
@@ -183,7 +184,7 @@ export function Home() {
                               }
                           })
                           .catch((e) => {
-                            toast.error("Failed to Register");
+                          toast.error("Failed to Register");
                   });
                 }}
               >
@@ -371,12 +372,11 @@ export function Home() {
               <input
               className={`flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 ${localStorage.getItem("jsonwebtoken") ? "" : "disabled:cursor-not-allowed disabled:opacity-50"}`}
               type="email"
-              placeholder="Email"
+                placeholder={!localStorage.getItem("jsonwebtoken") ? "Sign in to access this feature" : "Email"}
               onChange={(e) => {
                 setInterviewEmail(e.target.value);
               }}
               disabled={!localStorage.getItem("jsonwebtoken")}
-             title={!localStorage.getItem("jsonwebtoken") ? "You need to sign in first" : ""}
             />
               <button
                 type="button"
@@ -443,12 +443,11 @@ export function Home() {
                <input
               className={`flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 ${localStorage.getItem("jsonwebtoken") ? "" : "disabled:cursor-not-allowed disabled:opacity-50"}`}
               type="email"
-              placeholder="Email"
+              placeholder={!localStorage.getItem("jsonwebtoken") ? "Sign in to access this feature" : "Email"}
               onChange={(e) => {
                 setPartTimeJobEmail(e.target.value);
               }}
               disabled={!localStorage.getItem("jsonwebtoken")}
-             title={!localStorage.getItem("jsonwebtoken") ? "You need to sign in first" : ""}
             />
               <button
                 type="button"

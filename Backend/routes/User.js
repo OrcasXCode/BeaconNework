@@ -1,14 +1,11 @@
 const { Router } = require("express");
 const router = Router();
 const jwt = require("jsonwebtoken");
-const { userCreate } = require("../type");
 const otpgenerator = require("otp-generator");
 const { OTP } = require("../db/OTP.JS");
 const mailSender = require("../utils/mailSender");
 const { sendOTP } = require("../mail/templates/sendOTP");
 const { User } = require("../db/User");
-const LocalStorage = require("node-localstorage").LocalStorage;
-const localStorage = new LocalStorage("./scratch");
 const { passwordUpdated } = require("../mail/templates/passwordUpdate");
 const { userMiddleware } = require("../middlewares/User");
 const { BeacomeASeller } = require("../db/becomeaseller");
@@ -16,9 +13,7 @@ const { RegisterForInterview } = require("../db/registerforinterview");
 const { GetAPartTimeJob } = require("../db/getpartimejob");
 const { registerEmail } = require("../db/registeremail");
 const { ContactUs } = require("../db/contactus");
-const bcrypt = require("bcryptjs");
-// const { SingleTeam } = require("../db/singleteam");
-// const { Team } = require("../db/team");
+
 require("dotenv").config();
 const otpGenerator = require("otp-generator");
 
