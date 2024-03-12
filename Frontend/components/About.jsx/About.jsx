@@ -90,7 +90,7 @@ export function About() {
           <p className="mt-8 text-lg text-gray-600 flex text-center">
              Our customer base spans across various sectors, including government, hospitality, education, and industries, comprising top-tier and widely recognized leaders in each field.
           </p>
-          <div className='flex  gap-4 text-[13px]  mt-5 border p-1 pr-1 cursor-pointer pl-1 rounded-full font-semibold lg:text-[15px] lg:pl-8 lg:pr-8 lg:gap-8 lg:p-3'>
+          <div className='flex  gap-5 text-[13px]  mt-5 border p-2 pr-4 cursor-pointer pl-4 rounded-full font-semibold lg:text-[15px] lg:pl-8 lg:pr-8 lg:gap-8 lg:p-3'>
             <p className={active === 'goverment' ? 'text-[#084C98] border-b border-[#084C98]' : 'hover:text-[#084C98] '} onClick={() => handleClick('goverment')}>Government</p>          
             <p className={active === 'hospitality' ? 'text-[#084C98]  border-b border-[#084C98]' : 'hover:text-[#084C98]'} onClick={() => handleClick('hospitality')}>Hospitality</p>  
             <p className={active === 'education' ? 'text-[#084c98]  border-b border-[#084C98]' : 'hover:text-[#084c98]'} onClick={()=> handleClick('education')}>Education</p>
