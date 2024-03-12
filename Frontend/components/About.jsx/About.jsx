@@ -2,16 +2,16 @@ import React from 'react'
 import HighlightText from '../HighLightText'
 import list from '/list.svg'
 import guj from '/guj.svg'
-import img1 from "../../src/assets/ajanta.png"
-import img2 from "../../src/assets/atmiya.png"
-import img3 from "../../src/assets/atul.png"
-import img4 from "../../src/assets/balaji.png"
-import img5 from "../../src/assets/ban.png"
-import img6 from "../../src/assets/dharpat.png"
-import img7 from "../../src/assets/echjay.png"
-import img8 from "../../src/assets/giriaj.png"
-import img9 from "../../src/assets/hibond.png"
-import img10 from "../../src/assets/mahindra.png"
+import img1 from "/ajanta.svg"
+import img2 from "/atmiya.svg"
+import img3 from "/atul.svg"
+import img4 from "/balaji.svg"
+import img5 from "/ban.svg"
+import img6 from "/dharpat.svg"
+import img7 from "/echjay.svg"
+import img8 from "/giriaj.svg"
+import img9 from "/hibond.svg"
+import img10 from "/mahindra.svg"
 import CountUp from 'react-countup';
 
 
@@ -55,21 +55,6 @@ export function About() {
         <hr className="mt-20" />
 
 
-        {/* <div className="flex flex-row h-full max-w-7xl mx-auto space-y-8 pb-10 pt-12 max-sm:flex  bg-black">
-            <div className="flex flex-col space-y-8 pb-10 pt-12 md:pt-24">
-                <p className="text-3xl font-bold text-gray-900 md:text-5xl md:leading-10">
-                    Our <HighlightText text={"Companies"}></HighlightText>
-                </p>
-                <p className="max-w-4xl text-base text-gray-600 md:text-xl">
-                    We have established strategic partnerships with over 3,000 renowned technology giants worldwide.
-                </p>
-            </div>
-            <div style={{  height: '800px', width: '800px', position: 'relative', overflow:'hidden'}}>
-              {/* id="torqafflogo" */}
-                {/* <img  style={{ objectFit: 'contain',opacity:0.8, width: '100%', height: '100%', backgroundColor: 'transparent'}} src={list} alt="Your Alt Text" />
-            </div>
-        </div> */} 
-
     <div className="relative w-full bg-white">
       <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
         <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
@@ -103,36 +88,41 @@ export function About() {
           </p>
         </div>
 
-    <article>
-      <div class='flex'>
-          <ul class='glimsul'>
-              <li class='glimsli'><img class='glimsimg' src={img1}/></li>
-              <li class='glimsli'><img class='glimsimg' src={img2} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img3} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img5} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img4} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img6} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img7} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img8} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img9} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img10} /></li>
-          </ul>
-      </div>
-      <div>
-          <ul class='glimsul'>
-              <li class='glimsli'><img class='glimsimg' src={img1} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img2} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img3} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img5} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img4} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img6} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img7} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img8} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img9} /></li>
-              <li class='glimsli'><img class='glimsimg' src={img10} /></li>
-          </ul>
-      </div>
-    </article>
+
+    <div class="slider">
+	<div class="slide-track">
+		<div class="slide">
+			<img src={img1} height="100" width="250" alt="" />
+		</div>
+		<div class="slide">
+			<img src={img2} height="100" width="250" alt="" />
+		</div>
+		<div class="slide">
+			<img src={img3} height="100" width="250" alt="" />
+		</div>
+		<div class="slide">
+			<img src={img4} height="100" width="250" alt="" />
+		</div>
+		<div class="slide">
+			<img src={img5} height="100" width="250" alt="" />
+		</div>
+		<div class="slide">
+			<img src={img6} height="100" width="250" alt="" />
+		</div>
+		<div class="slide">
+			<img src={img7} height="100" width="250" alt="" />
+		</div>
+		<div class="slide">
+			<img src={img8} height="100" width="250" alt="" />
+		</div>
+		<div class="slide">
+			<img src={img9} height="100" width="250" alt="" />
+		</div>
+		<div class="slide">
+			<img src={img10} height="100" width="250" alt="" />
+		</div>
+	</div>
+</div>
 
     <hr className="mt-20 max-w-7xl mx-auto" />
 
