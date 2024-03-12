@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import HighlightText from '../HighLightText'
 import list from '/list.svg'
 import guj from '/guj.svg'
@@ -18,6 +18,10 @@ import CountUp from 'react-countup';
 
 export function About() {
 
+  const [active,setActive]=useState('goverment');
+  const handleClick=(option)=>{
+    setActive(option);
+  }
 
   return (
     <div>
@@ -84,12 +88,18 @@ export function About() {
             Our <HighlightText text="Customers"></HighlightText>
           </h1>
           <p className="mt-8 text-lg text-gray-600 flex text-center">
-             Our customer base predominantly consists of top-tier and widely recognized industry leaders.
+             Our customer base spans across various sectors, including government, hospitality, education, and industries, comprising top-tier and widely recognized leaders in each field.
           </p>
+          <div className='flex  gap-4 text-[13px]  mt-5 border p-1 pr-1 cursor-pointer pl-1 rounded-full font-semibold lg:text-[15px] lg:pl-8 lg:pr-8 lg:gap-8 lg:p-3'>
+            <p className={active === 'goverment' ? 'text-[#084C98] border-b border-[#084C98]' : 'hover:text-[#084C98] '} onClick={() => handleClick('goverment')}>Government</p>          
+            <p className={active === 'hospitality' ? 'text-[#084C98]  border-b border-[#084C98]' : 'hover:text-[#084C98]'} onClick={() => handleClick('hospitality')}>Hospitality</p>  
+            <p className={active === 'education' ? 'text-[#084c98]  border-b border-[#084C98]' : 'hover:text-[#084c98]'} onClick={()=> handleClick('education')}>Education</p>
+            <p className={active === 'industries' ? 'text-[#084c98]  border-b border-[#084C98]' : 'hover:text-[#084c98]'} onClick={()=> handleClick('industries')}>Industries</p>
+          </div>
         </div>
 
 
-    <div class="slider">
+    {/* <div class="slider">
 	<div class="slide-track">
 		<div class="slide">
 			<img src={img1} height="100" width="250" alt="" />
@@ -122,6 +132,137 @@ export function About() {
 			<img src={img10} height="100" width="250" alt="" />
 		</div>
 	</div>
+</div> */}
+<div class="slider">
+  <div class="slide-track">
+    {active === 'goverment' && (
+      <>
+        <div class="slide">
+          <img src={img1} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img2} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img3} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img1} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img2} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img3} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img1} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img2} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img3} height="100" width="250" alt="" />
+        </div>
+      </>
+    )}
+    {active === 'hospitality' && (
+      <>
+        <div class="slide">
+          <img src={img4} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img5} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img6} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img4} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img5} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img6} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img4} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img5} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img6} height="100" width="250" alt="" />
+        </div>
+       
+      </>
+    )}
+    {active === 'education' && (
+      <>
+        <div class="slide">
+          <img src={img7} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img8} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img9} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img7} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img8} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img9} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img7} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img8} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img9} height="100" width="250" alt="" />
+        </div>
+
+      </>
+    )}
+    {active === 'industries' && (
+      <>
+        <div class="slide">
+          <img src={img10} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img10} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img10} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img10} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img10} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img10} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img10} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img10} height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src={img10} height="100" width="250" alt="" />
+        </div>
+       
+      </>
+    )}
+  </div>
 </div>
 
     <hr className="mt-20 max-w-7xl mx-auto" />
