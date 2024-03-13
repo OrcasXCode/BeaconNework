@@ -18,94 +18,14 @@ import deal from '../../src/assets/deal.json'
 import industry from '../../src/assets/industry.json'
 import bigcomp from '../../src/assets/bigcomp.json'
 import startup from '../../src/assets/startup.json'
+import ImageSlider from '../ImageSlider/ImageSlider';
 
-
-const spanStyle = {
-  padding: '20px',
-  background: 'your_background_color_here',
-  color: 'black',
-  fontSize: '80px',
-};
-
-const divStyle = {
-  display: 'flex',
-  opacity:0.7,
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundSize: 'cover',
-  height: '700px',
-}
-const slideImages = [
-  {
-    url:cctv1,
-    // caption: 'CCTV Surveillance'
-  },
-  {
-    url:avsol,
-    // caption: 'Advanced Audio-Visual Systems'
-  },
-  {
-    url:fire1,
-    // caption: 'Automated Fire Systems'
-  },
-  {
-    url:sec,
-    // caption: 'Safety and Security Systems'
-  },
-  {
-    url:cctv2    // caption: 'Camera Security System'
-  },
-  {
-    url:sha,
-    // caption: 'Smart Home Automation'
-  },
-  {
-    url:ucs,
-    // caption: 'Integrated Communication System'
-  },
-  {
-    url:server,
-    // caption: 'Digital Technology Infrastructure'
-  },
-  {
-    url:cctv3,
-    // caption: 'CCTV Surveillance'
-  },
-  {
-    url:server1,
-    // caption: 'Tech Infrastructure Solutions'
-  },
-];
 
 export function Products() {
     return (
-      <>
-      <div>
-
-      <Slide id="slider">
-        {slideImages.map((slideImage, index) => (
-          <div 
-           className='flex flex-wrap w-100% h-100% md:object-center'  
-            key={index} 
-            style={{ 
-              backgroundImage: `url(${slideImage.url})`, 
-              backgroundSize: 'cover', // Initially set to cover
-              backgroundRepeat: 'no-repeat', // Ensure background doesn't repeat
-              backgroundAttachment:'fixed',
-              backgroundPosition:'center'
-            }}>
-            <div>
-              <div style={divStyle}></div>
-            </div>
-          </div>
-        ))}
-      </Slide>
-
-    </div>
-
-
-
-        <div className="max-w-7xl mx-auto">
+    <>
+    <ImageSlider></ImageSlider>
+     <div className="max-w-7xl mx-auto">
           <section className="relative overflow-hidden py-20">
             <div className="relative">
               <div className="mx-auto max-w-xl lg:max-w-7xl">

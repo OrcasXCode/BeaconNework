@@ -55,7 +55,6 @@ exports.passwordUpdated = (email, name) => {
     
     <body>
         <div class="container">
-           
             <div class="message">Password Update Confirmation</div>
             <div class="body">
                 <p>Hey There!</p>

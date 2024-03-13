@@ -2,16 +2,50 @@ import React, { useState } from 'react'
 import HighlightText from '../HighLightText'
 import list from '/list.svg'
 import guj from '/guj.svg'
-import img1 from "/ajanta.svg"
-import img2 from "/atmiya.svg"
-import img3 from "/atul.svg"
-import img4 from "/balaji.svg"
-import img5 from "/ban.svg"
-import img6 from "/dharpat.svg"
-import img7 from "/echjay.svg"
-import img8 from "/giriaj.svg"
-import img9 from "/hibond.svg"
-import img10 from "/mahindra.svg"
+import gvt from "../../src/assets/gvt.jpg"
+import gvt1 from "../../src/assets/gvt1.jpg"
+import gvt2 from "../../src/assets/gvt2.jpg"
+import gvt3 from "../../src/assets/gvt3.jpg"
+import gvt4 from "../../src/assets/gvt4.jpg"
+import gvt5 from "../../src/assets/gvt5.jpg"
+import gvt6 from "../../src/assets/gvt6.jpg"
+import gvt7 from "../../src/assets/gvt7.jpg"
+import gvt8 from "../../src/assets/gvt8.png"
+import gvt9 from "../../src/assets/gvt9.png"
+import gvt10 from "../../src/assets/gvt10.jpg"
+import gvt11 from "../../src/assets/gvt11.png"
+import hpt from "../../src/assets/hpt.jpg"
+import hpt2 from "../../src/assets/hpt2.png"
+import hpt3 from "../../src/assets/hpt3.jpg"
+import hpt4 from "../../src/assets/hpt4.png"
+import hpt5 from "../../src/assets/hpt5.png"
+import hpt6 from "../../src/assets/hpt6.png"
+import hpt7 from "../../src/assets/hpt7.jpg"
+import hpt8 from "../../src/assets/hpt8.png"
+import hpt9 from "../../src/assets/hpt9.png"
+import hpt10 from "../../src/assets/hpt10.png"
+import ed from "../../src/assets/ed.jpg"
+import ed1 from "../../src/assets/ed1.png"
+import ed2 from "../../src/assets/ed2.jpg"
+import ed3 from "../../src/assets/ed3.jpeg"
+import ed4 from "../../src/assets/ed4.jpg"
+import ed5 from "../../src/assets/ed5.png"
+import ind from "../../src/assets/ind.jpg"
+import ind1 from "../../src/assets/ind1.jpg"
+import ind2 from "../../src/assets/ind2.png"
+import ind3 from "../../src/assets/ind3.png"
+import ind4 from "../../src/assets/ind4.jpg"
+import ind5 from "../../src/assets/ind5.png"
+import ind6 from "../../src/assets/ind6.png"
+import ind7 from "../../src/assets/ind7.jpg"
+import ind8 from "../../src/assets/ind8.png"
+import ind9 from "../../src/assets/ind9.png"
+import ind10 from "../../src/assets/ind10.jpg"
+import ind11 from "../../src/assets/ind11.jpg"
+import ind12 from "../../src/assets/ind12.jpg"
+import ind13 from "../../src/assets/ind13.png"
+import ind14 from "../../src/assets/ind14.jpg"
+import ind15 from "../../src/assets/ind15.png"
 import CountUp from 'react-countup';
 
 
@@ -91,182 +125,216 @@ export function About() {
              Our customer base spans across various sectors, including government, hospitality, education, and industries, comprising top-tier and widely recognized leaders in each field.
           </p>
           <div className='flex  gap-5 text-[13px]  mt-5 border p-2 pr-4 cursor-pointer pl-4 rounded-full font-semibold lg:text-[15px] lg:pl-8 lg:pr-8 lg:gap-8 lg:p-3'>
-            <p className={active === 'goverment' ? 'text-[#084C98] border-b border-[#084C98]' : 'hover:text-[#084C98] '} onClick={() => handleClick('goverment')}>Government</p>          
-            <p className={active === 'hospitality' ? 'text-[#084C98]  border-b border-[#084C98]' : 'hover:text-[#084C98]'} onClick={() => handleClick('hospitality')}>Hospitality</p>  
-            <p className={active === 'education' ? 'text-[#084c98]  border-b border-[#084C98]' : 'hover:text-[#084c98]'} onClick={()=> handleClick('education')}>Education</p>
-            <p className={active === 'industries' ? 'text-[#084c98]  border-b border-[#084C98]' : 'hover:text-[#084c98]'} onClick={()=> handleClick('industries')}>Industries</p>
+            <p className={active === 'goverment' ? 'text-[#084C98] border-b border-[#084C98] font-bold' : 'hover:text-[#084C98] hover:scale-110  transition-transform duration-300 ease-in-out'} onClick={() => handleClick('goverment')}>Government</p>          
+            <p className={active === 'hospitality' ? 'text-[#084C98]  border-b border-[#084C98] font-bold' : 'hover:text-[#084C98] hover:scale-110  transition-transform duration-300 ease-in-out'} onClick={() => handleClick('hospitality')}>Hospitality</p>  
+            <p className={active === 'education' ? 'text-[#084c98]  border-b border-[#084C98] font-bold' : 'hover:text-[#084c98] hover:scale-110  transition-transform duration-300 ease-in-out'} onClick={()=> handleClick('education')}>Education</p>
+            <p className={active === 'industries' ? 'text-[#084c98]  border-b border-[#084C98] font-bold' : 'hover:text-[#084c98] hover:scale-110  transition-transform duration-300 ease-in-out'} onClick={()=> handleClick('industries')}>Industries</p>
           </div>
         </div>
 
 
-    {/* <div class="slider">
-	<div class="slide-track">
-		<div class="slide">
-			<img src={img1} height="100" width="250" alt="" />
-		</div>
-		<div class="slide">
-			<img src={img2} height="100" width="250" alt="" />
-		</div>
-		<div class="slide">
-			<img src={img3} height="100" width="250" alt="" />
-		</div>
-		<div class="slide">
-			<img src={img4} height="100" width="250" alt="" />
-		</div>
-		<div class="slide">
-			<img src={img5} height="100" width="250" alt="" />
-		</div>
-		<div class="slide">
-			<img src={img6} height="100" width="250" alt="" />
-		</div>
-		<div class="slide">
-			<img src={img7} height="100" width="250" alt="" />
-		</div>
-		<div class="slide">
-			<img src={img8} height="100" width="250" alt="" />
-		</div>
-		<div class="slide">
-			<img src={img9} height="100" width="250" alt="" />
-		</div>
-		<div class="slide">
-			<img src={img10} height="100" width="250" alt="" />
-		</div>
-	</div>
-</div> */}
 <div class="slider">
   <div class="slide-track">
     {active === 'goverment' && (
       <>
         <div class="slide">
-          <img src={img1} height="100" width="250" alt="" />
+          <img src={gvt} alt="" />
         </div>
         <div class="slide">
-          <img src={img2} height="100" width="250" alt="" />
+          <img src={gvt1}  alt="" />
         </div>
         <div class="slide">
-          <img src={img3} height="100" width="250" alt="" />
+          <img src={gvt2}  alt="" />
         </div>
         <div class="slide">
-          <img src={img1} height="100" width="250" alt="" />
+          <img src={gvt3}  alt="" />
         </div>
         <div class="slide">
-          <img src={img2} height="100" width="250" alt="" />
+          <img src={gvt4}  alt="" />
         </div>
         <div class="slide">
-          <img src={img3} height="100" width="250" alt="" />
+          <img src={gvt5} alt="" />
         </div>
         <div class="slide">
-          <img src={img1} height="100" width="250" alt="" />
+          <img src={gvt6} alt="" />
         </div>
         <div class="slide">
-          <img src={img2} height="100" width="250" alt="" />
+          <img src={gvt7}  alt="" />
         </div>
         <div class="slide">
-          <img src={img3} height="100" width="250" alt="" />
+          <img src={gvt8} alt="" />
+        </div>
+        <div class="slide">
+          <img src={gvt9}  alt="" />
+        </div>
+        <div class="slide">
+          <img src={gvt10}  alt="" />
+        </div>
+        <div class="slide">
+          <img src={gvt11}  alt="" />
         </div>
       </>
     )}
     {active === 'hospitality' && (
       <>
         <div class="slide">
-          <img src={img4} height="100" width="250" alt="" />
+          <img src={hpt}  alt="" />
         </div>
         <div class="slide">
-          <img src={img5} height="100" width="250" alt="" />
+          <img src={hpt2} alt="" />
         </div>
         <div class="slide">
-          <img src={img6} height="100" width="250" alt="" />
+          <img src={hpt3} alt="" />
         </div>
         <div class="slide">
-          <img src={img4} height="100" width="250" alt="" />
+          <img src={hpt4}  alt="" />
         </div>
         <div class="slide">
-          <img src={img5} height="100" width="250" alt="" />
+          <img src={hpt5} alt="" />
         </div>
         <div class="slide">
-          <img src={img6} height="100" width="250" alt="" />
+          <img src={hpt6} alt="" />
         </div>
         <div class="slide">
-          <img src={img4} height="100" width="250" alt="" />
+          <img src={hpt7}  alt="" />
         </div>
         <div class="slide">
-          <img src={img5} height="100" width="250" alt="" />
+          <img src={hpt8} alt="" />
         </div>
         <div class="slide">
-          <img src={img6} height="100" width="250" alt="" />
+          <img src={hpt9} alt="" />
         </div>
-       
+        <div class="slide">
+          <img src={hpt10}alt="" />
+        </div>
+        <div class="slide">
+          <img src={hpt}  alt="" />
+        </div>
+        <div class="slide">
+          <img src={hpt2}  alt="" />
+        </div>
+        <div class="slide">
+          <img src={hpt3} alt="" />
+        </div>
+        <div class="slide">
+          <img src={hpt4}  alt="" />
+        </div>
+        <div class="slide">
+          <img src={hpt5} alt="" />
+        </div>
+        <div class="slide">
+          <img src={hpt6} alt="" />
+        </div>
+        <div class="slide">
+          <img src={hpt7} alt="" />
+        </div>
+        <div class="slide">
+          <img src={hpt8} alt="" />
+        </div>
+        <div class="slide">
+          <img src={hpt9} alt="" />
+        </div>
+        <div class="slide">
+          <img src={hpt10}  alt="" />
+        </div>
       </>
     )}
     {active === 'education' && (
       <>
         <div class="slide">
-          <img src={img7} height="100" width="250" alt="" />
+          <img src={ed} alt="" />
         </div>
         <div class="slide">
-          <img src={img8} height="100" width="250" alt="" />
+          <img src={ed1}  alt="" />
         </div>
         <div class="slide">
-          <img src={img9} height="100" width="250" alt="" />
+          <img src={ed2}  alt="" />
         </div>
         <div class="slide">
-          <img src={img7} height="100" width="250" alt="" />
+          <img src={ed3} alt="" />
         </div>
         <div class="slide">
-          <img src={img8} height="100" width="250" alt="" />
+          <img src={ed4} alt="" />
         </div>
         <div class="slide">
-          <img src={img9} height="100" width="250" alt="" />
+          <img src={ed5} alt="" />
         </div>
         <div class="slide">
-          <img src={img7} height="100" width="250" alt="" />
+          <img src={ed} alt="" />
         </div>
         <div class="slide">
-          <img src={img8} height="100" width="250" alt="" />
+          <img src={ed1}  alt="" />
         </div>
         <div class="slide">
-          <img src={img9} height="100" width="250" alt="" />
+          <img src={ed2}  alt="" />
         </div>
-
+        <div class="slide">
+          <img src={ed3} alt="" />
+        </div>
+        <div class="slide">
+          <img src={ed4} alt="" />
+        </div>
+        <div class="slide">
+          <img src={ed5} alt="" />
+        </div>
       </>
     )}
     {active === 'industries' && (
       <>
         <div class="slide">
-          <img src={img10} height="100" width="250" alt="" />
+          <img src={ind}  alt="" />
         </div>
         <div class="slide">
-          <img src={img10} height="100" width="250" alt="" />
+          <img src={ind1}  alt="" />
         </div>
         <div class="slide">
-          <img src={img10} height="100" width="250" alt="" />
+          <img src={ind2} alt="" />
         </div>
         <div class="slide">
-          <img src={img10} height="100" width="250" alt="" />
+          <img src={ind3}  alt="" />
         </div>
         <div class="slide">
-          <img src={img10} height="100" width="250" alt="" />
+          <img src={ind4}  alt="" />
         </div>
         <div class="slide">
-          <img src={img10} height="100" width="250" alt="" />
+          <img src={ind5} alt="" />
         </div>
         <div class="slide">
-          <img src={img10} height="100" width="250" alt="" />
+          <img src={ind6}  alt="" />
         </div>
         <div class="slide">
-          <img src={img10} height="100" width="250" alt="" />
+          <img src={ind7}  alt="" />
         </div>
         <div class="slide">
-          <img src={img10} height="100" width="250" alt="" />
+          <img src={ind8}  alt="" />
         </div>
-       
+        <div class="slide">
+          <img src={ind9} alt="" />
+        </div>
+        <div class="slide">
+          <img src={ind10}  alt="" />
+        </div>
+        <div class="slide">
+          <img src={ind11}  alt="" />
+        </div>
+        <div class="slide">
+          <img src={ind12}  alt="" />
+        </div>
+        <div class="slide">
+          <img src={ind13}  alt="" />
+        </div>
+        <div class="slide">
+          <img src={ind14}  alt="" />
+        </div>
+        <div class="slide">
+          <img src={ind15}  alt="" />
+        </div>
       </>
     )}
   </div>
 </div>
 
-    <hr className="mt-20 max-w-7xl mx-auto" />
-
+    <hr className=" max-w-7xl mx-auto" />
             <div style={{textAlign:'center'}} className="flex flex-col items-center ">
             <div className="w-full max-w-[1104px] mt-12 px-5 max-md:max-w-full max-md:mt-10">
                 <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
@@ -307,10 +375,7 @@ export function About() {
             </div>
 
             </div>
-      <hr className="mt-10 max-w-7xl mx-auto" />
-
-
-     
+      <hr className="mt-10 max-w-7xl mx-auto" />   
     </div>
   )
 }

@@ -72,8 +72,6 @@ exports.sendOTP = (otp, email) => {
     
     <body>
         <div class="container">
-            <a href=""><img class="logo" src="https://lh3.googleusercontent.com/a/ACg8ocJq7S5RC6MK8XnBWfMxztNPfUgmp249XBq4qeNxIlY81Q=s360-c-no"
-                     alt="Beacon Network"></a>
             <div class="message">OTP Code Confirmation</div>
             <div class="body">
                 <p>Dear valued customer,</p>
