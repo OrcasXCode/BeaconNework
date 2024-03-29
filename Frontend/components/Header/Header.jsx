@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import Logo from "/logo.svg"; // Assuming logo.svg is in the same directory as this component
+import Logo from "/logo.svg"; 
 import user from "/user.svg"
 import "./Header.css";
 
