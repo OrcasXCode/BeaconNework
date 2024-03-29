@@ -13,7 +13,7 @@ export function Signup() {
 
     const handleSignup = () => {
         const loadingToast = toast.loading("Signing up...");
-        axios.post("http://localhost:3000/user/signup", {
+        axios.post("https://beaconnetworkin//user/signup", {
             name,
             email,
             password,

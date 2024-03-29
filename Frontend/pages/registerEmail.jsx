@@ -13,7 +13,7 @@ const handleSendOTP = async () => {
   // Show loading spinner using toast.loading
   const loadingToast = toast.loading("Sending OTP...");
   try {
-    const response = await fetch("http://localhost:3000/user/registeremail", {
+    const response = await fetch("https://beaconnetwork.in/user/registeremail", {
       method: "POST",
       body: JSON.stringify({
         email,

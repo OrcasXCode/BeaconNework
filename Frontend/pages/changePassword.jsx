@@ -72,7 +72,7 @@ export function ChangePassword() {
                                     onClick={async () => {
                                         const loadingToast = toast.loading("Changing password...");
                                         try {
-                                            const response = await axios.post("http://localhost:3000/user/change-password", {
+                                            const response = await axios.post("https://beaconnetwork.in/user/change-password", {
                                                 NewPassword: newPassword,
                                                 ConfirmNewPassword: confirmNewPassword,
                                                 token: `Bearer ${token}`

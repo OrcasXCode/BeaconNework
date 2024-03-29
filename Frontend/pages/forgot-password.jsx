@@ -51,7 +51,7 @@ export function ForgotPassword() {
                   className="inline-flex w-full items-center justify-center rounded-md  px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                   onClick={() => {
                     const loadingToast = toast.loading("Sending OTP...");
-                    axios.post("http://localhost:3000/user/send-otp", {
+                    axios.post("https://beaconnetwork.in/user/send-otp", {
                       email,
                     })
                       .then(function (res) {

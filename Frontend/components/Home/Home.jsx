@@ -165,7 +165,7 @@ export function Home() {
                 style={{background:'#084C98',borderRadius:'20px'}}
                 className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                 onClick={()=>{
-                  fetch("http://localhost:3000/user/becomeaseller", {
+                  fetch("https://beaconnetwork.in/user/becomeaseller", {
                           method: "POST",
                           body: JSON.stringify({
                             email:SellerEmail
@@ -384,7 +384,7 @@ export function Home() {
                 style={{background:'#084C98',borderRadius:'20px'}}
                 className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                 onClick={()=>{
-                  fetch("http://localhost:3000/user/registerforinterview", {
+                  fetch("https://beaconnetwork.in/user/registerforinterview", {
                           method: "POST",
                           body: JSON.stringify({
                             email:InterviewEmail
@@ -455,7 +455,7 @@ export function Home() {
                 style={{background:'#084C98',borderRadius:'20px'}}
                 className="rounded-md  px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                 onClick={()=>{
-                  fetch("http://localhost:3000/user/registerforinterview", {
+                  fetch("https://beaconnetwork.in/user/registerforinterview", {
                           method: "POST",
                           body: JSON.stringify({
                             email:PartTimeJobEmail

@@ -5,14 +5,14 @@ import {
   BsFillArrowLeftCircleFill,
 } from "react-icons/bs";
 import { ChevronRight,ChevronLeft } from 'lucide-react';
-import ctf from "../../src/assets/cctv.jpg";
-import group from "../../src/assets/avsol.jpg";
-import group1 from "../../src/assets/cctv1.jpg";
-import poster from "../../src/assets/fire1.jpg";
-import sec from "../../src/assets/sec.jpg";
-import sha from "../../src/assets/sha.jpg";
-import ucs from "../../src/assets/ucs.jpg";
-import server from "../../src/assets/server.jpg";
+// import ctf from "../../src/assets/cctv.jpg";
+import group from "/avsol.svg";
+import group1 from "/cctv1.svg";
+import poster from "/fire1.svg";
+// import sec from "../../src/assets/sec.jpg";
+import sha from "/sha.svg";
+// import ucs from "../../src/assets/ucs.jpg";
+import server from "/server2.svg";
 
 
 const ImageSlider = () => {

@@ -128,7 +128,7 @@ export function ContactUs() {
                     style={{background:'#084C98',borderRadius:'20px'}}
                     className="w-full rounded-mdpx-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                     onClick={()=>{
-                      axios.post('http://localhost:3000/user/contactus',{
+                      axios.post('https://beaconnetwork.in/user/contactus',{
                         firstname:firstname,
                         lastname:lastname,
                         email:email,

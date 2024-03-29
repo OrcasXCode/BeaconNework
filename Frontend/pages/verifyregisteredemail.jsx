@@ -23,7 +23,7 @@ export function Verifyregisteredemail(props) {
         let loadingToast; // Define the loadingToast variable outside of the try block
         try {
             loadingToast = toast.loading("Verifying OTP..."); // Assign the loading toast
-            const response = await axios.post(`http://localhost:3000/user/verifyemail`, {
+            const response = await axios.post(`https://beaconnetwork.in/user/verifyemail`, {
                 otp: otp,
                 email: email,
             });
