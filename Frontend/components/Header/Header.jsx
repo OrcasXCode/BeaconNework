@@ -70,7 +70,7 @@ export function Header() {
         {/* Display user info or login/signup links based on token */}
         {token !== null ? (
           <div className='flex items-center justify-center'>
-            <img src={user} className="h-10 object-cover" alt="Logo" />
+            <img src="https://img.icons8.com/?size=256&id=13042&format=png" className="h-10 object-cover" alt="Logo" />
             <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p>
           </div>
         ) : (
