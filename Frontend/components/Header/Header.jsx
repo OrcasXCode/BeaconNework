@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import Logo from "/logo.svg"; // Assuming logo.svg is in the same directory as this component
+import user from "/user.svg"
 import "./Header.css";
 
 export function Header() {
@@ -69,7 +70,7 @@ export function Header() {
         {/* Display user info or login/signup links based on token */}
         {token !== null ? (
           <div className='flex items-center justify-center'>
-            <img src={"../../src/assets/user.png"} className="h-10 object-cover" alt="Logo" />
+            <img src={user} className="h-10 object-cover" alt="Logo" />
             <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p>
           </div>
         ) : (
