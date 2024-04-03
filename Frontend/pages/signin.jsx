@@ -1,49 +1,56 @@
+import SignInWithGoogle from './SignInWithGoogle';
 import React, { useState } from "react";
 import HighlightText from "../components/HighLightText";
 import { toast, Toaster } from "react-hot-toast";
-import { ArrowRight, Eye, EyeOff } from 'lucide-react'; // Import Eye and EyeOff icons
+import { ArrowRight, Eye, EyeOff } from 'lucide-react';
 import signin from '/signin.svg';
 import axios from "axios";
+import Cookies from 'js-cookie';
+
 
 export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false); 
 
   const handleSignIn = async () => {
-    const loadingToast = toast.loading("Please Wait...");
-    try {
-      const response = await axios.post("https://beaconnetwork.in/user/signin", {
-        email,
-        password,
-      });
-      if (response.status === 200) {
-        toast.success("Login successful");
-        const token = response.data.token;
-        localStorage.setItem('jsonwebtoken', token);
-        setTimeout(() => {
-          window.location.reload();
-          window.location.href = '/';
-        }, 1000);
-      } else {
-        throw new Error();
-      }
-    } catch (error) {
-      const errorMessage = error.response.data.msg;
-      toast.error(errorMessage || "Incorrect username or password");
-    } finally {
-      // Close the loading spinner toast when sign-in completes
-      toast.dismiss(loadingToast);
+  const loadingToast = toast.loading("Please Wait...");
+  try {
+    const response = await axios.post("http://localhost:3000/user/signin", {
+      email,
+      password,
+    });
+    console.log("Response:", response);
+
+    if (response.status === 200) {
+      const token = response.data.token;
+      toast.success("Login successful");
+      console.log("token", token);
+      Cookies.set('token', token, { expires: 7 }); 
+      setTimeout(() => {
+        window.location.reload();
+        window.location.href = '/';
+      }, 1000);
+    } else {
+      throw new Error(`Unexpected response status: ${response.status}`);
     }
-  };
+  } catch (error) {
+    console.error("Error during sign-in:", error);
+    const errorMessage = error.response ? error.response.data.msg : "Something went wrong";
+    toast.error(errorMessage);
+  } finally {
+    toast.dismiss(loadingToast);
+  }
+};
+
 
   return (
     <section>
-      <div className="flex h-screen items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24" id="signin">
-        <div>
+      <div>
           <Toaster />
         </div>
-        <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
+      <div className="h-screen grid grid-cols-1 lg:grid-cols-1">
+        <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md mt-10">
           <div className="mb-2 flex justify-center">
             <img src={signin} style={{height:'80px'}} alt="Sign In" />
           </div>
@@ -79,8 +86,6 @@ export function SignIn() {
                     Password{' '}
                   </label>
                   <div className="flex">
-                    {/* Toggle password visibility */}
-                    
                     <a href="/forgot-password" title="" className="text-sm font-semibold text-black hover:underline">
                       {' '}
                       Forgot password?{' '}
@@ -116,8 +121,15 @@ export function SignIn() {
               </div>
             </div>
           </form>
+           {/* <div className='mt-5 mb-5 text-gray-500'>
+              <h2 id='line'><span id='line-span'>or</span></h2>
+            </div>
+            <div className="mt-3 space-y-3">
+              <SignInWithGoogle></SignInWithGoogle>
+            </div> */}
         </div>
       </div>
     </section>
-  );
+  )
 }
+

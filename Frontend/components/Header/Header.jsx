@@ -3,14 +3,14 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import Logo from "/logo.svg"; 
 import user from "/user.svg"
 import "./Header.css";
+import Cookies from 'js-cookie';
+
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState(''); // Initialize active state
-  const token = localStorage.getItem('jsonwebtoken');
+  const [active, setActive] = useState(''); 
   const location = useLocation();
 
-  // Update active state when the location changes
   useEffect(() => {
     setActive(getActiveRoute(location.pathname));
   }, [location.pathname]);
@@ -67,8 +67,7 @@ export function Header() {
         </li>
       </ul>
       <ul className={`${menuOpen ? "open" : ""}`}>
-        {/* Display user info or login/signup links based on token */}
-        {token !== null ? (
+        {Cookies.get('token')!==undefined  ? (
           <div className='flex items-center justify-center'>
             <img src={user} className="h-10 object-cover" alt="Logo" />
             <p className='ml-3 text-gray-700 font-semibold'>Welcome !</p>

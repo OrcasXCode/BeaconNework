@@ -13,6 +13,7 @@ const { RegisterForInterview } = require("../db/registerforinterview");
 const { GetAPartTimeJob } = require("../db/getpartimejob");
 const { registerEmail } = require("../db/registeremail");
 const { ContactUs } = require("../db/contactus");
+const cookies = require("js-cookie");
 
 require("dotenv").config();
 const otpGenerator = require("otp-generator");
