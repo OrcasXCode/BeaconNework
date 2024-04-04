@@ -17,7 +17,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { ChangePassword } from '../pages/changePassword.jsx'
 import { RegisterEmail } from '../pages/registerEmail.jsx'
 import { Verifyregisteredemail } from '../pages/verifyregisteredemail.jsx'
-
+import {Auth0Provider} from "@auth0/auth0-react"
 
 
 const router=createBrowserRouter([
@@ -80,10 +80,18 @@ const store = configureStore({
 })
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <Auth0Provider
+    domain="dev-1hnvhis1u72f88qh.us.auth0.com"
+    clientId="1AhH2U697OmL79TjE3pExoviF1KDVPFD"
+    authorizationParams={{
+      redirect_uri: window.location.origin
+    }}
+  >
+    <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router}></RouterProvider>
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
+  </Auth0Provider>
 )
  
