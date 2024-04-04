@@ -4,12 +4,15 @@ import Logo from "/logo.svg";
 import user from "/user.svg"
 import "./Header.css";
 import Cookies from 'js-cookie';
-
+import { useAuth0 } from '@auth0/auth0-react';
 
 export function Header() {
+  const { user,loginWithRedirect,isAuthenticated,logout } = useAuth0();
+  console.log("Current User",user);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState(''); 
   const location = useLocation();
+
 
   useEffect(() => {
     setActive(getActiveRoute(location.pathname));
@@ -75,10 +78,13 @@ export function Header() {
         ) : (
           <>
             <li>
-              <NavLink to="/signin" onClick={() => { closeMenu(); handleClick('login') }} className={active === 'signin' ? 'text-[#084c98]' : 'hover:text-[#b8b8b8] hover:scale-110  transition-transform duration-300 ease-in-out'}>Login</NavLink>
+              
+              {/* <NavLink to="/signin" onClick={() => { closeMenu(); handleClick('signup') }} className={active === 'signin' ? 'text-[#084c98]' : 'hover:text-[#b8b8b8] hover:scale-110  transition-transform duration-300 ease-in-out'}>Log In</NavLink> */}
             </li>
             <li>
-              <NavLink to="/signup" onClick={() => { closeMenu(); handleClick('signup') }} className={active === 'signup' ? 'text-[#084c98]' : 'hover:text-[#b8b8b8] hover:scale-110  transition-transform duration-300 ease-in-out'}>Sign Up</NavLink>
+              {/* <NavLink to="/signup" onClick={() => { closeMenu(); handleClick('signup') }} className={active === 'signup' ? 'text-[#084c98]' : 'hover:text-[#b8b8b8] hover:scale-110  transition-transform duration-300 ease-in-out'}>Sign Up</NavLink>
+               */}
+               {isAuthenticated ? <button className='text-black' onClick={(e)=>logout()} >Logout</button> : <button className='text-black' onClick={(e) => loginWithRedirect()}>Log In</button>}
             </li>
           </>
         )}

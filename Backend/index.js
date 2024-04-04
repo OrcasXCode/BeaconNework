@@ -16,40 +16,40 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // Configure session middleware
-app.use(
-  session({
-    name: "token",
-    secret: "cats",
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+// app.use(
+//   session({
+//     name: "token",
+//     secret: "cats",
+//     resave: false,
+//     saveUninitialized: true,
+//   })
+// );
 
-// Initialize Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+// // Initialize Passport middleware
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-// Authentication routes
-app.get("/", (req, res) => {
-  res.send('<a href="/auth/google">Authenticate with Google</a>');
-});
+// // Authentication routes
+// app.get("/", (req, res) => {
+//   res.send('<a href="/auth/google">Authenticate with Google</a>');
+// });
 
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
-);
+// app.get(
+//   "/auth/google",
+//   passport.authenticate("google", { scope: ["email", "profile"] })
+// );
 
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "/",
-    failureRedirect: "/auth/google/failure",
-  })
-);
+// app.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", {
+//     successRedirect: "/",
+//     failureRedirect: "/auth/google/failure",
+//   })
+// );
 
-app.get("/auth/google/failure", (req, res) => {
-  res.send("Failed to authenticate..");
-});
+// app.get("/auth/google/failure", (req, res) => {
+//   res.send("Failed to authenticate..");
+// });
 
 // Serve static files
 app.get("/*", (req, res) => {

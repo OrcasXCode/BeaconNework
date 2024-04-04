@@ -7,9 +7,11 @@ import Lottie from 'lottie-react'
 import animationData from '../../src/assets/Animation.json'
 import interview from '../../src/assets/interview1.json'
 import  {TypeAnimation}  from 'react-type-animation';
-import frame from "../../src/assets/frame.png"
+
+
 
 export function Home() {
+
 
   const [InterviewEmail,setInterviewEmail]=useState("");
   const [PartTimeJobEmail,setPartTimeJobEmail]=useState("");
