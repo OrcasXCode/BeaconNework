@@ -7,11 +7,11 @@ import Lottie from 'lottie-react'
 import animationData from '../../src/assets/Animation.json'
 import interview from '../../src/assets/interview1.json'
 import  {TypeAnimation}  from 'react-type-animation';
-
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 export function Home() {
-
+  const {isAuthenticated} = useAuth0();
 
   const [InterviewEmail,setInterviewEmail]=useState("");
   const [PartTimeJobEmail,setPartTimeJobEmail]=useState("");
@@ -155,11 +155,11 @@ export function Home() {
              <input
               className={`flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 ${localStorage.getItem("jsonwebtoken") ? "" : "disabled:cursor-not-allowed disabled:opacity-50"}`}
               type="email"
-              placeholder={!localStorage.getItem("jsonwebtoken") ? "Sign in to access this feature" : "Email"}
+              placeholder={!isAuthenticated ? "Sign in to access this feature" : "Email"}
               onChange={(e) => {
                 setSellerEmail(e.target.value);
               }}
-              disabled={!localStorage.getItem("jsonwebtoken")}
+              disabled={!isAuthenticated}
               />
               {/* <p className='text-red-600 text-sm font-semibold'>You need to signin first<span><sup>*</sup></span></p> */}
               <button
@@ -375,11 +375,11 @@ export function Home() {
               <input
               className={`flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 ${localStorage.getItem("jsonwebtoken") ? "" : "disabled:cursor-not-allowed disabled:opacity-50"}`}
               type="email"
-                placeholder={!localStorage.getItem("jsonwebtoken") ? "Sign in to access this feature" : "Email"}
+                placeholder={!isAuthenticated ? "Sign in to access this feature" : "Email"}
               onChange={(e) => {
                 setInterviewEmail(e.target.value);
               }}
-              disabled={!localStorage.getItem("jsonwebtoken")}
+              disabled={!isAuthenticated}
             />
               <button
                 type="button"
@@ -446,11 +446,11 @@ export function Home() {
                <input
               className={`flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 ${localStorage.getItem("jsonwebtoken") ? "" : "disabled:cursor-not-allowed disabled:opacity-50"}`}
               type="email"
-              placeholder={!localStorage.getItem("jsonwebtoken") ? "Sign in to access this feature" : "Email"}
+              placeholder={!isAuthenticated ? "Sign in to access this feature" : "Email"}
               onChange={(e) => {
                 setPartTimeJobEmail(e.target.value);
               }}
-              disabled={!localStorage.getItem("jsonwebtoken")}
+              disabled={!isAuthenticated}
             />
               <button
                 type="button"
