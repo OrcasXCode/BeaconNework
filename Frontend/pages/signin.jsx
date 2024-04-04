@@ -1,11 +1,9 @@
-import SignInWithGoogle from './SignInWithGoogle';
 import React, { useState } from "react";
 import HighlightText from "../components/HighLightText";
 import { toast, Toaster } from "react-hot-toast";
 import { ArrowRight, Eye, EyeOff } from 'lucide-react';
 import signin from '/signin.svg';
 import axios from "axios";
-import Cookies from 'js-cookie';
 import { useAuth0 } from "@auth0/auth0-react";
 
 
