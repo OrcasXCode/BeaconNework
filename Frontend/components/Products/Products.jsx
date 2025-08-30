@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import cctv1 from '/cctv1.svg';
@@ -20,6 +20,21 @@ import bigcomp from '../../src/assets/bigcomp.json'
 import startup from '../../src/assets/startup.json'
 import ImageSlider from '../ImageSlider/ImageSlider';
 
+// Optimized Lottie component with lazy loading
+const OptimizedLottie = ({ animationData, className = "max-w-full h-auto", ...props }) => (
+  <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse rounded-lg"></div>}>
+    <Lottie 
+      animationData={animationData} 
+      className={className}
+      rendererSettings={{
+        preserveAspectRatio: 'xMidYMid slice',
+        progressiveLoad: true
+      }}
+      {...props}
+    />
+  </Suspense>
+);
+
 
 export function Products() {
     return (
@@ -38,7 +53,7 @@ export function Products() {
                 <div className="my-18 -mx-4 flex  flex-wrap px-4">
                   <div className="mb-12 w-full flex flex-row px-4 lg:mb-0 lg:w-1/2">
                     <a className="group block w-full" href="#">
-                      <Lottie animationData={deal}></Lottie>
+                      <OptimizedLottie animationData={deal} />
                       <div>
                         <h4 className="mb-5 text-3xl font-semibold text-gray-900">
                         <HighlightText text="Beacon Network"></HighlightText>- Providing a Variety of Solutions
@@ -53,7 +68,7 @@ export function Products() {
                   </div>
                   <div className="w-full px-4 lg:w-1/2">
                     <a className="group mb-8 md:flex flex justify-center items-center">
-                       <Lottie animationData={industry}></Lottie>
+                       <OptimizedLottie animationData={industry} />
                       <div className="my-4 pt-2 md:ml-6 md:mt-0">
                         <h4 className="text-l text-center font-semibold text-gray-900">
                           Whether it's for industrial purposes, we offer the most durable and efficient solutions for best price.
@@ -61,7 +76,7 @@ export function Products() {
                       </div>
                     </a>
                     <a className="group mb-8 md:flex flex justify-center items-center">
-                      <Lottie animationData={bigcomp}></Lottie>
+                      <OptimizedLottie animationData={bigcomp} />
                       <div className="my-4 w-[400px] pt-2 md:ml-6 md:mt-0">
                         <h4 className="text-l text-center font-semibold text-gray-900">
                           Whether you are a giant corporation or a nimble startup, we provide state-of-the-art solutions.
@@ -69,7 +84,7 @@ export function Products() {
                       </div>
                     </a>
                     <a className="group mb-8 md:flex flex justify-center items-center">
-                      <Lottie animationData={startup}></Lottie>
+                      <OptimizedLottie animationData={startup} />
                       <div className="my-4 pt-2 md:ml-6 md:mt-0">
                         <h4 className="text-l text-center font-semibold text-gray-900">
                           For startups, we offer comprehensive end-to-end solutions to fuel your growth journey.

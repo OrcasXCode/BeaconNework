@@ -3,6 +3,18 @@ import { toast, Toaster } from "react-hot-toast";
 import axios from 'axios';
 import cs from '/cs.svg';
 
+// Optimized image component
+const OptimizedImage = ({ src, alt, className, loading = "lazy", ...props }) => (
+  <img
+    src={src}
+    alt={alt}
+    className={className}
+    loading={loading}
+    decoding="async"
+    {...props}
+  />
+);
+
 const locations = [
   {
     title: 'Rajkot, Gujarat office',
@@ -154,7 +166,7 @@ export function ContactUs() {
                 </form>
               </div>        
             </div>
-            <img style={{borderRadius:'10px'}} src={cs} alt="Contact us" />
+            <OptimizedImage style={{borderRadius:'10px'}} src={cs} alt="Contact us" />
             <div className="absolute inset-x-0 -top-[10rem] -z-10 transform-gpu overflow-hidden blur-3xl md:-top-[10rem]">
               <svg
                 className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"

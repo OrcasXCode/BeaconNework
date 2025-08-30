@@ -14,6 +14,19 @@ import sha from "/sha.svg";
 // import ucs from "../../src/assets/ucs.jpg";
 import server from "/server2.svg";
 
+// Optimized image component with lazy loading
+const OptimizedImage = ({ src, alt, className, loading = "lazy", ...props }) => (
+  <img
+    src={src}
+    alt={alt}
+    className={className}
+    loading={loading}
+    decoding="async"
+    {...props}
+  />
+);
+
+
 
 const ImageSlider = () => {
   const [positionIndexes, setPositionIndexes] = useState([0, 1, 2, 3, 4]);
@@ -69,11 +82,14 @@ const ImageSlider = () => {
             transform: `translateX(-${current * 100}%)`,
           }}
         >
-          {images.map((s) => {
+          {images.map((s, index) => {
             return (
-              <img
+              <OptimizedImage
+                key={index}
                 src={s}
+                alt={`Product ${index + 1}`}
                 className="h-full w-full object-cover object-center"
+                loading={index === 0 ? "eager" : "lazy"}
               />
             );
           })}
@@ -116,7 +132,7 @@ const ImageSlider = () => {
             transition={{ duration: 0.8 }}
             style={{ width: "45%", position: "absolute" }}
           >
-            <img src={image} alt="photos" />
+            <OptimizedImage src={image} alt="Product showcase" />
           </motion.div>
         ))}
         <div className="flex flex-row gap-3  mt-12">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { lazy, Suspense } from 'react'
 import HighlightText from '../HighLightText'
 import seller from '/seller.svg'
 import CountUp from 'react-countup';
@@ -7,24 +7,23 @@ import Lottie from 'lottie-react'
 import animationData from '../../src/assets/Animation.json'
 import interview from '../../src/assets/interview1.json'
 import  {TypeAnimation}  from 'react-type-animation';
-import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
+
+// Optimized image component with lazy loading
+const OptimizedImage = ({ src, alt, className, style, loading = "lazy", ...props }) => (
+  <img
+    src={src}
+    alt={alt}
+    className={className}
+    style={style}
+    loading={loading}
+    decoding="async"
+    {...props}
+  />
+);
 
 
 export function Home() {
-  const {isAuthenticated} = useAuth0();
-
-  const [InterviewEmail,setInterviewEmail]=useState("");
-  const [PartTimeJobEmail,setPartTimeJobEmail]=useState("");
-  const [SellerEmail,setSellerEmail]=useState("");
-
-
-  const handleInputClick = () => {
-    if (!localStorage.getItem('token')) {
-      toast.error('You need to sign in first');
-    }
-  };
-
-
   return (
     <div className="relative w-full scroll-smooth">
       <div>
@@ -56,7 +55,16 @@ export function Home() {
           </p>
         </div>
        <div className="relative lg:col-span-5 lg:-mr-8 xl:col-span-6">
-          <Lottie animationData={animationData}></Lottie>
+          <Suspense fallback={<div className="h-64 bg-gray-100 animate-pulse rounded-lg"></div>}>
+            <Lottie 
+              animationData={animationData} 
+              className="max-w-full h-auto"
+              rendererSettings={{
+                preserveAspectRatio: 'xMidYMid slice',
+                progressiveLoad: true
+              }}
+            />
+          </Suspense>
         </div>
       </div>
 
@@ -104,11 +112,12 @@ export function Home() {
       <div className="mx-auto mt-10 max-w-7xl px-2 py-10 lg:px-0 md:mx-auto sm-mx-auto" id='become-seller'>
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:space-x-10">
        <div className="mb-10 w-full md:w-2/3 lg:mb-0 lg:w-1/2 rounded-lg">
-          <img
+          <OptimizedImage
             style={{borderRadius:'10px'}}
             className="h-[700px] w-full object-contain"
             src={seller}
             alt="Become a Seller"
+            loading="eager"
           />
         </div>
 
@@ -126,77 +135,44 @@ export function Home() {
             </div>
             <div className="mt-4 flex items-center space-x-4">
               <div className="isolate flex -space-x-2">
-                <img
+                <OptimizedImage
                   className="relative z-30 inline-block h-10 w-10 rounded-full ring-2 ring-white hover:scale-110  transition-transform duration-300 ease-in-out"
-                  src="https://images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt="Dan_Abromov"
+                  src="https://images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg?auto=compress&cs=tinysrgb&w=160&h=160&dpr=1"
+                  alt="Team member"
                 />
-                <img
+                <OptimizedImage
                   className="relative z-20 inline-block h-10 w-10 rounded-full ring-2 ring-white hover:scale-110  transition-transform duration-300 ease-in-out"
-                  src="https://images.pexels.com/photos/7752846/pexels-photo-7752846.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt="Guillermo_Rauch"
+                  src="https://images.pexels.com/photos/7752846/pexels-photo-7752846.jpeg?auto=compress&cs=tinysrgb&w=160&h=160&dpr=1"
+                  alt="Team member"
                 />
-                <img
+                <OptimizedImage
                   className="relative z-10 inline-block h-10 w-10 rounded-full object-cover ring-2 ring-white hover:scale-110  transition-transform duration-300 ease-in-out"
-                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
-                  alt="Lee_Robinson"
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=160&q=60"
+                  alt="Team member"
                 />
-                <img
+                <OptimizedImage
                   className="relative z-0 inline-block h-10 w-10 rounded-full ring-2 ring-white hover:scale-110  transition-transform duration-300 ease-in-out"
-                  src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt="Delba"
+                  src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=160&h=160&dpr=1"
+                  alt="Team member"
                 />
               </div>
               <span className="text-sm font-semibold text-gray-700">Join 1000+ Sellers</span>
             </div>
           </div>
-          <form className="mt-6">
+          <div className="mt-6">
             <div className="flex w-full max-w-md flex-col space-y-4">
-             <input
-              className={`flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 ${localStorage.getItem("jsonwebtoken") ? "" : "disabled:cursor-not-allowed disabled:opacity-50"}`}
-              type="email"
-              placeholder={!isAuthenticated ? "Sign in to access this feature" : "Email"}
-              onChange={(e) => {
-                setSellerEmail(e.target.value);
-              }}
-              disabled={!isAuthenticated}
-              />
-              {/* <p className='text-red-600 text-sm font-semibold'>You need to signin first<span><sup>*</sup></span></p> */}
-              <button
-                type="button"
+              <Link
+                to="/contact-us"
                 style={{background:'#084C98',borderRadius:'20px'}}
-                className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                onClick={()=>{
-                  fetch("https://beaconnetwork.in/user/becomeaseller", {
-                          method: "POST",
-                          body: JSON.stringify({
-                            email:SellerEmail
-                          }),
-                          headers: {
-                            "Content-type": "application/json",
-                          },
-                        })
-                          .then(async function (res) {
-                              if(res.ok){
-                                const json = await res.json();
-                                toast.success("Registered");
-                              }
-                              else{
-                                throw new Error();
-                              }
-                          })
-                          .catch((e) => {
-                          toast.error("Failed to Register");
-                  });
-                }}
+                className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black text-center transition-colors duration-300"
               >
                 Join Us
-              </button>
+              </Link>
             </div>
-          </form>
+          </div>
           <p className="mt-2">
             <span className="text-sm text-gray-600">
-              By signing up, you agree to our terms of service and privacy policy.
+              {/* By signing up, you agree to our terms of service and privacy policy. */}
             </span>
           </p>
         </div>
@@ -213,13 +189,22 @@ export function Home() {
         <div className="px-5 relative mx-auto py-24 max-sm: mt-[-70px]">
           <div className= "flex justify-evenly max-md:flex-col max-md:items-stretch max-md:gap-0">
             <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
-              <img
-                style={{borderRadius:'10px'}}
-                loading="lazy"
-                srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&"
-               className="aspect-[1.72] object-contain object-center w-full overflow-hidden grow max-md:max-w-full max-md:mt-7"
-                alt=""
-              />
+              <picture>
+                <source 
+                  media="(max-width: 640px)" 
+                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400&format=webp" 
+                />
+                <source 
+                  media="(max-width: 1024px)" 
+                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800&format=webp" 
+                />
+                <OptimizedImage
+                  style={{borderRadius:'10px'}}
+                  className="aspect-[1.72] object-contain object-center w-full overflow-hidden grow max-md:max-w-full max-md:mt-7"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/3fb3d8d4ebaf3099d78d867c3ac2532d84c773554305ea449059933dab40325b?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200&format=webp"
+                  alt="Design Process"
+                />
+              </picture>
             </header>
             <div className="flex flex-col gap-y-6 items-center justify-center mx-auto  w-[31%] ml-5 max-md:w-full max-md:ml-0">
               
@@ -242,12 +227,22 @@ export function Home() {
         <div className="px-5 relative mx-auto py-24 max-sm: mt-[-90px]">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
-              <img
-                style={{borderRadius:'10px'}}
-                loading="lazy"
-                srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&"className="aspect-[1.72] object-contain object-center w-full overflow-hidden max-w-[636px]"
-                alt=""
-              />
+              <picture>
+                <source 
+                  media="(max-width: 640px)" 
+                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400&format=webp" 
+                />
+                <source 
+                  media="(max-width: 1024px)" 
+                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800&format=webp" 
+                />
+                <OptimizedImage
+                  style={{borderRadius:'10px'}}
+                  className="aspect-[1.72] object-contain object-center w-full overflow-hidden max-w-[636px]"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/4ec104eab319e7289005149cf34ebe38750262005c6066df78af71c7460eec3e?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200&format=webp"
+                  alt="Next-Gen Solutions"
+                />
+              </picture>
             </header>
             <div className="flex flex-col gap-y-6 items-center justify-center mx-auto  w-[31%] ml-5 max-md:w-full max-md:ml-0">
               
@@ -274,12 +269,22 @@ export function Home() {
         <div className="px-5 relative mx-auto py-24 max-sm: mt-[-90px]">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
-              <img
-                style={{borderRadius:'10px'}}
-                loading="lazy"
-                 srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&"className="w-full h-full"
-                alt=""
-              />
+              <picture>
+                <source 
+                  media="(max-width: 640px)" 
+                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400&format=webp" 
+                />
+                <source 
+                  media="(max-width: 1024px)" 
+                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800&format=webp" 
+                />
+                <OptimizedImage
+                  style={{borderRadius:'10px'}}
+                  className="w-full h-full"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/9b8ab284000a329ce7731b77f17761d4ffe1baf2163ee20f744a2f6fbe006006?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200&format=webp"
+                  alt="Product Installation"
+                />
+              </picture>
             </header>
             <div className="flex flex-col gap-y-6 items-center justify-center mx-auto  w-[31%] ml-5 max-md:w-full max-md:ml-0">
               
@@ -302,12 +307,22 @@ export function Home() {
          <div className="px-5 relative mx-auto py-24 max-sm: mt-[-90px]">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
-              <img
-                style={{borderRadius:'10px'}}
-                loading="lazy"
-               srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&"className="aspect-[1.72] object-contain object-center w-full overflow-hidden max-w-[637px]"
-                alt=""
-              />
+              <picture>
+                <source 
+                  media="(max-width: 640px)" 
+                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400&format=webp" 
+                />
+                <source 
+                  media="(max-width: 1024px)" 
+                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800&format=webp" 
+                />
+                <OptimizedImage
+                  style={{borderRadius:'10px'}}
+                  className="aspect-[1.72] object-contain object-center w-full overflow-hidden max-w-[637px]"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/06806600cead4e023bf01e5d54f1752b1b28150b813ba8c8edfad8b8e1271df9?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200&format=webp"
+                  alt="Maintenance Services"
+                />
+              </picture>
             </header>
              <div className="flex flex-col gap-y-6 items-center justify-center mx-auto  w-[31%] ml-5 max-md:w-full max-md:ml-0">
               
@@ -330,13 +345,22 @@ export function Home() {
         <div className="px-5 relative mx-auto py-24 max-sm: mt-[-90px]">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <header className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
-              
-              <img
-                style={{borderRadius:'10px'}}
-                loading="lazy"
-                 srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&"className="aspect-[1.72] object-contain object-center w-full overflow-hidden max-w-[635px]"
-                alt=""
-              />
+              <picture>
+                <source 
+                  media="(max-width: 640px)" 
+                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=400&format=webp" 
+                />
+                <source 
+                  media="(max-width: 1024px)" 
+                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=800&format=webp" 
+                />
+                <OptimizedImage
+                  style={{borderRadius:'10px'}}
+                  className="aspect-[1.72] object-contain object-center w-full overflow-hidden max-w-[635px]"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/de7c03766757f3c4a1584a83e83e6941aac7b574aa28452d764e245ce9171a1d?apiKey=b64be3a11241412fb85a6281032f0ca0&width=1200&format=webp"
+                  alt="Customer Support"
+                />
+              </picture>
             </header>
             <div style={{textAlign:'center'}} className="flex flex-col gap-y-6 items-center justify-center mx-auto  w-[31%] ml-5 max-md:w-full max-md:ml-0">
                 <h1 className="text-sky-800 font-bold text-4xl whitespace-nowrap max-md:text-4xl  max-sm:text-[30px] mt-3 text-[30px] ">
@@ -367,66 +391,43 @@ export function Home() {
           </p>
           <div className="mt-4">
             <p className="font-semibold text-gray-800">
-              Register your email to get all the detailed information about the interview process
+              Ready to join our team? Contact us to learn more about available positions and the interview process.
             </p>
           </div>
-          <form className="mt-6">
+          <div className="mt-6">
             <div className="flex w-full max-w-md flex-col space-y-4">
-              <input
-              className={`flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 ${localStorage.getItem("jsonwebtoken") ? "" : "disabled:cursor-not-allowed disabled:opacity-50"}`}
-              type="email"
-                placeholder={!isAuthenticated ? "Sign in to access this feature" : "Email"}
-              onChange={(e) => {
-                setInterviewEmail(e.target.value);
-              }}
-              disabled={!isAuthenticated}
-            />
-              <button
-                type="button"
+              <Link
+                to="/contact-us"
                 style={{background:'#084C98',borderRadius:'20px'}}
-                className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                onClick={()=>{
-                  fetch("https://beaconnetwork.in/user/registerforinterview", {
-                          method: "POST",
-                          body: JSON.stringify({
-                            email:InterviewEmail
-                          }),
-                          headers: {
-                            "Content-type": "application/json",
-                          },
-                        })
-                          .then(async function (res) {
-                              if(res.ok){
-                                const json = await res.json();
-                                toast.success("Registered");
-                              }
-                              else{
-                                throw new Error();
-                              }
-                          })
-                          .catch((e) => {
-                            toast.error("Failed to Register");
-                  });
-                }}
+                className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black text-center transition-colors duration-300"
               >
                 Apply For Job
-              </button>
+              </Link>
             </div>
-          </form>
+          </div>
           <p className="mt-2">
             <span className="text-sm text-gray-600">
-              By signing up, you agree to our terms of service and privacy policy.
+              {/* By signing up, you agree to our terms of service and privacy policy. */}
             </span>
           </p>
         </div>
         <div className="mt-10 w-full md:w-2/3 lg:mt-0 lg:w-1/2">
-          <Lottie animationData={interview}></Lottie>
+          <Suspense fallback={<div className="h-64 bg-gray-100 animate-pulse rounded-lg"></div>}>
+            <Lottie 
+              animationData={interview}
+              className="max-w-full h-auto"
+              rendererSettings={{
+                preserveAspectRatio: 'xMidYMid slice',
+                progressiveLoad: true
+              }}
+            />
+          </Suspense>
         </div>
       </div>
     </div>
 
       {/* Get A Part Time Job */}
-      <div className="mx-auto max-w-7xl px-2 py-10 lg:px-0">
+      {/* <div className="mx-auto max-w-7xl px-2 py-10 lg:px-0">
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
         <div className="w-full md:w-1/2">
           <h2 className="text-3xl font-bold text-black">Already got a job ! But want a part-time job ?</h2>
@@ -435,59 +436,27 @@ export function Home() {
           </p>
           <div className="mt-4">
             <p className="font-semibold text-gray-800">
-              Register your email to get all the detailed information about the part-time job scheme.
+              Interested in part-time opportunities? Contact us to learn more about our flexible job options.
             </p>
           </div>
         </div>
         
         <div className="mt-10 w-full md:w-1/2 lg:mt-0">
-          <form className="flex lg:justify-center">
+          <div className="flex lg:justify-center">
             <div className="flex w-full max-w-md items-center space-x-2">
-               <input
-              className={`flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 ${localStorage.getItem("jsonwebtoken") ? "" : "disabled:cursor-not-allowed disabled:opacity-50"}`}
-              type="email"
-              placeholder={!isAuthenticated ? "Sign in to access this feature" : "Email"}
-              onChange={(e) => {
-                setPartTimeJobEmail(e.target.value);
-              }}
-              disabled={!isAuthenticated}
-            />
-              <button
-                type="button"
+              <Link
+                to="/contact-us"
                 style={{background:'#084C98',borderRadius:'20px'}}
-                className="rounded-md  px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                onClick={()=>{
-                  fetch("https://beaconnetwork.in/user/registerforinterview", {
-                          method: "POST",
-                          body: JSON.stringify({
-                            email:PartTimeJobEmail
-                          }),
-                          headers: {
-                            "Content-type": "application/json",
-                          },
-                        })
-                          .then(async function (res) {
-                              if(res.ok){
-                                const json = await res.json();
-                                toast.success("Registered");
-                              }
-                              else{
-                                throw new Error();
-                              }
-                          })
-                          .catch((e) => {
-                            toast.error("Failed to Register");
-                  });
-                }}
+                className="rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black transition-colors duration-300"
               >
-                Register
-              </button>
+                Contact Us
+              </Link>
             </div>
-          </form>
+          </div>
           
         </div>
       </div>
-    </div>
+    </div> */}
 
       </div>
   )

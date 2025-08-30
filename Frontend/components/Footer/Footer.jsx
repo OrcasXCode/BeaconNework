@@ -6,119 +6,186 @@ import linkdin from "/linkdin.svg"
 import facebook from "/facebook.svg"
 import x from "/x.svg"
 
+// Optimized image component
+const OptimizedImage = ({ src, alt, className, loading = "lazy", ...props }) => (
+  <img
+    src={src}
+    alt={alt}
+    className={className}
+    loading={loading}
+    decoding="async"
+    {...props}
+  />
+);
+
 export function Footer() {
   return (
-    <section className="relative overflow-hidden py-10">
-      <div className="relative z-10 mx-auto max-w-7xl px-4">
-        <div className="-m-6 flex flex-wrap">
-          <div className="w-full p-6 md:w-1/2 lg:w-5/12">
-            <div className="flex h-full flex-col justify-between">
-              <div className="mb-4 inline-flex items-center">
-                <img src={Logo} className="object-contain h-[50px]" alt="Logo" />
-                <img src={name} className="object-contain h-[50px]" alt="Logo" />
-                </div>
-              <div>
-                <p className="text-sm text-gray-600">
-                  &copy; Copyright 2024. All Rights Reserved by Beacon Network.
-                </p>
-              </div>
+    <footer className="bg-gray-50 border-t border-gray-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center space-x-2 mb-4">
+              <OptimizedImage src={Logo} className="h-10 w-auto" alt="Beacon Network Logo" />
+              <OptimizedImage src={name} className="h-10 w-auto" alt="Beacon Network" />
             </div>
-          </div>
-          <div className="mx-auto w-full p-6 md:w-1/2 lg:w-2/12">
-            <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500">
-                Company
-              </h3>
-              <ul>
-                <li className="mb-4">
-                  <a className=" text-base font-medium text-gray-900 hover:text-gray-700" href="/about">
-                    Why Us ?
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a className=" text-base font-medium text-gray-900 hover:text-gray-700" href="/products">
-                    Products
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a className=" text-base font-medium text-gray-900 hover:text-gray-700" href="/">
-                    Join Our Team
-                  </a>
-                </li>
-                <li>
-                  <a className=" text-base font-medium text-gray-900 hover:text-gray-700" href="/">
-                    Become a Seller
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="w-full p-6 md:w-1/2 lg:w-2/12">
-            <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500">
-                Support
-              </h3>
-              <ul>
-                <li className="mb-4">
-                  <a className=" text-base font-medium text-gray-900 hover:text-gray-700" href="/signin">
-                    Account
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a className=" text-base font-medium text-gray-900 hover:text-gray-700" href="/contact-us">
-                    Help
-                  </a>
-                </li>
-                <li>
-                  <a className=" text-base font-medium text-gray-900 hover:text-gray-700" href="/contact-us">
-                    Customer Support
-                  </a>
-                </li>
-              </ul>
+            <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+              Connecting opportunities with talent. Your gateway to professional growth and success.
+            </p>
+            <div className="flex space-x-4">
+              <a 
+                href="#" 
+                className="text-gray-400 hover:text-blue-600 transition-colors duration-300"
+                aria-label="Facebook"
+              >
+                <OptimizedImage src={facebook} className="h-6 w-6" alt="Facebook" />
+              </a>
+              <a 
+                href="#" 
+                className="text-gray-400 hover:text-blue-600 transition-colors duration-300"
+                aria-label="Instagram"
+              >
+                <OptimizedImage src={insta} className="h-6 w-6" alt="Instagram" />
+              </a>
+              <a 
+                href="#" 
+                className="text-gray-400 hover:text-blue-600 transition-colors duration-300"
+                aria-label="LinkedIn"
+              >
+                <OptimizedImage src={linkdin} className="h-6 w-6" alt="LinkedIn" />
+              </a>
+              <a 
+                href="#" 
+                className="text-gray-400 hover:text-blue-600 transition-colors duration-300"
+                aria-label="X (Twitter)"
+              >
+                <OptimizedImage src={x} className="h-6 w-6" alt="X" />
+              </a>
             </div>
           </div>
 
-    <section className="relative overflow-hidden bg-white py-8">
-      <div className="container relative z-10 mx-auto px-4">
-        <div className="-m-8 flex flex-wrap items-center justify-between">
+          {/* Company Links */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+              Company
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <a 
+                  href="/about" 
+                  className="text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm"
+                >
+                  Why Us?
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/products" 
+                  className="text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm"
+                >
+                  Products
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/contact-us" 
+                  className="text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm"
+                >
+                  Join Our Team
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/contact-us" 
+                  className="text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm"
+                >
+                  Become a Seller
+                </a>
+              </li>
+            </ul>
+          </div>
 
-          <div className="w-auto p-8">
-            <div className="-m-1.5 flex items-center justify-center flex-wrap">
-              <div className="w-auto p-1.5">
-                <a href="#">
-                  <div className="flex h-8 w-8 items-center justify-center">
-                    <img src={facebook}></img>
-                  </div>
+          {/* Support Links */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+              Support
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <a 
+                  href="/contact-us" 
+                  className="text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm"
+                >
+                  Help Center
                 </a>
-              </div>
-              <div className="w-auto p-1.5">
-                <a href="#">
-                  <div className="flex h-8 w-8 items-center justify-center">
-                    <img src={insta}></img>
-                  </div>
+              </li>
+              <li>
+                <a 
+                  href="/contact-us" 
+                  className="text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm"
+                >
+                  Customer Support
                 </a>
-              </div>
-              <div className="w-auto p-1.5">
-                <a href="#">
-                  <div className="flex h-8 w-8 items-center justify-center">
-                    <img src={linkdin}></img>
-                  </div>
+              </li>
+              <li>
+                <a 
+                  href="/contact-us" 
+                  className="text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm"
+                >
+                  Contact Us
                 </a>
-              </div>
-              <div className="w-auto p-1.5">
-                <a href="#">
-                  <div className="flex h-7 w-7 items-center justify-center">
-                    <img src={x}></img>
-                  </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal Links */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+              Legal
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <a 
+                  href="/terms-and-conditions" 
+                  className="text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm"
+                >
+                  Terms & Conditions
                 </a>
-              </div>
+              </li>
+              <li>
+                <a 
+                  href="/privacy-policy" 
+                  className="text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              {/* <li>
+                <a 
+                  href="/contact-us" 
+                  className="text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm"
+                >
+                  Refund Policy
+                </a>
+              </li> */}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-500 text-sm">
+              &copy; 2025 Beacon Network. All rights reserved.
+            </p>
+            <div className="mt-4 md:mt-0 flex items-center space-x-6">
+              <span className="text-gray-500 text-xs">
+                {/* Made with ❤️ for professional growth */}
+              </span>
             </div>
           </div>
         </div>
       </div>
-    </section>
-        </div>
-      </div>
-    </section>
+    </footer>
   )
 }
